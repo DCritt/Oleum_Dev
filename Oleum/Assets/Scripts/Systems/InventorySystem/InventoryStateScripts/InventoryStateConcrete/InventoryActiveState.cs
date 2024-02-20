@@ -44,9 +44,9 @@ public class InventoryActiveState : InventoryState
             {
 
                 inventory.Slots[i] = new Item(data, player);
-                UIManagerScript.Instance.SetImage(i, inventory.Slots[i]);
+                player.UIManager.SetImage(i, inventory.Slots[i]);
                 SetCurrentItem(i);
-                UIManagerScript.Instance.SetSelect(i);
+                player.UIManager.SetSelect(i);
                 return;
 
             }
@@ -69,7 +69,7 @@ public class InventoryActiveState : InventoryState
 
         inventory.Slots[inventory.currentItem]?.RemoveItem();
         inventory.Slots[inventory.currentItem] = null;
-        UIManagerScript.Instance.SetImage(inventory.currentItem, inventory.Slots[inventory.currentItem]);
+        player.UIManager.SetImage(inventory.currentItem, inventory.Slots[inventory.currentItem]);
         player.PlayerBodyAnim.SetInteger("CurrAnim", 0);
 
     }
@@ -81,7 +81,7 @@ public class InventoryActiveState : InventoryState
 
         inventory.Slots[inventory.currentItem]?.DeleteItem();
         inventory.Slots[inventory.currentItem] = null;
-        UIManagerScript.Instance.SetImage(inventory.currentItem, inventory.Slots[inventory.currentItem]);
+        player.UIManager.SetImage(inventory.currentItem, inventory.Slots[inventory.currentItem]);
         player.PlayerBodyAnim.SetInteger("CurrAnim", 0);
 
     }
@@ -91,7 +91,7 @@ public class InventoryActiveState : InventoryState
 
         base.SetCurrentItem(item);
 
-        UIManagerScript.Instance.SetSelect(inventory.currentItem, item);
+        player.UIManager.SetSelect(inventory.currentItem, item);
         inventory.Slots[inventory.currentItem]?.DeselectItem();
         inventory.currentItem = item;
         inventory.Slots[inventory.currentItem]?.SelectItem();

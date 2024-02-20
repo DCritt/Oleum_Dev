@@ -40,6 +40,7 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
     #region Inventory
 
     public Inventory Inventory;
+    public UIManagerScript UIManager;
 
     #endregion
 

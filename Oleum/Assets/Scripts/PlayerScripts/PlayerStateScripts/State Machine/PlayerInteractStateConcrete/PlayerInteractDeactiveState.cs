@@ -15,7 +15,7 @@ public class PlayerInteractDeactiveState : PlayerInteractState
     {
         base.EnterState();
 
-        UIManagerScript.Instance.SwitchInteractDeactive();
+        player.UIManager.SwitchInteractDeactive();
 
     }
 

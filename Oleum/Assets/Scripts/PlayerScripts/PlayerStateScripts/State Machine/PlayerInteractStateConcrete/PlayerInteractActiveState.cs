@@ -21,7 +21,7 @@ public class PlayerInteractActiveState : PlayerInteractState
 
         base.EnterState();
 
-        UIManagerScript.Instance.SwitchInteractActive();
+        player.UIManager.SwitchInteractActive();
 
     }
 

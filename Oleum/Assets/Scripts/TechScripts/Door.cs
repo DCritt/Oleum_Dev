@@ -109,14 +109,14 @@ public class Door : MonoBehaviour, IInteractable
     public void SwitchInteractActive()
     {
 
-        UIManagerScript.Instance.SwitchInteractActive();
+        player.UIManager.SwitchInteractActive();
 
     }
 
     public void SwitchInteractDeactive()
     {
 
-        UIManagerScript.Instance.SwitchInteractDeactive();
+        player.UIManager.SwitchInteractDeactive();
 
     }
 

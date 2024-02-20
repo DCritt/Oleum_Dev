@@ -46,7 +46,7 @@ public class InventoryLockedState : InventoryState
             {
 
                 inventory.Slots[i] = new Item(data, player);
-                UIManagerScript.Instance.SetImage(i, inventory.Slots[i]);
+                player.UIManager.SetImage(i, inventory.Slots[i]);
                 inventory.Slots[i]?.DeselectItem();
                 return;
 
@@ -90,7 +90,7 @@ public class InventoryLockedState : InventoryState
 
         base.SetCurrentItem(item);
 
-        UIManagerScript.Instance.SetSelect(inventory.currentItem, item);
+        player.UIManager.SetSelect(inventory.currentItem, item);
         inventory.Slots[inventory.currentItem]?.DeselectItem();
         inventory.currentItem = item;
         inventory.Slots[inventory.currentItem]?.SelectItem();

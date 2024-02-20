@@ -61,7 +61,7 @@ public class InventoryState
 
             inventory.Slots[4] = new Item(data, player);
             SetCurrentItem(4);
-            UIManagerScript.Instance.ResetSelect();
+            player.UIManager.ResetSelect();
             stateMachine.ChangeState(inventory.LockedState);
             player.PlayerBodyAnim.SetInteger("CurrAnim", 2);
 

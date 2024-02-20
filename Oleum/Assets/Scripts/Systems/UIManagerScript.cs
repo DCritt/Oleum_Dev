@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class UIManagerScript : MonoBehaviour
 {
 
-    public static UIManagerScript Instance;
-
     [SerializeField] private Text _interactText;
     [SerializeField] private GameObject hotbar;
     [SerializeField] private Image[] hotbarSlots = new Image[4] { null, null, null, null };
@@ -92,7 +90,9 @@ public class UIManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+
+
+
     }
 
     // Start is called before the first frame update
