@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c2a133efa14b648bf4b97b72167e0c, type: 3}
+  m_Name: InventoryNormalUtilityItem_Flashlight
+  m_EditorClassIdentifier: 
+  id: InventoryUtilityItem_Flashlight
+  displayName: Flashlight
+  description: This item is used as a light source for the player.
+  icon: {fileID: 21300000, guid: e5ad8aa7432a4e548be81953fef8f33d, type: 3}
+  pickupPrefab: {fileID: 5971049657073471551, guid: 54dc8510ad4eb57429a45c169a4cb98c, type: 3}
+  inHandGameObjectPrefab: {fileID: 2373627513932009160, guid: feab7ce16af54db448927deca5884f19, type: 3}
+  scale: {x: 1, y: 1, z: 1}

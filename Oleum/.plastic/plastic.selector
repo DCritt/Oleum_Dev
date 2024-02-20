@@ -1,0 +1,4 @@
+repository "TempName@DavidCritt@cloud"
+  path "/"
+    br "/main"
+    co "/main"

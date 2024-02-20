@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f6074aaaa595944b4c597a76d7586c, type: 3}
+  m_Name: InventoryNormalConsumableItem_OxygenTank
+  m_EditorClassIdentifier: 
+  id: InventoryNormalConsumableItem_OxygenTank
+  displayName: OxygenTank
+  description: This item is used to refill 50 oxygen to the player upon activation.
+  icon: {fileID: 21300000, guid: e199cf9616d38b749b4791aaf97462f4, type: 3}
+  pickupPrefab: {fileID: 5971049657073471551, guid: 54dc8510ad4eb57429a45c169a4cb98c, type: 3}
+  inHandGameObjectPrefab: {fileID: 4057071197649797299, guid: 4d1a890c1dcd2404e82ce4603d0312b3, type: 3}
+  scale: {x: 0.5, y: 0.5, z: 1}
