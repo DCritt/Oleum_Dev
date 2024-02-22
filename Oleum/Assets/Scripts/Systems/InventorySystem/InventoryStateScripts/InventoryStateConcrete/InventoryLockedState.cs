@@ -45,7 +45,7 @@ public class InventoryLockedState : InventoryState
             if (inventory.Slots[i] == null)
             {
 
-                inventory.Slots[i] = new Item(data, player);
+                inventory.Slots[i] = new NormalItem(data as NormalItemData, player);
                 player.UIManager.SetImage(i, inventory.Slots[i]);
                 inventory.Slots[i]?.DeselectItem();
                 return;

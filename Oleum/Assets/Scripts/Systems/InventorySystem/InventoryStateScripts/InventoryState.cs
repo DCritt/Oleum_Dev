@@ -59,7 +59,7 @@ public class InventoryState
         if (inventory.Slots[4] == null)
         {
 
-            inventory.Slots[4] = new Item(data, player);
+            inventory.Slots[4] = new HeavyItem(data as HeavyItemData, player);
             SetCurrentItem(4);
             player.UIManager.ResetSelect();
             stateMachine.ChangeState(inventory.LockedState);
