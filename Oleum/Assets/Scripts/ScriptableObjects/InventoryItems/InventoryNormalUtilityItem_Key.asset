@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c2a133efa14b648bf4b97b72167e0c, type: 3}
+  m_Name: InventoryNormalUtilityItem_Key
+  m_EditorClassIdentifier: 
+  id: InventoryNormalUtilityItem_Key
+  displayName: Key
+  description: This item is used to unlock doors.
+  icon: {fileID: 21300000, guid: 7011894daec0d6b4d897d95282ca35a5, type: 3}
+  pickupPrefab: {fileID: 5971049657073471551, guid: 54dc8510ad4eb57429a45c169a4cb98c, type: 3}
+  inHandGameObjectPrefab: {fileID: 4783467493815279415, guid: e27d75d72125efa49a174b51d89118f7, type: 3}

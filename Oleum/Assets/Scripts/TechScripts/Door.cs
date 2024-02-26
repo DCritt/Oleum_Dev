@@ -9,6 +9,8 @@ public class Door : MonoBehaviour, IInteractable
 
     private Player player;
 
+    [SerializeField] private bool locked = false;
+
     private Animator _doorAnimator;
     private BoxCollider2D _boxCollider;
 
@@ -25,9 +27,14 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        player = collision.GetComponent<Player>();
-        player.StateMachine.ChangeState(player.InteractActiveState);
-        player.InteractActiveState.SetInteract(Interact);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            player = collision.GetComponent<Player>();
+            player.StateMachine.ChangeState(player.InteractActiveState);
+            player.InteractActiveState.SetInteract(Interact);
+
+        }
 
     }
 
@@ -41,13 +48,23 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player.InteractActiveState.SetInteract(null);
-        player.StateMachine.ChangeState(player.InteractDeactiveState);
+        player?.InteractActiveState.SetInteract(null);
+        player?.StateMachine.ChangeState(player.InteractDeactiveState);
+
+    }
+
+    public void Unlock()
+    {
+
+        locked = false;
 
     }
 
     public void Interact()
     {
+
+        if (!(locked))
+        {
 
             if (_doorAnimator.GetCurrentAnimatorStateInfo(0).IsName("DoorClose"))
             {
@@ -78,6 +95,8 @@ public class Door : MonoBehaviour, IInteractable
 
 
             }
+
+        }
 
     }
 

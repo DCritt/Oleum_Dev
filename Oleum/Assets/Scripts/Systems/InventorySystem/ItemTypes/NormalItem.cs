@@ -36,7 +36,6 @@ public class NormalItem : Item
     public override void RemoveItem()
     {
         base.RemoveItem();
-
     }
 
     public override void SelectItem()

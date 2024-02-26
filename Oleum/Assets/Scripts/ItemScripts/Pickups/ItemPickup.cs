@@ -12,18 +12,22 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
 
-        player = collision.GetComponent<Player>();
-        player.StateMachine.ChangeState(player.InteractActiveState);
-        player.InteractActiveState.SetInteract(Interact);
+            player = collision.GetComponent<Player>();
+            player.StateMachine.ChangeState(player.InteractActiveState);
+            player.InteractActiveState.SetInteract(Interact);
+
+        }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player.InteractActiveState.SetInteract(null);
-        player.StateMachine.ChangeState(player.InteractDeactiveState);
+        player?.InteractActiveState.SetInteract(null);
+        player?.StateMachine.ChangeState(player.InteractDeactiveState);
 
     }
 
