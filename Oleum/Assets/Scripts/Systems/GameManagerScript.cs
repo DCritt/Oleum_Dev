@@ -7,6 +7,13 @@ public class GameManagerScript : MonoBehaviour
 
     public static GameManagerScript instance;
 
+    [SerializeField] private MapGenerator generator;
+
+    [SerializeField] private Grid grid;
+    [SerializeField] private GameObject spawnRoom;
+    [SerializeField] private GameObject[] rooms;
+    [SerializeField] private GameObject[] halls;
+
     [SerializeField] private ItemData[] itemDataList = new ItemData[0];
     [SerializeField] private ItemData[] itemDataTypeList = new ItemData[0];
 
@@ -51,7 +58,14 @@ public class GameManagerScript : MonoBehaviour
     private void Awake()
     {
 
-        instance = this;
+        instance = this;       
+
+    }
+
+    private void Start()
+    {
+
+        generator.SetGenerator(grid, spawnRoom, rooms, halls);
 
     }
 
