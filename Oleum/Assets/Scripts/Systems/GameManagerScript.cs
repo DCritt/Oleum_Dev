@@ -14,6 +14,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private GameObject[] rooms;
     [SerializeField] private GameObject[] halls;
 
+    private Count count;
+
     [SerializeField] private ItemData[] itemDataList = new ItemData[0];
     [SerializeField] private ItemData[] itemDataTypeList = new ItemData[0];
 
@@ -58,14 +60,15 @@ public class GameManagerScript : MonoBehaviour
     private void Awake()
     {
 
-        instance = this;       
+        instance = this;
+        count = new Count(6, 10);
 
     }
 
     private void Start()
     {
 
-        generator.SetGenerator(grid, spawnRoom, rooms, halls);
+        generator.SetGenerator(grid, spawnRoom, rooms, halls, count);
 
     }
 

@@ -16,10 +16,14 @@ public class MapGenerator : MonoBehaviour
     private GameObject[] rooms;
     private GameObject[] hallways;
 
-    private List<GameObject> activeMap;
+    private Count roomAllowedAmount;
+
+    private List<GameObject> activeMap = new List<GameObject>();
 
     private void Awake()
     {
+
+
 
     }
 
@@ -33,33 +37,29 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] GetRoomType(int i)
     {
 
-        switch(i)
+        if (i > 3)
         {
 
-            case 0:
+            return hallways;
 
-                return rooms;
-               
-            case 1:
+        }
+        else
+        {
 
-                return hallways;
-                
-            default:
-
-                return null;
-                
+            return rooms;
 
         }
 
     }
 
-    public void SetGenerator(Grid grid, GameObject spawnroom, GameObject[] rooms, GameObject[] hallways)
+    public void SetGenerator(Grid grid, GameObject spawnroom, GameObject[] rooms, GameObject[] hallways, Count roomAllowedAmount)
     {
 
         this.grid = grid;
         this.spawnRoom = spawnroom;
         this.rooms = rooms;
         this.hallways = hallways;
+        this.roomAllowedAmount = new Count(roomAllowedAmount.GetMin(), roomAllowedAmount.GetMax());
 
         spawnRoom = UnityEngine.Object.Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
 
@@ -70,23 +70,29 @@ public class MapGenerator : MonoBehaviour
     public void Generate(Room room)
     {
 
-        int spawnChance;
         int selectedRoom;
         int roomType;
+        GameObject temp;
+
+        room.SetLists(rooms, hallways);
 
         for (int i = 0; i < room.spawns.Length; i++)
         {
 
-            spawnChance = Random.Range(0, 20);
-            if (spawnChance > 10)
+            roomType = Random.Range(0, 10);
+            selectedRoom = Random.Range(0, GetRoomType(roomType).Length);
+            if (roomAllowedAmount.CheckMax(activeMap.Count))
             {
 
-                selectedRoom = Random.Range(0, hallways.Length - 1);
-                roomType = Random.Range(0, 2);
+                temp = room.spawn(i, selectedRoom, GetRoomType(roomType), grid);
 
-                Generate(room.spawn(i, selectedRoom, GetRoomType(roomType), grid).GetComponent<Room>());
+                if (temp != null)
+                {
 
+                    activeMap.Add(temp);
+                    Generate(activeMap[activeMap.Count - 1].GetComponent<Room>());
 
+                }
 
             }
 

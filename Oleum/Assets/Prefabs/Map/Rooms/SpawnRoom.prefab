@@ -1157,7 +1157,7 @@ MonoBehaviour:
   - {x: 9, y: 1, z: 0}
   m_ShapePathHash: -1551502059
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84372
+  m_InstanceId: 66818
   m_LocalBounds:
     m_Center: {x: 9.125, y: 3.125, z: 0}
     m_Extent: {x: 0.125, y: 2.125, z: 0}
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   - {x: 9, y: -1, z: 0}
   m_ShapePathHash: -1551502059
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84358
+  m_InstanceId: 66804
   m_LocalBounds:
     m_Center: {x: 9.125, y: -3.125, z: 0}
     m_Extent: {x: 0.125, y: 2.125, z: 0}
@@ -1343,7 +1343,7 @@ MonoBehaviour:
   - {x: 9, y: -5.25, z: 0}
   m_ShapePathHash: 1010169109
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84364
+  m_InstanceId: 66810
   m_LocalBounds:
     m_Center: {x: 0, y: -5.125, z: 0}
     m_Extent: {x: 9, y: 0.125, z: 0}
@@ -1405,7 +1405,7 @@ MonoBehaviour:
   - {x: 9, y: 5, z: 0}
   m_ShapePathHash: 284554517
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84392
+  m_InstanceId: 66838
   m_LocalBounds:
     m_Center: {x: 0, y: 5.125, z: 0}
     m_Extent: {x: 9, y: 0.125, z: 0}
@@ -1461,6 +1461,10 @@ MonoBehaviour:
   spawns:
   - {fileID: 2038228787601151847}
   - {fileID: 4388587526030147443}
+  rooms: []
+  halls: []
+  roomChance: 0
+  hallChance: 0
 --- !u!1 &8584256733409641303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,7 +3695,7 @@ MonoBehaviour:
   - {x: -9, y: -5.25, z: 0}
   m_ShapePathHash: 250475797
   m_Mesh: {fileID: 0}
-  m_InstanceId: 84334
+  m_InstanceId: 66784
   m_LocalBounds:
     m_Center: {x: -9.125, y: 0, z: 0}
     m_Extent: {x: 0.125, y: 5.25, z: 0}
@@ -4070,6 +4074,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1916567165967186144}
     m_Modifications:
+    - target: {fileID: 1940378155234260584, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
+      propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3289666672056540742, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_Name
       value: Door
@@ -4120,7 +4128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -456194
+      value: -230180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

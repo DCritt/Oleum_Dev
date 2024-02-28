@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locked: 0
+  _boxCollider: {fileID: 4586999804269056892}
 --- !u!1 &7701729921093888507
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.03128053, z: 0}
   m_ShapePathHash: 1667347673
   m_Mesh: {fileID: 0}
-  m_InstanceId: 68846
+  m_InstanceId: 40446
   m_LocalBounds:
     m_Center: {x: 0, y: 0.0000000037252903, z: 0}
     m_Extent: {x: 0.5, y: 0.031280532, z: 0}

@@ -12,7 +12,7 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private bool locked = false;
 
     private Animator _doorAnimator;
-    private BoxCollider2D _boxCollider;
+    [SerializeField] private BoxCollider2D _boxCollider;
 
     private string _previousAnimation;
 
@@ -20,7 +20,6 @@ public class Door : MonoBehaviour, IInteractable
     {
 
         _doorAnimator = GetComponent<Animator>();
-        _boxCollider = GameObject.FindGameObjectWithTag("door").GetComponent<BoxCollider2D>();
 
     }
 
