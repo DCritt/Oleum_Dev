@@ -11,7 +11,10 @@ public class Room : MonoBehaviour
     public GameObject[] rooms;
     public GameObject[] halls;
 
+    [Range(0, 20)]
     public int roomChance;
+
+    [Range(0, 20)]
     public int hallChance;
 
     public void SetLists(GameObject[] rooms, GameObject[] halls)
