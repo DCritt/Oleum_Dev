@@ -367,13 +367,13 @@ MonoBehaviour:
   <MaxStamina>k__BackingField: 100
   <Stamina>k__BackingField: 0
   <StaminaGain>k__BackingField: 5
-  <StaminaDrain>k__BackingField: 10
+  <StaminaDrain>k__BackingField: 8
   <StaminaDelay>k__BackingField: 4
   <MaxOxygen>k__BackingField: 100
   <Oxygen>k__BackingField: 0
   <OxygenGain>k__BackingField: 20
   <OxygenDrain>k__BackingField: 1
-  <MoveSpeed>k__BackingField: 2
+  <MoveSpeed>k__BackingField: 3
   <SprintMulti>k__BackingField: 2
   <PlayerMaskAnim>k__BackingField: {fileID: 2908474042220118658}
   <PlayerBodyAnim>k__BackingField: {fileID: 403018052709871793}
