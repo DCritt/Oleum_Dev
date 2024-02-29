@@ -1208,14 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf535860159ec45a967df8ef6eac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder:
-  - roomList:
-    - {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
-    chance: 20
-  - roomList:
-    - {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
-    - {fileID: 3829745609241129988}
-    chance: 80
+  preset: {fileID: 11400000, guid: 6882aaa5bc5877f49bac9cd1b2fb53a0, type: 2}
 --- !u!1 &3829745609241129988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,7 +1305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawns:
   - {fileID: 2750310919230608888}
-  availableRooms: []
+  chosenRoom: {fileID: 0}
   room:
     serializedVersion: 2
     m_Bits: 128

@@ -1157,7 +1157,7 @@ MonoBehaviour:
   - {x: 9, y: 1, z: 0}
   m_ShapePathHash: -1551502059
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46620
+  m_InstanceId: 47250
   m_LocalBounds:
     m_Center: {x: 9.125, y: 3.125, z: 0}
     m_Extent: {x: 0.125, y: 2.125, z: 0}
@@ -1205,14 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf535860159ec45a967df8ef6eac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder:
-  - roomList:
-    - {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
-    chance: 5
-  - roomList:
-    - {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
-    - {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
-    chance: 95
+  preset: {fileID: 11400000, guid: 159672e9bf094ea4681aee534ecf923d, type: 2}
 --- !u!1 &3830819839858651124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1264,7 @@ MonoBehaviour:
   - {x: 9, y: -1, z: 0}
   m_ShapePathHash: -1551502059
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46606
+  m_InstanceId: 47236
   m_LocalBounds:
     m_Center: {x: 9.125, y: -3.125, z: 0}
     m_Extent: {x: 0.125, y: 2.125, z: 0}
@@ -1333,7 +1326,7 @@ MonoBehaviour:
   - {x: 9, y: -5.25, z: 0}
   m_ShapePathHash: 1010169109
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46614
+  m_InstanceId: 47244
   m_LocalBounds:
     m_Center: {x: 0, y: -5.125, z: 0}
     m_Extent: {x: 9, y: 0.125, z: 0}
@@ -1395,7 +1388,7 @@ MonoBehaviour:
   - {x: 9, y: 5, z: 0}
   m_ShapePathHash: 284554517
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46640
+  m_InstanceId: 47270
   m_LocalBounds:
     m_Center: {x: 0, y: 5.125, z: 0}
     m_Extent: {x: 9, y: 0.125, z: 0}
@@ -1495,7 +1488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawns:
   - {fileID: 2038228787601151847}
-  availableRooms: []
+  chosenRoom: {fileID: 0}
   room:
     serializedVersion: 2
     m_Bits: 128
@@ -3731,7 +3724,7 @@ MonoBehaviour:
   - {x: -9, y: -5.25, z: 0}
   m_ShapePathHash: 250475797
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46588
+  m_InstanceId: 47218
   m_LocalBounds:
     m_Center: {x: -9.125, y: 0, z: 0}
     m_Extent: {x: 0.125, y: 5.25, z: 0}
@@ -4164,7 +4157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -104600
+      value: -98926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

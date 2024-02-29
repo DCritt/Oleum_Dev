@@ -306,7 +306,7 @@ MonoBehaviour:
   - {fileID: 2463110764835164141}
   - {fileID: 6852083993661853118}
   - {fileID: 5189469899801117827}
-  availableRooms: []
+  chosenRoom: {fileID: 0}
   room:
     serializedVersion: 2
     m_Bits: 128
@@ -356,14 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf535860159ec45a967df8ef6eac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder:
-  - roomList:
-    - {fileID: 453544031503322146}
-    chance: 5
-  - roomList:
-    - {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
-    - {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
-    chance: 95
+  preset: {fileID: 11400000, guid: 159672e9bf094ea4681aee534ecf923d, type: 2}
 --- !u!1 &4106327458805174098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,14 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf535860159ec45a967df8ef6eac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder:
-  - roomList:
-    - {fileID: 453544031503322146}
-    chance: 5
-  - roomList:
-    - {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
-    - {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
-    chance: 95
+  preset: {fileID: 11400000, guid: 159672e9bf094ea4681aee534ecf923d, type: 2}
 --- !u!1 &6852083993661853118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,14 +1785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbaf535860159ec45a967df8ef6eac6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder:
-  - roomList:
-    - {fileID: 453544031503322146}
-    chance: 5
-  - roomList:
-    - {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
-    - {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
-    chance: 95
+  preset: {fileID: 11400000, guid: 159672e9bf094ea4681aee534ecf923d, type: 2}
 --- !u!1 &7288393311983742689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,7 +3852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -32462
+      value: -96170
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3939,7 +3918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -32484
+      value: -96148
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4005,7 +3984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -32506
+      value: -96192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4071,7 +4050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956644164227451122, guid: 2a231f04b2ce5254d96032d098335be2, type: 3}
       propertyPath: m_InstanceId
-      value: -32440
+      value: -96214
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

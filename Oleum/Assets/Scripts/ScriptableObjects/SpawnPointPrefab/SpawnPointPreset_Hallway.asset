@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d47316fe86bd4cabe71726c27af9b, type: 3}
+  m_Name: SpawnPointPreset_Hallway
+  m_EditorClassIdentifier: 
+  holder:
+  - roomList:
+    - obj: {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
+      chance: 100
+    chance: 10
+  - roomList:
+    - obj: {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
+      chance: 75
+    - obj: {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
+      chance: 12.5
+    - obj: {fileID: 3616744817484306819, guid: 3f0c9f7299309494eacadf7fac019181, type: 3}
+      chance: 12.5
+    chance: 90

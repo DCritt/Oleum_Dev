@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
 
     public GameObject[] spawns;
 
-    public GameObject[] availableRooms;
+    public GameObject chosenRoom;
 
     [SerializeField] private LayerMask room;
 
@@ -30,21 +30,18 @@ public class Room : MonoBehaviour
 
         int spawnChance;
 
-        int roomIndex;
-
         int chanceThresh;
 
-        availableRooms = spawns[index].GetComponent<SpawnPoint>().GetList();
+        chosenRoom = spawns[index].GetComponent<SpawnPoint>().preset.GetList().GetRoom();
 
         spawnChance = Random.Range(0, 100);
-        roomIndex = Random.Range(0, availableRooms.Length);
 
         chanceThresh = 95;
 
         if (spawnChance < chanceThresh && CheckForRooms(index))
         {
 
-            return Instantiate(availableRooms[roomIndex], spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
+            return Instantiate(chosenRoom, spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
 
         }
         else
