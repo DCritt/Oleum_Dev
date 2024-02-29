@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
-using static UnityEditor.FilePathAttribute;
 
 public class MapGenerator : MonoBehaviour
 {
