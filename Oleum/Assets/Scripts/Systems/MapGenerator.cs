@@ -18,7 +18,7 @@ public class MapGenerator : MonoBehaviour
 
     private Count roomAllowedAmount;
 
-    private List<GameObject> activeMap = new List<GameObject>();
+    private Queue<GameObject> activeMap = new Queue<GameObject>();
 
     private void Awake()
     {
@@ -70,29 +70,40 @@ public class MapGenerator : MonoBehaviour
     public void Generate(Room room)
     {
 
-        int selectedRoom;
-        int roomType;
         GameObject temp;
+        int runs = 0;
 
-        room.SetLists(rooms, hallways);
+        while (roomAllowedAmount.CheckMax(runs)) {
 
-        for (int i = 0; i < room.spawns.Length; i++)
-        {
+            room.SetLists(rooms, hallways);
 
-            roomType = Random.Range(0, 10);
-            selectedRoom = Random.Range(0, GetRoomType(roomType).Length);
-            if (roomAllowedAmount.CheckMax(activeMap.Count))
+            for (int i = 0; i < room.spawns.Length; i++)
             {
 
-                temp = room.spawn(i, selectedRoom, GetRoomType(roomType), grid);
+                runs += 1;
 
-                if (temp != null)
+                if (roomAllowedAmount.CheckMax(activeMap.Count))
                 {
 
-                    activeMap.Add(temp);
-                    Generate(activeMap[activeMap.Count - 1].GetComponent<Room>());
+                    temp = room.spawn(i, grid);
+
+                    if (temp != null)
+                    {
+
+                        activeMap.Enqueue(temp);
+
+                    }
 
                 }
+
+            }
+
+            Debug.Log(activeMap.Count);
+
+            if (activeMap.Count != 0)
+            {
+
+                room = activeMap?.Dequeue().GetComponent<Room>();
 
             }
 
