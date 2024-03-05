@@ -9,19 +9,17 @@ public class Room : MonoBehaviour
 
     public GameObject[] spawns;
 
-    public GameObject chosenRoom;
+    [SerializeField] private RandList chosenList;
+
+    [SerializeField] private MapGenerator mapGen;
 
     [SerializeField] private LayerMask room;
 
-    public GameObject[] rooms;
-    public GameObject[] halls;
 
-
-    public void SetLists(GameObject[] rooms, GameObject[] halls)
+    public void SetMapGen(MapGenerator mapGen)
     {
 
-        this.rooms = rooms;
-        this.halls = halls;
+        this.mapGen = mapGen;
 
     }
 
@@ -32,7 +30,7 @@ public class Room : MonoBehaviour
 
         int chanceThresh;
 
-        chosenRoom = spawns[index].GetComponent<SpawnPoint>().preset.GetList().GetRoom();
+        chosenList = spawns[index].GetComponent<SpawnPoint>().preset.GetList();
 
         spawnChance = Random.Range(0, 100);
 
@@ -41,7 +39,8 @@ public class Room : MonoBehaviour
         if (spawnChance < chanceThresh && CheckForRooms(index))
         {
 
-            return Instantiate(chosenRoom, spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
+            mapGen.AddRoomAmt(chosenList.GetAmt());
+            return Instantiate(chosenList.GetRoom(), spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
 
         }
         else

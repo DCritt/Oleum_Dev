@@ -12,6 +12,14 @@ public class RandList
 
     [Range(0, 100)]
     [SerializeField] private float chance;
+    [SerializeField] private int amt;
+
+    public int GetAmt()
+    {
+
+        return amt;
+
+    }
 
     public float GetChance()
     {

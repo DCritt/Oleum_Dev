@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
     {
 
         instance = this;
-        count = new Count(6, 100);
+        count = new Count(6, 10);
 
     }
 

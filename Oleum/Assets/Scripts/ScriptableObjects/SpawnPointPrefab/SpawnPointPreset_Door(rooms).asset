@@ -17,3 +17,4 @@ MonoBehaviour:
     - obj: {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
       chance: 100
     chance: 100
+    amt: 1

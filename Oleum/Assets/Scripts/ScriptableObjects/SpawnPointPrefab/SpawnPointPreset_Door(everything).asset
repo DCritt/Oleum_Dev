@@ -17,6 +17,7 @@ MonoBehaviour:
     - obj: {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
       chance: 100
     chance: 10
+    amt: 1
   - roomList:
     - obj: {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
       chance: 75
@@ -27,3 +28,4 @@ MonoBehaviour:
     - obj: {fileID: 3594797450273595850, guid: 9f8168675f09cfc438aa7e791970d478, type: 3}
       chance: 8.34
     chance: 90
+    amt: 0

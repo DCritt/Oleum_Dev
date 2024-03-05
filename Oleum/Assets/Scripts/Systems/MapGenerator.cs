@@ -15,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     private GameObject[] hallways;
 
     private Count roomAllowedAmount;
+    private int roomAmt;
 
     private Queue<GameObject> activeMap = new Queue<GameObject>();
 
@@ -65,20 +66,24 @@ public class MapGenerator : MonoBehaviour
 
     }
 
+    public void AddRoomAmt(int amt)
+    {
+
+        roomAmt += amt;
+
+    }
+
     public void Generate(Room room)
     {
         //hello
         GameObject temp;
-        int runs = 0;
 
-        while (roomAllowedAmount.CheckMax(runs)) {
+        while (roomAllowedAmount.CheckMax(roomAmt)) {
 
-            room.SetLists(rooms, hallways);
+            room.SetMapGen(this);
 
             for (int i = 0; i < room.spawns.Length; i++)
             {
-
-                runs += 1;
 
                 if (roomAllowedAmount.CheckMax(activeMap.Count))
                 {
