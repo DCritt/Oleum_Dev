@@ -67,7 +67,7 @@ public class MapGenerator : MonoBehaviour
 
     public void Generate(Room room)
     {
-
+        //hello
         GameObject temp;
         int runs = 0;
 

@@ -57,37 +57,6 @@ public class Room : MonoBehaviour
     public bool CheckForRooms(int num)
     {
 
-        //Debug.Log(spawns[num].transform.right.y);
-
-        /*switch((int)(spawns[num].transform.rotation.z))
-        {
-
-            case 0:
-
-                ray = Physics2D.Raycast(new Vector2(spawns[num].transform.position.x, spawns[num].transform.position.y), spawns[num].transform.TransformDirection(Vector2.right), 15, room);
-
-                break;
-            case 90:
-
-                ray = Physics2D.Raycast(new Vector2(spawns[num].transform.position.x, spawns[num].transform.position.y), spawns[num].transform.TransformDirection(Vector2.right), 15, room);
-
-                break;
-            case 180:
-
-                ray = Physics2D.Raycast(new Vector2(spawns[num].transform.position.x, spawns[num].transform.position.y), spawns[num].transform.TransformDirection(Vector2.right), 15, room);
-
-                break;
-            case 270:
-
-                ray = Physics2D.Raycast(new Vector2(spawns[num].transform.position., spawns[num].transform.position.y), spawns[num].transform.TransformDirection(Vector2.right), 15, room);
-
-                break;
-            default:
-
-
-            break;
-        }*/
-
         RaycastHit2D ray = Physics2D.Raycast(spawns[num].transform.TransformPoint(Vector2.right * .1f), spawns[num].transform.right, 20, room);
         RaycastHit2D ray1 = Physics2D.Raycast(spawns[num].transform.TransformPoint(Vector2.right * .1f), spawns[num].transform.TransformDirection(Vector2.right + (Vector2.up * .2f)), 20, room);
         RaycastHit2D ray2 = Physics2D.Raycast(spawns[num].transform.TransformPoint(Vector2.right * .1f), spawns[num].transform.TransformDirection(Vector2.right + (Vector2.up * -.2f)), 20, room);
@@ -102,9 +71,6 @@ public class Room : MonoBehaviour
 
         if ((ray || ray1 || ray2 || ray3 || ray4))
         {
-
-            Debug.Log("Current Room = " + gameObject.name);
-            Debug.Log("spawner = " + spawns[num].gameObject.name);
 
             return false;
 

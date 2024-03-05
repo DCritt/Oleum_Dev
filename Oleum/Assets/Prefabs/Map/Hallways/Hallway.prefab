@@ -1093,14 +1093,14 @@ MonoBehaviour:
   m_ShapePath:
   - {x: -7, y: -0.25, z: 0}
   - {x: -7, y: 0, z: 0}
-  - {x: 4, y: 0, z: 0}
-  - {x: 4, y: -0.25, z: 0}
-  m_ShapePathHash: 706082069
+  - {x: 3, y: 0, z: 0}
+  - {x: 3, y: -0.25, z: 0}
+  m_ShapePathHash: -1852443371
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46068
+  m_InstanceId: 35136
   m_LocalBounds:
-    m_Center: {x: -1.5, y: -0.125, z: 0}
-    m_Extent: {x: 5.5, y: 0.125, z: 0}
+    m_Center: {x: -2, y: -0.125, z: 0}
+    m_Extent: {x: 5, y: 0.125, z: 0}
 --- !u!1 &5688304454326108489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,11 +1936,11 @@ MonoBehaviour:
   m_ShapePath:
   - {x: -7, y: -0.25, z: 0}
   - {x: -7, y: 0, z: 0}
-  - {x: 4, y: 0, z: 0}
-  - {x: 4, y: -0.25, z: 0}
-  m_ShapePathHash: 706082069
+  - {x: 3, y: 0, z: 0}
+  - {x: 3, y: -0.25, z: 0}
+  m_ShapePathHash: -1852443371
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46046
+  m_InstanceId: 35114
   m_LocalBounds:
-    m_Center: {x: -1.5, y: -0.125, z: 0}
-    m_Extent: {x: 5.5, y: 0.125, z: 0}
+    m_Center: {x: -2, y: -0.125, z: 0}
+    m_Extent: {x: 5, y: 0.125, z: 0}

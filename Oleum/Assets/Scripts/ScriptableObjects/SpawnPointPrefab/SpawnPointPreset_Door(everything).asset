@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 970d47316fe86bd4cabe71726c27af9b, type: 3}
-  m_Name: SpawnPointPreset_Hallway
+  m_Name: SpawnPointPreset_Door(everything)
   m_EditorClassIdentifier: 
   holder:
   - roomList:
-    - obj: {fileID: 4900902620540846709, guid: 3ff3faf5ced971144be2606b39366967, type: 3}
+    - obj: {fileID: 453544031503322146, guid: b91e29171bfaa7949b64dce408bf4967, type: 3}
       chance: 100
     chance: 10
   - roomList:

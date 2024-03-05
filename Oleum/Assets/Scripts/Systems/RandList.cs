@@ -22,6 +22,7 @@ public class RandList
 
     public GameObject GetRoom()
     {
+
         float randNum;
         float currentChance = 0;
 
