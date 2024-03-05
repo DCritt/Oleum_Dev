@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 3516902169298586235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: -1}
+  m_LocalPosition: {x: -2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -802,7 +802,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.03128053, z: 0}
   m_ShapePathHash: 1667347673
   m_Mesh: {fileID: 0}
-  m_InstanceId: 40158
+  m_InstanceId: 32852
   m_LocalBounds:
     m_Center: {x: 0, y: 0.0000000037252903, z: 0}
     m_Extent: {x: 0.5, y: 0.031280532, z: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 7212632575599037357}
   - component: {fileID: 656131833716897530}
   - component: {fileID: 3069948797885020939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door(rooms)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,8 +871,8 @@ Transform:
   m_Children:
   - {fileID: 7057529141195901381}
   - {fileID: 3489554544398412391}
-  - {fileID: 7022697158143985857}
   - {fileID: 4677088272618842789}
+  - {fileID: 7022697158143985857}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &656131833716897530
@@ -924,7 +924,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2, y: 0}
@@ -967,7 +967,7 @@ Transform:
   m_GameObject: {fileID: 5891547965750935292}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: 0}
+  m_LocalPosition: {x: -2, y: 1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1339,7 +1339,7 @@ Transform:
   m_GameObject: {fileID: 6129384589357050182}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: -0.5}
+  m_LocalPosition: {x: -2, y: 1, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

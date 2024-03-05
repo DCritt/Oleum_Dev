@@ -21,7 +21,9 @@ MonoBehaviour:
     - obj: {fileID: 2971156536758601613, guid: c563bd4ebd8286545a2c01765aec19ac, type: 3}
       chance: 75
     - obj: {fileID: 3829745609241129988, guid: 13b35bc89f758da4f84f20b226e26d39, type: 3}
-      chance: 12.5
+      chance: 8.33
     - obj: {fileID: 3616744817484306819, guid: 3f0c9f7299309494eacadf7fac019181, type: 3}
-      chance: 12.5
+      chance: 8.33
+    - obj: {fileID: 3594797450273595850, guid: 9f8168675f09cfc438aa7e791970d478, type: 3}
+      chance: 8.34
     chance: 90
