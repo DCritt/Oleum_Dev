@@ -18,3 +18,10 @@ MonoBehaviour:
       chance: 100
     chance: 100
     amt: 1
+  endings:
+  - obj: {fileID: 2188541954302918150, guid: 117eb36b4d382964e8811885ef5fa987, type: 3}
+    chance: 33.33
+  - obj: {fileID: 6377504070756600797, guid: 99ce0331929ea1f46b8ff1f9dd471566, type: 3}
+    chance: 33.33
+  - obj: {fileID: 1594779013084619922, guid: 599803e415e53374b919c637926f3069, type: 3}
+    chance: 33.34

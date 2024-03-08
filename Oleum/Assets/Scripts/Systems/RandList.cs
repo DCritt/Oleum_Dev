@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class RandList
 {
 
-    [SerializeField] private RandObjectList[] roomList;
+    [SerializeField] private RandObject[] roomList;
 
     [Range(0, 100)]
     [SerializeField] private float chance;
@@ -57,7 +57,7 @@ public class RandList
 }
 
 [Serializable]
-public class RandObjectList
+public class RandObject
 {
 
     [SerializeField] private GameObject obj;

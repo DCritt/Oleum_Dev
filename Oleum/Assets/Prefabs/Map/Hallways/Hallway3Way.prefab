@@ -2159,7 +2159,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 5, y: 0}
@@ -2190,12 +2190,14 @@ MonoBehaviour:
   spawns:
   - {fileID: 9013988496376179145}
   - {fileID: 5269094095265906740}
-  chosenRoom: {fileID: 0}
+  chosenList:
+    roomList: []
+    chance: 0
+    amt: 0
+  mapGen: {fileID: 0}
   room:
     serializedVersion: 2
     m_Bits: 128
-  rooms: []
-  halls: []
 --- !u!1 &5269094095265906740
 GameObject:
   m_ObjectHideFlags: 0

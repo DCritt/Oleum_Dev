@@ -17,7 +17,8 @@ public class MapGenerator : MonoBehaviour
     private Count roomAllowedAmount;
     private int roomAmt;
 
-    private Queue<GameObject> activeMap = new Queue<GameObject>();
+    private List<GameObject> activeMap = new List<GameObject>();
+    private Queue<GameObject> roomRotationQueue = new Queue<GameObject>();
 
     private void Awake()
     {
@@ -78,14 +79,18 @@ public class MapGenerator : MonoBehaviour
         //hello
         GameObject temp;
 
-        while (roomAllowedAmount.CheckMax(roomAmt)) {
+        int runs = 0;
+
+        while (roomAllowedAmount.CheckMax(roomAmt) && runs < 400) {
 
             room.SetMapGen(this);
+
+            runs += 1;
 
             for (int i = 0; i < room.spawns.Length; i++)
             {
 
-                if (roomAllowedAmount.CheckMax(activeMap.Count))
+                if (roomAllowedAmount.CheckMax(roomRotationQueue.Count))
                 {
 
                     temp = room.spawn(i, grid);
@@ -93,7 +98,8 @@ public class MapGenerator : MonoBehaviour
                     if (temp != null)
                     {
 
-                        activeMap.Enqueue(temp);
+                        roomRotationQueue.Enqueue(temp);
+                        activeMap.Add(temp);
 
                     }
 
@@ -101,14 +107,31 @@ public class MapGenerator : MonoBehaviour
 
             }
 
-            Debug.Log(activeMap.Count);
-
-            if (activeMap.Count != 0)
+            if (roomRotationQueue.Count != 0)
             {
 
-                room = activeMap?.Dequeue().GetComponent<Room>();
+                //activeMap.Enqueue(activeMap.Peek());
+                room = roomRotationQueue?.Dequeue().GetComponent<Room>();
 
             }
+
+        }
+
+        for(int i = 0; i < activeMap.Count; i++)
+        {
+
+            for (int j = 0; j < activeMap[i].GetComponent<Room>().spawns.Length; j++)
+            {
+
+                if (activeMap[i].GetComponent<Room>().spawns[j].GetComponent<SpawnPoint>().GetState())
+                {
+
+                    activeMap.Add(activeMap[i].GetComponent<Room>().CheckRays(j, grid, true));
+
+                }
+
+            }
+
 
         }
 
