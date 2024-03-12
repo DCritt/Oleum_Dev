@@ -8,6 +8,8 @@ public class Objective : ScriptableObject
 
     public string name;
     public string description;
+    [SerializeField] private int maxProgress;
+    private int currProgress;
     public GameObject objectiveObj;
     public ObjectiveRooms rooms;
 
@@ -33,5 +35,44 @@ public class Objective : ScriptableObject
         }
 
     }
-        
+
+    public void Progress(int amt)
+    {
+
+        currProgress += amt;
+
+    }
+
+    public int GetProgress()
+    {
+
+        return currProgress;
+
+    }
+
+    public int GetMaxProgress()
+    {
+
+        return maxProgress;
+
+    }
+
+    public bool IsComplete()
+    {
+
+        if (currProgress < maxProgress)
+        {
+
+            return false;
+
+        }
+        else
+        {
+
+            return true;
+
+        }
+
+    }
+
 }

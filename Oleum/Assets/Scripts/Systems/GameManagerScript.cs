@@ -7,6 +7,9 @@ public class GameManagerScript : MonoBehaviour
 
     public static GameManagerScript instance;
 
+    public Objective mainObjective;
+    public Objective sideObjective;
+
     [SerializeField] private MapGenerator generator;
 
     [SerializeField] private Grid grid;

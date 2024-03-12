@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: PowerCells
   description: You are tasked with repairing or replacing bad powercells in a facility.
+  maxProgress: 5
   objectiveObj: {fileID: 7123068279749623831, guid: 02043eb2b3e684d4e95190b41fa83286, type: 3}
   rooms:
     mainRoom: {fileID: 0}
