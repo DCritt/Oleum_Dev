@@ -79,22 +79,28 @@ public class Room : MonoBehaviour
 
             }
 
-            if (distance > 3 && distance < 8)
+            if(distance > 0 && distance < 3)
             {
 
                 return Instantiate(spawns[index].GetComponent<SpawnPoint>().preset.GetEnding(0).GetObj(), spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
 
             }
-            else if (distance > 8 && distance < 12)
+            else if (distance >= 3 && distance < 8)
             {
 
                 return Instantiate(spawns[index].GetComponent<SpawnPoint>().preset.GetEnding(1).GetObj(), spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
 
             }
-            else if (distance > 12 && distance < 20)
+            else if (distance >= 8 && distance < 12)
             {
 
                 return Instantiate(spawns[index].GetComponent<SpawnPoint>().preset.GetEnding(2).GetObj(), spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
+
+            }
+            else if (distance >= 12 && distance < 20)
+            {
+
+                return Instantiate(spawns[index].GetComponent<SpawnPoint>().preset.GetEnding(3).GetObj(), spawns[index].transform.position, spawns[index].transform.rotation, grid.transform);
 
             }
             else

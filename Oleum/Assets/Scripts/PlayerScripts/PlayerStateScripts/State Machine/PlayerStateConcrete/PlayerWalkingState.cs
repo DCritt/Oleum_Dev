@@ -77,6 +77,7 @@ public class PlayerWalkingState : PlayerState
 
         _direction = (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * player.MoveSpeed);
 
+
     }
 
 }
