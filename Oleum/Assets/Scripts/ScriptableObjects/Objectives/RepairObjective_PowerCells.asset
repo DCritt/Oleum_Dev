@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5b50810ff91244bb1be9b5251105e4, type: 3}
   m_Name: RepairObjective_PowerCells
   m_EditorClassIdentifier: 
-  name: PowerCells
+  objectiveName: PowerCellsRepair
   description: You are tasked with repairing or replacing bad powercells in a facility.
   maxProgress: 5
   objectiveObj: {fileID: 7123068279749623831, guid: 02043eb2b3e684d4e95190b41fa83286, type: 3}
   rooms:
-    mainRoom: {fileID: 0}
-    sideRooms: []
+    mainRooms:
+    - obj: {fileID: 0}
+      chance: 100
+    sideRooms:
+    - obj: {fileID: 0}
+      chance: 50
+    - obj: {fileID: 0}
+      chance: 50

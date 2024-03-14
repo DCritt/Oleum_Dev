@@ -73,7 +73,6 @@ public class Room : MonoBehaviour
                 if (rayList[i].distance < distance || distance == 0)
                 {
 
-                    Debug.Log(rayList[i].distance);
                     distance = rayList[i].distance;
 
                 }

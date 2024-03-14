@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainObjectiveScript : MonoBehaviour
+public class ObjectiveScript : MonoBehaviour
 {
 
     [SerializeField] private Text progress;
@@ -14,12 +13,20 @@ public class MainObjectiveScript : MonoBehaviour
     {
 
         progress.text = GameManagerScript.instance.mainObjective.GetProgress() + "/" + GameManagerScript.instance.mainObjective.GetMaxProgress();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    public void UpdateText()
+    {
+
+        progress.text = GameManagerScript.instance.mainObjective.GetProgress() + "/" + GameManagerScript.instance.mainObjective.GetMaxProgress();
+
+    }
+
 }
