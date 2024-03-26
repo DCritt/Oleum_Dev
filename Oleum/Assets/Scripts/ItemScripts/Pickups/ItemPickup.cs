@@ -26,7 +26,12 @@ public class ItemPickup : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
+        if (collision.tag == "Player")
+        {
+
+            player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
+
+        }
 
     }
 
