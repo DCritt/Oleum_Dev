@@ -25,6 +25,24 @@ public class Inventory
 
     }
 
+    public string GetHeavyItemName()
+    {
+
+        if (Slots[4] != null)
+        {
+
+            return Slots[4].data.displayName;
+
+        }
+        else
+        {
+
+            return "none";
+
+        }
+
+    }
+
     public void AddItem(NormalItemData data)
     {
 

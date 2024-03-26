@@ -2,29 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerCellDock : MonoBehaviour
+public class PowerCellDock : MonoBehaviour, IInteractable
 {
 
     [SerializeField] private SpriteRenderer PowerCellDockSprite;
     [SerializeField] private Animator powerCellDockAnimator;
-    private Coroutine docking;
+    [SerializeField] private AnimationClip dockingClip;
+    private Player player;
 
     public IEnumerator dock()
     {
 
-        Debug.Log(powerCellDockAnimator.GetCurrentAnimatorClipInfo(0).Length);
+        powerCellDockAnimator.SetInteger("CurrAnim", 1);
 
-        yield return new WaitForSeconds(powerCellDockAnimator.GetCurrentAnimatorClipInfo(0).Length);
+        yield return new WaitForSeconds(dockingClip.length / powerCellDockAnimator.GetCurrentAnimatorStateInfo(0).speed);
 
+        powerCellDockAnimator.SetInteger("CurrAnim", 2);
+
+    }
+
+    public void Interact()
+    {
+
+        player.Inventory.DeleteCurrentItem();
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(dock());
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Player")
+        {
+
+            player = collision.GetComponent<Player>();
+
+            Debug.Log(player.Inventory.GetHeavyItemName());
+
+            if (player.Inventory.GetHeavyItemName() == "PowerCell")
+            {
+
+                player.StateMachine.ChangeState(player.InteractActiveState);
+                player.InteractActiveState.SetInteract(Interact);
+
+            } 
+
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Player")
+        {
+            player = collision.gameObject.GetComponent<Player>();
+
+            player?.InteractActiveState.SetInteract(null);
+            player?.StateMachine.ChangeState(player.InteractDeactiveState);
+
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
 
-        Debug.Log("Hello");
 
-        StartCoroutine("dock");
 
     }
 

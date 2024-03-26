@@ -560,6 +560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7465581692950068926, guid: b2502042b56a2c542b8c78e91529c760, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 7400000, guid: ffc4bf1e366688145bb4755916d6cb7d, type: 2}
     - target: {fileID: 7897516313209784353, guid: b2502042b56a2c542b8c78e91529c760, type: 3}
       propertyPath: m_Name
       value: PowerCellDock
@@ -1006,7 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642d85ef558f00a4f9e79fd6d06172ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!43 &1954880691
+--- !u!43 &2112044207
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1332,8 +1336,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.44140625, z: 0}
   - {x: 0.5, y: -0.44140625, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 1954880691}
-  m_InstanceId: 36874
+  m_Mesh: {fileID: 2112044207}
+  m_InstanceId: 28750
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.44140625, z: 0}
