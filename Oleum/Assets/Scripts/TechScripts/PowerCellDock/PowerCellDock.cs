@@ -10,23 +10,65 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     [SerializeField] private AnimationClip dockingClip;
     private Player player;
 
-    public IEnumerator dock()
+    public PowerCellDockStateMachine stateMachine;
+
+    public PowerCellDockEmptyState emptyState;
+
+    private void Awake()
     {
 
-        powerCellDockAnimator.SetInteger("CurrAnim", 1);
+        stateMachine = new PowerCellDockStateMachine();
 
-        yield return new WaitForSeconds(dockingClip.length / powerCellDockAnimator.GetCurrentAnimatorStateInfo(0).speed);
+        emptyState = new PowerCellDockEmptyState(this, stateMachine);
 
-        powerCellDockAnimator.SetInteger("CurrAnim", 2);
+    }
+
+    private void Start()
+    {
+
+        stateMachine.Initialize(emptyState);
+
+    }
+
+    private void Update()
+    {
+
+        stateMachine.CurrPowerCellDockState.FrameUpdate();
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        stateMachine.CurrPowerCellDockState.PhysicsUpdate();
+
+    }
+
+    public Player GetPlayer()
+    {
+
+        return player;
+
+    } 
+
+    public AnimationClip GetDockingClip()
+    {
+
+        return dockingClip;
+
+    }
+
+    public Animator GetPowerCellDockAnimator()
+    {
+
+        return powerCellDockAnimator;
 
     }
 
     public void Interact()
     {
 
-        player.Inventory.DeleteCurrentItem();
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        StartCoroutine(dock());
+        StartCoroutine(stateMachine.CurrPowerCellDockState.Dock());
 
     }
 
@@ -62,17 +104,4 @@ public class PowerCellDock : MonoBehaviour, IInteractable
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

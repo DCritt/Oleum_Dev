@@ -12,7 +12,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
 
             player = collision.GetComponent<Player>();
@@ -26,7 +26,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
 
             player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());

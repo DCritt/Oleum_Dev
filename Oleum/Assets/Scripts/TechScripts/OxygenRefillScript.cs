@@ -22,7 +22,7 @@ public class OxygenRefillScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
 
             player = collision.GetComponent<Player>();
@@ -42,7 +42,7 @@ public class OxygenRefillScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
 
             player = collision.GetComponent<Player>();
