@@ -31,7 +31,7 @@ public class Door : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
             player.StateMachine.ChangeState(player.InteractActiveState);
-            player.InteractActiveState.SetInteract(Interact);
+            player.InteractActiveState.AddInteractItem(gameObject.name, this.GetInstanceID(), gameObject, Interact);
 
         }
 
@@ -47,8 +47,7 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player?.InteractActiveState.SetInteract(null);
-        player?.StateMachine.ChangeState(player.InteractDeactiveState);
+        player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
     }
 

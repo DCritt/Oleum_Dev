@@ -38,13 +38,11 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
 
-            Debug.Log(player.Inventory.GetHeavyItemName());
-
             if (player.Inventory.GetHeavyItemName() == "PowerCell")
             {
 
                 player.StateMachine.ChangeState(player.InteractActiveState);
-                player.InteractActiveState.SetInteract(Interact);
+                player.InteractActiveState.AddInteractItem("PowerCell", this.GetInstanceID(), gameObject, Interact);
 
             } 
 
@@ -59,8 +57,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
         {
             player = collision.gameObject.GetComponent<Player>();
 
-            player?.InteractActiveState.SetInteract(null);
-            player?.StateMachine.ChangeState(player.InteractDeactiveState);
+            player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
         }
     }

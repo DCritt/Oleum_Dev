@@ -71,6 +71,7 @@ public class InventoryLockedState : InventoryState
         inventory.Slots[inventory.currentItem]?.RemoveItem();
         inventory.Slots[inventory.currentItem] = null;
         player.PlayerBodyAnim.SetInteger("CurrAnim", 0);
+        inventory.stateMachine.ChangeState(inventory.ActiveState);
 
     }
 
@@ -82,6 +83,7 @@ public class InventoryLockedState : InventoryState
         inventory.Slots[inventory.currentItem]?.DeleteItem();
         inventory.Slots[inventory.currentItem] = null;
         player.PlayerBodyAnim.SetInteger("CurrAnim", 0);
+        inventory.stateMachine.ChangeState(inventory.ActiveState);
 
     }
 
@@ -116,7 +118,6 @@ public class InventoryLockedState : InventoryState
         {
 
             inventory.RemoveCurrentItem();
-            inventory.stateMachine.ChangeState(inventory.ActiveState);
 
         }
 

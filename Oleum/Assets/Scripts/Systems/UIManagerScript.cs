@@ -25,6 +25,13 @@ public class UIManagerScript : MonoBehaviour
 
     }
 
+    public void SetInteractText(string text)
+    {
+
+        _interactText.text = "[E] " + text;
+
+    }
+
     public void SetSelect(int next)
     {
 

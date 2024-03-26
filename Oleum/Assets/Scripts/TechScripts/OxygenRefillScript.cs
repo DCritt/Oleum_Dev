@@ -22,8 +22,13 @@ public class OxygenRefillScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        player = collision.GetComponent<Player>();
-        player.StateMachine.ChangeState(player.OxygenGainState);
+        if (collision.tag == "Player")
+        {
+
+            player = collision.GetComponent<Player>();
+            player.StateMachine.ChangeState(player.OxygenGainState);
+
+        }
 
     }
 
@@ -37,8 +42,13 @@ public class OxygenRefillScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player = collision.GetComponent<Player>();
-        player.StateMachine.ChangeState(player.OxygenDrainState);
+        if (collision.tag == "Player")
+        {
+
+            player = collision.GetComponent<Player>();
+            player.StateMachine.ChangeState(player.OxygenDrainState);
+
+        }
 
     }
 }

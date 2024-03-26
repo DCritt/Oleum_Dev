@@ -17,7 +17,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
             player.StateMachine.ChangeState(player.InteractActiveState);
-            player.InteractActiveState.SetInteract(Interact);
+            player.InteractActiveState.AddInteractItem(data.displayName, this.GetInstanceID(), gameObject, Interact);
 
         }
 
@@ -26,8 +26,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player?.InteractActiveState.SetInteract(null);
-        player?.StateMachine.ChangeState(player.InteractDeactiveState);
+        player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
     }
 
@@ -70,7 +69,6 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 if (!(player.Inventory.IsFull(data as NormalConsumableItemData))) {
 
                     player.Inventory.AddItem(data as NormalConsumableItemData);
-                    player.StateMachine.ChangeState(player.InteractDeactiveState);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -82,7 +80,6 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 if (!(player.Inventory.IsFull(data as NormalUtilityItemData))) {
 
                     player.Inventory.AddItem(data as NormalUtilityItemData);
-                    player.StateMachine.ChangeState(player.InteractDeactiveState);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -95,7 +92,6 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 {
 
                     player.Inventory.AddItem(data as HeavyConsumableItemData);
-                    player.StateMachine.ChangeState(player.InteractDeactiveState);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -108,7 +104,6 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 {
 
                     player.Inventory.AddItem(data as HeavyUtilityItemData);
-                    player.StateMachine.ChangeState(player.InteractDeactiveState);
                     Destroy(gameObject);
                     Destroy(this);
 
