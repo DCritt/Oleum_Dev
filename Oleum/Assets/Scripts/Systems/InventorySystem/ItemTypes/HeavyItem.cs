@@ -7,17 +7,34 @@ public class HeavyItem : Item
 
     protected HeavyItemData heavyData;
 
-    public HeavyItem(HeavyItemData data, Player player, GameObject obj) : base(data, player, obj)
+    public HeavyItem(HeavyItemData data, Player player) : base(data, player)
     {
 
         heavyData = data;
 
         player.SetSpeedMultiplier(data.slowMultiplier);
 
-        inHandGameObject.transform.SetParent(player.transform.GetChild(5));
-        inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(5).position, player.transform.GetChild(5).rotation);
         Debug.Log("worked");
-        //inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
+
+        if (data.holder == null)
+        {
+
+            Debug.Log("null");
+
+            inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
+
+        }
+        else
+        {
+
+            Debug.Log("exists");
+
+            inHandGameObject = data.holder;
+            inHandGameObject.transform.SetParent(player.transform.GetChild(5));
+            inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(5).position, player.transform.GetChild(5).rotation);
+
+        }
+
         interactScript = inHandGameObject.GetComponent<ItemInteractScript>();
 
 

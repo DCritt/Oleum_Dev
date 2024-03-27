@@ -43,17 +43,17 @@ public class Inventory
 
     }
 
-    public void AddItem(NormalItemData data, GameObject obj)
+    public void AddItem(NormalItemData data)
     {
 
-        stateMachine.CurrInventoryState.AddItem(data, obj);
+        stateMachine.CurrInventoryState.AddItem(data);
 
     }
 
-    public void AddItem(HeavyItemData data, GameObject obj)
+    public void AddItem(HeavyItemData data)
     {
 
-        stateMachine.CurrInventoryState.AddItem(data, obj);
+        stateMachine.CurrInventoryState.AddItem(data);
 
     }
 

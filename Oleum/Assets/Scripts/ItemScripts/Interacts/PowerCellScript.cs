@@ -53,6 +53,8 @@ public class PowerCellScript : ItemInteractScript
 
         Debug.Log("start");
 
+        animator.keepAnimatorStateOnDisable = true;
+
         if (activated)
         {
 

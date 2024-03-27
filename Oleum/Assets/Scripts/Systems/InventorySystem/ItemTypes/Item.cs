@@ -13,12 +13,11 @@ public class Item : IInteractable
     protected ItemInteractScript interactScript;
     protected GameObject droppedItem;
 
-    public Item(ItemData data, Player player, GameObject obj)
+    public Item(ItemData data, Player player)
     {
 
         this.data = data;
         this.player = player;
-        inHandGameObject = obj;
 
     }
 
@@ -46,9 +45,9 @@ public class Item : IInteractable
     public virtual void RemoveItem()
     {
 
-
+        //UnityEngine.Object.Destroy(inHandGameObject);
         droppedItem = UnityEngine.Object.Instantiate(data.pickupPrefab, new Vector3(player.transform.position.x, player.transform.position.y, (player.transform.position.z + (float).1)), player.transform.rotation);
-        droppedItem.GetComponent<ItemPickup>().SetData(data, inHandGameObject);
+        droppedItem.GetComponent<ItemPickup>().SetData(data);
         droppedItem = null;
         //inHandGameObject = null;
 

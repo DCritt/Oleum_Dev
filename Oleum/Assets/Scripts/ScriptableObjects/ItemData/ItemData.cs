@@ -15,6 +15,7 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public GameObject pickupPrefab;
     public GameObject inHandGameObjectPrefab;
+    [HideInInspector] public GameObject holder = null;
     
     public int getType()
     {

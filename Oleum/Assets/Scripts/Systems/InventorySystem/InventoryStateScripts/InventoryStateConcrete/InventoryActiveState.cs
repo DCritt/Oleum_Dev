@@ -33,9 +33,9 @@ public class InventoryActiveState : InventoryState
         base.PhysicsUpdate();
     }
 
-    public override void AddItem(NormalItemData data, GameObject obj)
+    public override void AddItem(NormalItemData data)
     {
-        base.AddItem(data, obj);
+        base.AddItem(data);
 
         for (int i = 0; i < 4; i++)
         {
@@ -43,7 +43,7 @@ public class InventoryActiveState : InventoryState
             if (inventory.Slots[i] == null)
             {
 
-                inventory.Slots[i] = new NormalItem(data as NormalItemData, player, obj);
+                inventory.Slots[i] = new NormalItem(data as NormalItemData, player);
                 player.UIManager.SetImage(i, inventory.Slots[i]);
                 SetCurrentItem(i);
                 player.UIManager.SetSelect(i);
@@ -55,10 +55,10 @@ public class InventoryActiveState : InventoryState
 
     }
 
-    public override void AddItem(HeavyItemData data, GameObject obj)
+    public override void AddItem(HeavyItemData data)
     {
 
-        base.AddItem(data, obj);
+        base.AddItem(data);
 
     }
 

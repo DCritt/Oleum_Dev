@@ -18,4 +18,3 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 601122f948bc7e149b0be4b408ec4d59, type: 3}
   pickupPrefab: {fileID: 5971049657073471551, guid: 54dc8510ad4eb57429a45c169a4cb98c, type: 3}
   inHandGameObjectPrefab: {fileID: 3647629344708536944, guid: 87d749260c283ee4db1ad44d9c8e5198, type: 3}
-  scale: {x: 0.5, y: 0.5, z: 1}
