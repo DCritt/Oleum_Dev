@@ -7,12 +7,15 @@ public class NormalItem : Item
 
     protected NormalItemData normalData;
 
-    public NormalItem(NormalItemData data, Player player) : base(data, player)
+    public NormalItem(NormalItemData data, Player player, GameObject obj) : base(data, player, obj)
     {
 
         normalData = data;
 
-        inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(4).position, player.transform.GetChild(4).rotation, player.transform.GetChild(4));
+        inHandGameObject.transform.SetParent(player.transform.GetChild(4));
+        inHandGameObject.transform.position = player.transform.GetChild(4).position;
+        inHandGameObject.transform.rotation = player.transform.GetChild(4).rotation;
+        //inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(4).position, player.transform.GetChild(4).rotation, player.transform.GetChild(4));
         interactScript = inHandGameObject.GetComponent<ItemInteractScript>();
 
 

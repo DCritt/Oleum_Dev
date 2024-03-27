@@ -9,6 +9,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 { 
     [SerializeField] private ItemData data;
     private Player player;
+    private GameObject obj;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,27 +36,32 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     }
 
-    public void SetData(ItemData data)
+    public void SetData(ItemData data, GameObject obj)
     {
 
         this.data = data;
+        this.obj = obj;
         this.data.SetType();
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
         gameObject.name = data.displayName;
-        Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+        obj.transform.parent = this.transform;
+        obj.transform.localPosition = Vector3.zero;
+        //Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
 
     }
 
     private void Start()
     {
 
-        if (data != null)
+        if (data != null && gameObject.transform.childCount == 0)
         {
+
+            Debug.Log("hello");
 
             data.SetType();
             gameObject.GetComponent<SpriteRenderer>().sprite = null;
             gameObject.name = data.displayName;
-            Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+            obj = Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
 
         }
       
@@ -64,16 +70,17 @@ public class ItemPickup : MonoBehaviour, IInteractable
     public void Interact()
     {
 
-        
+        Debug.Log(data.getType());
 
         switch(data.getType())
             {
+
 
             case 1:
 
                 if (!(player.Inventory.IsFull(data as NormalConsumableItemData))) {
 
-                    player.Inventory.AddItem(data as NormalConsumableItemData);
+                    player.Inventory.AddItem(data as NormalConsumableItemData, obj);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -84,7 +91,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
                 if (!(player.Inventory.IsFull(data as NormalUtilityItemData))) {
 
-                    player.Inventory.AddItem(data as NormalUtilityItemData);
+                    player.Inventory.AddItem(data as NormalUtilityItemData, obj);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -96,7 +103,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 if (!(player.Inventory.IsFull(data as HeavyConsumableItemData)))
                 {
 
-                    player.Inventory.AddItem(data as HeavyConsumableItemData);
+                    player.Inventory.AddItem(data as HeavyConsumableItemData, obj);
                     Destroy(gameObject);
                     Destroy(this);
 
@@ -108,7 +115,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 if (!(player.Inventory.IsFull(data as HeavyUtilityItemData)))
                 {
 
-                    player.Inventory.AddItem(data as HeavyUtilityItemData);
+                    player.Inventory.AddItem(data as HeavyUtilityItemData, obj);
                     Destroy(gameObject);
                     Destroy(this);
 

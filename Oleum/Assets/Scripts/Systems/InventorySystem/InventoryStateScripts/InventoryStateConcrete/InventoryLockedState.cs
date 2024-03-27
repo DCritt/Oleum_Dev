@@ -34,10 +34,10 @@ public class InventoryLockedState : InventoryState
         base.PhysicsUpdate();
     }
 
-    public override void AddItem(NormalItemData data)
+    public override void AddItem(NormalItemData data, GameObject obj)
     {
 
-        base.AddItem(data);
+        base.AddItem(data, obj);
 
         for (int i = 0; i < 4; i++)
         {
@@ -45,7 +45,7 @@ public class InventoryLockedState : InventoryState
             if (inventory.Slots[i] == null)
             {
 
-                inventory.Slots[i] = new NormalItem(data as NormalItemData, player);
+                inventory.Slots[i] = new NormalItem(data as NormalItemData, player, obj);
                 player.UIManager.SetImage(i, inventory.Slots[i]);
                 inventory.Slots[i]?.DeselectItem();
                 return;
@@ -56,10 +56,10 @@ public class InventoryLockedState : InventoryState
 
     }
 
-    public override void AddItem(HeavyItemData data)
+    public override void AddItem(HeavyItemData data, GameObject obj)
     {
 
-        base.AddItem(data);
+        base.AddItem(data, obj);
 
     }
 
