@@ -47,7 +47,12 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
+
+        }
 
     }
 
