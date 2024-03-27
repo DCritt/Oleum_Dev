@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2421006060561840709}
   - component: {fileID: 338155977058132015}
   m_Layer: 0
-  m_Name: PowerCell
+  m_Name: PowerCell(Deactive)
   m_TagString: PowerCell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

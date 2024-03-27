@@ -25,7 +25,7 @@ public class PowerCellDockDeadState : PowerCellDockState
 
             dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 0);
             dock.stateMachine.ChangeState(dock.emptyState);
-            dock.GetPlayer().Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell") as HeavyUtilityItemData);
+            dock.GetPlayer().Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Deactive)") as HeavyUtilityItemData);
 
         }
 

@@ -18,7 +18,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
             player.StateMachine.ChangeState(player.InteractActiveState);
-            player.InteractActiveState.AddInteractItem(data.displayName, this.GetInstanceID(), gameObject, Interact);
+            player.InteractActiveState.AddInteractItem(("Pickup " + data.displayName), this.GetInstanceID(), gameObject, Interact);
 
         }
 

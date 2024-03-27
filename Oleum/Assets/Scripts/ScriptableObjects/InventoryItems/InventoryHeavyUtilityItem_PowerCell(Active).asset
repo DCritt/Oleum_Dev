@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29abb40579c46b849ad73f59625eeb0e, type: 3}
-  m_Name: InventoryHeavyUtilityItem_PowerCell
+  m_Name: InventoryHeavyUtilityItem_PowerCell(Active)
   m_EditorClassIdentifier: 
-  id: InventoryHeavyUtilityItem_PowerCell
-  displayName: PowerCell
-  description: This item is used to power the facility and can be used to replace
-    bad powercells.
-  icon: {fileID: 21300000, guid: 1ef77a4653a8b2e46b3d467e65605a2d, type: 3}
+  id: InventoryHeavyUtilityItem_PowerCell(Active)
+  displayName: PowerCell(Active)
+  description: 
+  icon: {fileID: -516855653, guid: 7eccf612ffe6bc2438947d771e464919, type: 3}
   pickupPrefab: {fileID: 5971049657073471551, guid: 54dc8510ad4eb57429a45c169a4cb98c, type: 3}
-  inHandGameObjectPrefab: {fileID: 7123068279749623831, guid: 02043eb2b3e684d4e95190b41fa83286, type: 3}
+  inHandGameObjectPrefab: {fileID: 3169478654147428178, guid: 91f97d9a0d943cf4da6e70daa10ed26c, type: 3}
+  holder: {fileID: 0}
   slowMultiplier: 0.75

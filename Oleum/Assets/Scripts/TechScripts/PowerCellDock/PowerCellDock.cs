@@ -99,11 +99,11 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
 
-            if (player.Inventory.GetHeavyItemName() == "PowerCell" || stateMachine.CurrPowerCellDockState == deadState)
+            if (player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)" || player.Inventory.GetHeavyItemName() == "PowerCell(Active)" || stateMachine.CurrPowerCellDockState == deadState)
             {
 
                 player.StateMachine.ChangeState(player.InteractActiveState);
-                player.InteractActiveState.AddInteractItem("PowerCell", this.GetInstanceID(), gameObject, Interact);
+                player.InteractActiveState.AddInteractItem("Use PowerCellDock", this.GetInstanceID(), gameObject, Interact);
 
             } 
 
