@@ -22,6 +22,7 @@ public class HeavyItem : Item
             Debug.Log("null");
 
             inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
+            data.holder = inHandGameObject;
 
         }
         else
@@ -79,4 +80,5 @@ public class HeavyItem : Item
 
 
     }
+
 }

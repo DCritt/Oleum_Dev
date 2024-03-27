@@ -31,10 +31,30 @@ public class PowerCellDockEmptyState : PowerCellDockState
         base.PhysicsUpdate();
     }
 
-    public override IEnumerator Dock()
+    public override void InteractAction()
     {
 
         dock.GetPlayer().Inventory.DeleteCurrentItem();
+
+        if (dock.GetPlayerPowerCell().GetComponent<PowerCellScript>().IsActive())
+        {
+
+            dock.StartCoroutine(Dock());
+
+        }
+        else
+        {
+
+            dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 3);
+            dock.stateMachine.ChangeState(dock.deadState);
+
+        }
+
+    }
+
+    public override IEnumerator Dock()
+    {
+
         dock.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 1);
@@ -45,4 +65,5 @@ public class PowerCellDockEmptyState : PowerCellDockState
         dock.stateMachine.ChangeState(dock.repairedState);
 
     }
+
 }

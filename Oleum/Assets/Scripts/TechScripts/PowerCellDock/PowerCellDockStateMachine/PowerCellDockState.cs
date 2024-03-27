@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PowerCellDockState
 {
 
     protected PowerCellDock dock;
     protected PowerCellDockStateMachine stateMachine;
-    protected Player player;
 
     public PowerCellDockState(PowerCellDock dock, PowerCellDockStateMachine stateMachine)
     {
@@ -39,6 +36,13 @@ public class PowerCellDockState
     }
 
     public virtual void PhysicsUpdate()
+    {
+
+
+
+    }
+
+    public virtual void InteractAction()
     {
 
 

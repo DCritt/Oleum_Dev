@@ -8,12 +8,14 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     [SerializeField] private SpriteRenderer PowerCellDockSprite;
     [SerializeField] private Animator powerCellDockAnimator;
     [SerializeField] private AnimationClip dockingClip;
+    private GameObject powerCell;
     private Player player;
 
     public PowerCellDockStateMachine stateMachine;
 
     public PowerCellDockEmptyState emptyState;
     public PowerCellDockRepairedState repairedState;
+    public PowerCellDockDeadState deadState;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
         emptyState = new PowerCellDockEmptyState(this, stateMachine);
         repairedState = new PowerCellDockRepairedState(this, stateMachine);
+        deadState = new PowerCellDockDeadState(this, stateMachine);
 
     }
 
@@ -70,7 +73,21 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     public void Interact()
     {
 
+        stateMachine.CurrPowerCellDockState.InteractAction();
+
+    }
+
+    public void StartDock()
+    {
+
         StartCoroutine(stateMachine.CurrPowerCellDockState.Dock());
+
+    }
+
+    public GameObject GetPlayerPowerCell()
+    {
+
+        return powerCell;
 
     }
 
@@ -82,13 +99,19 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
             player = collision.GetComponent<Player>();
 
-            if (player.Inventory.GetHeavyItemName() == "PowerCell")
+            if (player.Inventory.GetHeavyItemName() == "PowerCell" || stateMachine.CurrPowerCellDockState == deadState)
             {
 
                 player.StateMachine.ChangeState(player.InteractActiveState);
                 player.InteractActiveState.AddInteractItem("PowerCell", this.GetInstanceID(), gameObject, Interact);
 
             } 
+
+        }
+        else if (collision.tag == "PowerCell")
+        {
+
+            powerCell = collision.gameObject;
 
         }
 

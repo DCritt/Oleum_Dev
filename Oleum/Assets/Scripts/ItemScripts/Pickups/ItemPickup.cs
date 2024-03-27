@@ -43,9 +43,20 @@ public class ItemPickup : MonoBehaviour, IInteractable
         this.data.SetType();
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
         gameObject.name = data.displayName;
-        data.holder.transform.parent = this.transform;
-        data.holder.transform.localPosition = Vector3.zero;
-        //Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+
+        if (data.holder == null)
+        {
+
+            data.holder = Instantiate(data.inHandGameObjectPrefab, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
+
+        }
+        else
+        {
+
+            data.holder.transform.parent = this.transform;
+            data.holder.transform.localPosition = Vector3.zero;
+
+        }
 
     }
 

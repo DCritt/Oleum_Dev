@@ -11,9 +11,9 @@ public class PowerCellDockRepairedState : PowerCellDockState
 
     }
 
-    public override IEnumerator Dock()
+    public override void InteractAction()
     {
-        return base.Dock();
+        base.InteractAction();
     }
 
     public override void EnterState()

@@ -33,6 +33,13 @@ public class PowerCellScript : ItemInteractScript
 
     }
 
+    public bool IsActive()
+    {
+
+        return activated;
+
+    }
+
     public void ToggleLight()
     {
 
