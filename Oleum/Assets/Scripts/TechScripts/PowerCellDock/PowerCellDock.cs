@@ -13,6 +13,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     public PowerCellDockStateMachine stateMachine;
 
     public PowerCellDockEmptyState emptyState;
+    public PowerCellDockRepairedState repairedState;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
         stateMachine = new PowerCellDockStateMachine();
 
         emptyState = new PowerCellDockEmptyState(this, stateMachine);
+        repairedState = new PowerCellDockRepairedState(this, stateMachine);
 
     }
 

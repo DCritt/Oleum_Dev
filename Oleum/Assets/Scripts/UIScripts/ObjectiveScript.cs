@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObjectiveScript : MonoBehaviour
+public class ObjectiveScript
 {
 
-    [SerializeField] private Text progress;
+    private Text mainProgress;
+    private Text sideProgress;
+    private Objective mainObjective;
+    private Objective sideObjective;
+    private GameObject mainObjectiveTracker;
+    private GameObject sideObjectiveTracker;
 
-    // Start is called before the first frame update
-    void Start()
+    public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker, Objective mainObjective, Objective sideObjective)
     {
 
-        progress.text = GameManagerScript.instance.mainObjective.GetProgress() + "/" + GameManagerScript.instance.mainObjective.GetMaxProgress();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        this.mainObjectiveTracker = mainObjectiveTracker;
+        this.sideObjectiveTracker = sideObjectiveTracker;
+        this.mainObjective = mainObjective;
+        this.sideObjective = sideObjective;
+        mainProgress = mainObjectiveTracker.GetComponent<Text>();
+        sideProgress = sideObjectiveTracker.GetComponent<Text>();
 
     }
 
     public void UpdateText()
     {
 
-        progress.text = GameManagerScript.instance.mainObjective.GetProgress() + "/" + GameManagerScript.instance.mainObjective.GetMaxProgress();
+        mainProgress.text = mainObjective.GetProgress() + "/" + mainObjective.GetMaxProgress();
+        sideProgress.text = sideObjective.GetProgress() + "/" + sideObjective.GetMaxProgress();
 
     }
 

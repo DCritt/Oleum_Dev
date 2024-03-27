@@ -93,6 +93,7 @@ public class Objective : ScriptableObject
     {
 
         currProgress += amt;
+        UIManagerScript.UpdateObjectives();
 
     }
 
@@ -125,6 +126,13 @@ public class Objective : ScriptableObject
             return true;
 
         }
+
+    }
+
+    public void ResetObjective()
+    {
+
+        currProgress = 0;
 
     }
 

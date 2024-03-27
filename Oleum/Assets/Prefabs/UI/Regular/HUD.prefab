@@ -650,7 +650,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectiveHolder
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2602015013095426763, guid: 86293f711134a3842ad58351dee7d657, type: 3}
+    - {fileID: 8925596402685074347, guid: 86293f711134a3842ad58351dee7d657, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

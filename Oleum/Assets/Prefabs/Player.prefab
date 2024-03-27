@@ -619,6 +619,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6900968778631584998}
     - target: {fileID: 4211493295098708874, guid: 1318142f201177f47a507fa3a80e8c97, type: 3}
+      propertyPath: mainObjTracker
+      value: 
+      objectReference: {fileID: 4622722946411464043}
+    - target: {fileID: 4211493295098708874, guid: 1318142f201177f47a507fa3a80e8c97, type: 3}
+      propertyPath: sideObjTracker
+      value: 
+      objectReference: {fileID: 4436369302843288763}
+    - target: {fileID: 4211493295098708874, guid: 1318142f201177f47a507fa3a80e8c97, type: 3}
       propertyPath: hotbarSlots.Array.data[0]
       value: 
       objectReference: {fileID: 8764923340254265853}
@@ -891,6 +899,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4436369302843288763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5809946030296168774, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
+  m_PrefabInstance: {fileID: 7867847104848565757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4622722946411464043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3249069257978450070, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
+  m_PrefabInstance: {fileID: 7867847104848565757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6900968778631584998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3671876028062501147, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}

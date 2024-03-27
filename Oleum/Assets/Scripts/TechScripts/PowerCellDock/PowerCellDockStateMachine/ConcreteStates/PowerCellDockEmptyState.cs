@@ -42,6 +42,7 @@ public class PowerCellDockEmptyState : PowerCellDockState
         yield return new WaitForSeconds(dock.GetDockingClip().length / dock.GetPowerCellDockAnimator().GetCurrentAnimatorStateInfo(0).speed);
 
         dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 2);
+        dock.stateMachine.ChangeState(dock.repairedState);
 
     }
 }

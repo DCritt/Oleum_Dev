@@ -10,6 +10,17 @@ public class UIManagerScript : MonoBehaviour
     [SerializeField] private GameObject hotbar;
     [SerializeField] private Image[] hotbarSlots = new Image[4] { null, null, null, null };
     [SerializeField] private Image[] hotbarSelects = new Image[4] { null, null, null, null };
+    [SerializeField] private GameObject mainObjTracker;
+    [SerializeField] private GameObject sideObjTracker;
+    private static ObjectiveScript objectives;
+
+
+    public static void UpdateObjectives()
+    {
+
+        objectives.UpdateText();
+
+    }
 
     public void SwitchInteractActive()
     {
@@ -98,7 +109,7 @@ public class UIManagerScript : MonoBehaviour
     private void Awake()
     {
 
-
+        objectives = new ObjectiveScript(mainObjTracker, sideObjTracker, GameManagerScript.instance.mainObjective, GameManagerScript.instance.sideObjective);
 
     }
 
