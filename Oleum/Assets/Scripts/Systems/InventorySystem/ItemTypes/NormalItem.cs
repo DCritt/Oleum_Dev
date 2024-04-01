@@ -7,12 +7,12 @@ public class NormalItem : Item
 
     protected NormalItemData normalData;
 
-    public NormalItem(NormalItemData data, Player player) : base(data, player)
+    public NormalItem(NormalItemData data, Player player, GameObject obj) : base(data, player)
     {
 
         normalData = data;
 
-        if (data.holder == null)
+        if (obj == null)
         {
 
             Debug.Log("null");
@@ -24,7 +24,7 @@ public class NormalItem : Item
         {
 
             Debug.Log("exists");
-            inHandGameObject = data.holder;
+            inHandGameObject = obj;
             inHandGameObject.transform.SetParent(player.transform.GetChild(4));
             inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(4).position, player.transform.GetChild(4).rotation);
 

@@ -7,7 +7,7 @@ public class HeavyItem : Item
 
     protected HeavyItemData heavyData;
 
-    public HeavyItem(HeavyItemData data, Player player) : base(data, player)
+    public HeavyItem(HeavyItemData data, Player player, GameObject obj) : base(data, player)
     {
 
         heavyData = data;
@@ -16,13 +16,12 @@ public class HeavyItem : Item
 
         Debug.Log("worked");
 
-        if (data.holder == null)
+        if (obj == null)
         {
 
             Debug.Log("null");
 
             inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
-            data.holder = inHandGameObject;
 
         }
         else
@@ -30,7 +29,7 @@ public class HeavyItem : Item
 
             Debug.Log("exists");
 
-            inHandGameObject = data.holder;
+            inHandGameObject = obj;
             inHandGameObject.transform.SetParent(player.transform.GetChild(5));
             inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(5).position, player.transform.GetChild(5).rotation);
 

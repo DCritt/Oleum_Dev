@@ -31,14 +31,14 @@ public class InventoryDeactiveState : InventoryState
         base.PhysicsUpdate();
     }
 
-    public override void AddItem(NormalItemData data)
+    public override void AddItem(NormalItemData data, GameObject obj)
     {
-        base.AddItem(data);
+        base.AddItem(data, obj);
     }
 
-    public override void AddItem(HeavyItemData data)
+    public override void AddItem(HeavyItemData data, GameObject obj)
     {
-        base.AddItem(data);
+        base.AddItem(data, obj);
     }
 
     public override void RemoveCurrentItem()

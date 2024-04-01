@@ -46,20 +46,20 @@ public class InventoryState
 
     }
 
-    public virtual void AddItem(NormalItemData data)
+    public virtual void AddItem(NormalItemData data, GameObject obj)
     {
 
 
 
     }
 
-    public virtual void AddItem(HeavyItemData data)
+    public virtual void AddItem(HeavyItemData data, GameObject obj)
     {
 
         if (inventory.Slots[4] == null)
         {
 
-            inventory.Slots[4] = new HeavyItem(data as HeavyItemData, player);
+            inventory.Slots[4] = new HeavyItem(data as HeavyItemData, player, obj);
             SetCurrentItem(4);
             player.UIManager.ResetSelect();
             stateMachine.ChangeState(inventory.LockedState);
