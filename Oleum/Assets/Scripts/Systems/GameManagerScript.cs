@@ -71,8 +71,6 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
 
-        mainObjective.ResetObjective();
-        sideObjective.ResetObjective();
         //generator.SetGenerator(grid, spawnRoom, rooms, halls, count);
 
     }

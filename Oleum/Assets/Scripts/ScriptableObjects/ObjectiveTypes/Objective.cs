@@ -84,55 +84,13 @@ public class Objective : ScriptableObject
     public string objectiveName;
     public string description;
     [SerializeField] private int maxProgress;
-    private int currProgress;
     public GameObject objectiveObj;
     public ObjectiveRooms rooms;
-
-
-    public void Progress(int amt)
-    {
-
-        currProgress += amt;
-        UIManagerScript.UpdateObjectives();
-
-    }
-
-    public int GetProgress()
-    {
-
-        return currProgress;
-
-    }
 
     public int GetMaxProgress()
     {
 
         return maxProgress;
-
-    }
-
-    public bool IsComplete()
-    {
-
-        if (currProgress < maxProgress)
-        {
-
-            return false;
-
-        }
-        else
-        {
-
-            return true;
-
-        }
-
-    }
-
-    public void ResetObjective()
-    {
-
-        currProgress = 0;
 
     }
 

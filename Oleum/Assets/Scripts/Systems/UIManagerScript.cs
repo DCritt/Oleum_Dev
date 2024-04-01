@@ -15,10 +15,11 @@ public class UIManagerScript : MonoBehaviour
     private static ObjectiveScript objectives;
 
 
-    public static void UpdateObjectives()
+    public static void UpdateObjectives(int mainAmt, int sideAmt)
     {
 
-        objectives.UpdateText();
+        objectives.ProgressMain(mainAmt);
+        objectives.ProgressSide(sideAmt);
 
     }
 

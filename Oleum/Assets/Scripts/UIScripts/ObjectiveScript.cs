@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class ObjectiveScript
 {
 
-    private Text mainProgress;
-    private Text sideProgress;
+    private Text mainProgressText;
+    private Text sideProgressText;
     private Objective mainObjective;
     private Objective sideObjective;
     private GameObject mainObjectiveTracker;
     private GameObject sideObjectiveTracker;
+    private int mainProgress = 0;
+    private int sideProgress = 0;
 
     public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker, Objective mainObjective, Objective sideObjective)
     {
@@ -20,16 +22,56 @@ public class ObjectiveScript
         this.sideObjectiveTracker = sideObjectiveTracker;
         this.mainObjective = mainObjective;
         this.sideObjective = sideObjective;
-        mainProgress = mainObjectiveTracker.GetComponent<Text>();
-        sideProgress = sideObjectiveTracker.GetComponent<Text>();
+        mainProgressText = mainObjectiveTracker.GetComponent<Text>();
+        sideProgressText = sideObjectiveTracker.GetComponent<Text>();
+
+    }
+
+    public void ProgressMain(int progress)
+    {
+    
+        if ((mainProgress + progress) > mainObjective.GetMaxProgress())
+        {
+
+            mainProgress = mainObjective.GetMaxProgress();
+
+        }
+        else
+        {
+
+            mainProgress += progress;
+
+        }
+
+        UpdateText();
+
+    }
+
+    public void ProgressSide(int progress)
+    {
+
+        if ((sideProgress + progress) > sideObjective.GetMaxProgress())
+        {
+
+            sideProgress = sideObjective.GetMaxProgress();
+
+        }
+        else
+        {
+
+            sideProgress += progress;
+
+        }
+
+        UpdateText();
 
     }
 
     public void UpdateText()
     {
 
-        mainProgress.text = mainObjective.GetProgress() + "/" + mainObjective.GetMaxProgress();
-        sideProgress.text = sideObjective.GetProgress() + "/" + sideObjective.GetMaxProgress();
+        mainProgressText.text = mainProgress + "/" + mainObjective.GetMaxProgress();
+        sideProgressText.text = sideProgress + "/" + sideObjective.GetMaxProgress();
 
     }
 

@@ -21,7 +21,7 @@ public class PowerCellDockRepairedState : PowerCellDockState
 
         base.EnterState();
 
-        GameManagerScript.instance.mainObjective.Progress(1);
+        UIManagerScript.UpdateObjectives(1, 0);
 
     }
 
