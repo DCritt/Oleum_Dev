@@ -12,10 +12,10 @@ public class UIManagerScript : MonoBehaviour
     [SerializeField] private Image[] hotbarSelects = new Image[4] { null, null, null, null };
     [SerializeField] private GameObject mainObjTracker;
     [SerializeField] private GameObject sideObjTracker;
-    private static ObjectiveScript objectives;
+    private ObjectiveScript objectives;
 
 
-    public static void UpdateObjectives(int mainAmt, int sideAmt)
+    public void UpdateObjectives(int mainAmt, int sideAmt)
     {
 
         objectives.ProgressMain(mainAmt);

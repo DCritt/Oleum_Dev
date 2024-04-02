@@ -12,8 +12,8 @@ public class ObjectiveScript
     private Objective sideObjective;
     private GameObject mainObjectiveTracker;
     private GameObject sideObjectiveTracker;
-    private int mainProgress = 0;
-    private int sideProgress = 0;
+    private static int mainProgress = 0;
+    private static int sideProgress = 0;
 
     public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker, Objective mainObjective, Objective sideObjective)
     {
@@ -34,6 +34,7 @@ public class ObjectiveScript
         {
 
             mainProgress = mainObjective.GetMaxProgress();
+            CompleteMain();
 
         }
         else
@@ -54,6 +55,7 @@ public class ObjectiveScript
         {
 
             sideProgress = sideObjective.GetMaxProgress();
+            CompleteSide();
 
         }
         else
@@ -72,6 +74,22 @@ public class ObjectiveScript
 
         mainProgressText.text = mainProgress + "/" + mainObjective.GetMaxProgress();
         sideProgressText.text = sideProgress + "/" + sideObjective.GetMaxProgress();
+
+    }
+
+
+
+    public void CompleteMain()
+    {
+
+
+
+    }
+
+    public void CompleteSide()
+    {
+
+
 
     }
 

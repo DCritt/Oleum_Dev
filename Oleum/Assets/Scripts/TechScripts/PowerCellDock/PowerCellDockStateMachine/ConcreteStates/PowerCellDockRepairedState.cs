@@ -21,7 +21,7 @@ public class PowerCellDockRepairedState : PowerCellDockState
 
         base.EnterState();
 
-        UIManagerScript.UpdateObjectives(1, 0);
+        dock.GetPlayer().UIManager.UpdateObjectives(1, 0);
 
     }
 
