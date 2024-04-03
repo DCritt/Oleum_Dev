@@ -14,6 +14,7 @@ public class ObjectiveScript
     private GameObject sideObjectiveTracker;
     private static int mainProgress = 0;
     private static int sideProgress = 0;
+    private static List<ObjectiveScript> instanceList = new List<ObjectiveScript>();
 
     public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker, Objective mainObjective, Objective sideObjective)
     {
@@ -22,6 +23,7 @@ public class ObjectiveScript
         this.sideObjectiveTracker = sideObjectiveTracker;
         this.mainObjective = mainObjective;
         this.sideObjective = sideObjective;
+        instanceList.Add(this);
         mainProgressText = mainObjectiveTracker.GetComponent<Text>();
         sideProgressText = sideObjectiveTracker.GetComponent<Text>();
 
@@ -44,7 +46,7 @@ public class ObjectiveScript
 
         }
 
-        UpdateText();
+        UpdateAll();
 
     }
 
@@ -65,10 +67,20 @@ public class ObjectiveScript
 
         }
 
-        UpdateText();
+        UpdateAll();
 
     }
 
+    public void UpdateAll()
+    {
+
+        for (int i = 0; i < instanceList.Count; i++)
+        {
+
+            instanceList[i].UpdateText();
+
+        }
+    }
     public void UpdateText()
     {
 
