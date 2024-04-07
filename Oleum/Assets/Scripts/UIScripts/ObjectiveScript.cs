@@ -8,21 +8,17 @@ public class ObjectiveScript
 
     private Text mainProgressText;
     private Text sideProgressText;
-    private Objective mainObjective;
-    private Objective sideObjective;
     private GameObject mainObjectiveTracker;
     private GameObject sideObjectiveTracker;
     private static int mainProgress = 0;
     private static int sideProgress = 0;
     private static List<ObjectiveScript> instanceList = new List<ObjectiveScript>();
 
-    public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker, Objective mainObjective, Objective sideObjective)
+    public ObjectiveScript(GameObject mainObjectiveTracker, GameObject sideObjectiveTracker)
     {
 
         this.mainObjectiveTracker = mainObjectiveTracker;
         this.sideObjectiveTracker = sideObjectiveTracker;
-        this.mainObjective = mainObjective;
-        this.sideObjective = sideObjective;
         instanceList.Add(this);
         mainProgressText = mainObjectiveTracker.GetComponent<Text>();
         sideProgressText = sideObjectiveTracker.GetComponent<Text>();
@@ -32,10 +28,10 @@ public class ObjectiveScript
     public void ProgressMain(int progress)
     {
     
-        if ((mainProgress + progress) > mainObjective.GetMaxProgress())
+        if ((mainProgress + progress) > GameManagerScript.instance.mainObjective.GetMaxProgress())
         {
 
-            mainProgress = mainObjective.GetMaxProgress();
+            mainProgress = GameManagerScript.instance.mainObjective.GetMaxProgress();
             CompleteMain();
 
         }
@@ -53,10 +49,10 @@ public class ObjectiveScript
     public void ProgressSide(int progress)
     {
 
-        if ((sideProgress + progress) > sideObjective.GetMaxProgress())
+        if ((sideProgress + progress) > GameManagerScript.instance.sideObjective.GetMaxProgress())
         {
 
-            sideProgress = sideObjective.GetMaxProgress();
+            sideProgress = GameManagerScript.instance.sideObjective.GetMaxProgress();
             CompleteSide();
 
         }
@@ -84,8 +80,8 @@ public class ObjectiveScript
     public void UpdateText()
     {
 
-        mainProgressText.text = mainProgress + "/" + mainObjective.GetMaxProgress();
-        sideProgressText.text = sideProgress + "/" + sideObjective.GetMaxProgress();
+        mainProgressText.text = mainProgress + "/" + GameManagerScript.instance.mainObjective.GetMaxProgress();
+        sideProgressText.text = sideProgress + "/" + GameManagerScript.instance.sideObjective.GetMaxProgress();
 
     }
 

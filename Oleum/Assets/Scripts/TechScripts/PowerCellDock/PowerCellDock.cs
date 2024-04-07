@@ -17,6 +17,8 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     public PowerCellDockRepairedState repairedState;
     public PowerCellDockDeadState deadState;
 
+    private IEnumerator dock;
+
     private void Awake()
     {
 
@@ -32,6 +34,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     {
 
         stateMachine.Initialize(emptyState);
+        dock = stateMachine.CurrPowerCellDockState.Dock();
 
     }
 
@@ -80,7 +83,8 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     public void StartDock()
     {
 
-        StartCoroutine(stateMachine.CurrPowerCellDockState.Dock());
+        dock = stateMachine.CurrPowerCellDockState.Dock();
+        StartCoroutine(dock);
 
     }
 

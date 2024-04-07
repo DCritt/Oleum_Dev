@@ -110,7 +110,7 @@ public class UIManagerScript : MonoBehaviour
     private void Awake()
     {
 
-        objectives = new ObjectiveScript(mainObjTracker, sideObjTracker, GameManagerScript.instance.mainObjective, GameManagerScript.instance.sideObjective);
+        objectives = new ObjectiveScript(mainObjTracker, sideObjTracker);
 
     }
 

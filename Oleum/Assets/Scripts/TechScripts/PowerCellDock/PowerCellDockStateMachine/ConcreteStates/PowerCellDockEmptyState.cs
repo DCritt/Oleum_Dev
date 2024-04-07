@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerCellDockEmptyState : PowerCellDockState
 {
+
     public PowerCellDockEmptyState(PowerCellDock dock, PowerCellDockStateMachine stateMachine) : base(dock, stateMachine)
     {
 
@@ -14,6 +15,7 @@ public class PowerCellDockEmptyState : PowerCellDockState
     public override void EnterState()
     {
         base.EnterState();
+
     }
 
     public override void ExitState()
@@ -38,7 +40,7 @@ public class PowerCellDockEmptyState : PowerCellDockState
 
         if (dock.GetPlayerPowerCell().GetComponent<PowerCellScript>().IsActive())
         {
-
+        
             dock.StartCoroutine(Dock());
 
         }
@@ -56,7 +58,6 @@ public class PowerCellDockEmptyState : PowerCellDockState
     {
 
         dock.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-
         dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 1);
 
         yield return new WaitForSeconds(dock.GetDockingClip().length / dock.GetPowerCellDockAnimator().GetCurrentAnimatorStateInfo(0).speed);
