@@ -627,6 +627,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4436369302843288763}
     - target: {fileID: 4211493295098708874, guid: 1318142f201177f47a507fa3a80e8c97, type: 3}
+      propertyPath: InteractButtons
+      value: 
+      objectReference: {fileID: 132494320856612520}
+    - target: {fileID: 4211493295098708874, guid: 1318142f201177f47a507fa3a80e8c97, type: 3}
       propertyPath: hotbarSlots.Array.data[0]
       value: 
       objectReference: {fileID: 8764923340254265853}
@@ -739,6 +743,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4583430291111505257}
+    - target: {fileID: 7847104139375913813, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7936985187766334902, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -828,6 +836,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
+--- !u!1 &132494320856612520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7847104139375913813, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}
+  m_PrefabInstance: {fileID: 7867847104848565757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &629066460355575116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7316891292977244337, guid: e92f86aa93d638b43b1511c5e25ed8b7, type: 3}

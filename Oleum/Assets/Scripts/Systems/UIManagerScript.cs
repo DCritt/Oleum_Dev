@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManagerScript : MonoBehaviour
 {
 
+    [SerializeField] private GameObject InteractButtons;
     [SerializeField] private Text _interactText;
     [SerializeField] private GameObject hotbar;
     [SerializeField] private Image[] hotbarSlots = new Image[4] { null, null, null, null };
@@ -13,7 +14,28 @@ public class UIManagerScript : MonoBehaviour
     [SerializeField] private GameObject mainObjTracker;
     [SerializeField] private GameObject sideObjTracker;
     private ObjectiveScript objectives;
+    private Dropdown powerCellPipeDropdown;
 
+    public TransportLocationsScript GetInteractButtons()
+    {
+
+        return InteractButtons.GetComponent<TransportLocationsScript>();
+
+    }
+
+    public void ActivateInteractButtons()
+    {
+
+        InteractButtons.SetActive(true);
+
+    }
+
+    public void DeactivateInteractButtons()
+    {
+
+        InteractButtons.SetActive(false);
+
+    }
 
     public void UpdateObjectives(int mainAmt, int sideAmt)
     {

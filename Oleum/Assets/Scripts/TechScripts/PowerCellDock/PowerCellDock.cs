@@ -126,6 +126,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
         if (collision.tag == "Player")
         {
+
             player = collision.gameObject.GetComponent<Player>();
 
             player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
