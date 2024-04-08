@@ -23,10 +23,17 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
         }
 
-        public void TransportPowerCell()
+        public void TransportActivePowerCell()
         {
 
-            
+            pipe.AddActivePowerCell();
+
+        }
+
+        public void TransportDeactivePowerCell()
+        {
+
+            pipe.AddDeactivePowerCell();
 
         }
 
@@ -34,13 +41,83 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
     private Player player;
     private TransportLocationsScript transportsUIScript;
+    private int numOfActivePowerCells = 0;
+    private int numOfDeactivePowerCells = 0;
     private static List<TransportLocation> transports = new List<TransportLocation>();
     
+    public void ButtonFunction(TransportLocation location, int option)
+    {
+
+        switch (option)
+        {
+
+            case 0:
+                location.TransportActivePowerCell();
+
+                break;
+            case 1:
+                location.TransportDeactivePowerCell();
+
+                break;
+
+        }
+        player.Inventory.RemoveCurrentItem();
+        player.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
+        player.InteractActiveState.AddInteractItem("Get PowerCell", this.GetInstanceID(), gameObject, GetPowerCell);
+
+    }
+
+    public void AddActivePowerCell()
+    {
+
+        numOfActivePowerCells += 1;
+
+    }
+
+    public void AddDeactivePowerCell() 
+    {
+
+        numOfDeactivePowerCells += 1;
+
+    }
+
+    public void GetPowerCell()
+    {
+
+        if (numOfActivePowerCells != 0)
+        {
+
+            player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Active)") as HeavyUtilityItemData, null);
+            numOfActivePowerCells -= 1;
+
+        }
+        else if (numOfDeactivePowerCells != 0)
+        {
+
+            player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Deactive)") as HeavyUtilityItemData, null);
+            numOfDeactivePowerCells -= 1;
+
+        }
+
+    }
 
     public void Interact()
     {
 
-        MakeUI();
+        if (player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)" || player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
+        {
+
+            player.StateMachine.ChangeState(player.InteractActiveState);
+            player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
+
+        }
+        else if ((numOfActivePowerCells != 0 || numOfDeactivePowerCells != 0) && !(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
+        {
+
+            player.StateMachine.ChangeState(player.InteractActiveState);
+            player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
+
+        }
 
     }
 
@@ -54,7 +131,18 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         for (int i = 0; i < transports.Count; i++)
         {
 
-            temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportPowerCell));
+            if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
+            {
+
+                temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportActivePowerCell));
+
+            }
+            else
+            {
+
+                temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportDeactivePowerCell));
+
+            }
 
         }
 
@@ -89,10 +177,18 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
                 player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
 
             }
+            else if ((numOfActivePowerCells != 0 || numOfDeactivePowerCells != 0) && !(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
+            {
+
+                player.StateMachine.ChangeState(player.InteractActiveState);
+                player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
+
+            }
 
         }
 
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
