@@ -34,8 +34,6 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
     private Player player;
     private TransportLocationsScript transportsUIScript;
-    [SerializeField] private GameObject uIPrefab;
-    private GameObject uI;
     private static List<TransportLocation> transports = new List<TransportLocation>();
     
 
@@ -49,18 +47,14 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     public void MakeUI()
     {
 
+        player.UIManager.ResetInteractButtons();
         player.UIManager.ActivateInteractButtons();
         TransportLocationsScript temp = player.UIManager.GetInteractButtons();
 
         for (int i = 0; i < transports.Count; i++)
         {
 
-            //if (transports[i].name != gameObject.transform.parent.parent.name)
-            //{
-
             temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportPowerCell));
-
-            //}
 
         }
 

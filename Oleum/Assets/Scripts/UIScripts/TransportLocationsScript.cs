@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +19,18 @@ public class TransportLocationsScript : MonoBehaviour
         buttons.Add(Instantiate(buttonPrefab, panel.transform.position, panel.transform.rotation, panel.transform));
         buttons[buttons.Count - 1].GetComponent<Button>().onClick.AddListener(transport);
         buttons[buttons.Count - 1].transform.GetChild(0).GetComponent<Text>().text = name;
+
+    }
+
+    public void ResetInteractButtons()
+    {
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+
+            Destroy(buttons[i]);
+
+        }
 
     }
 

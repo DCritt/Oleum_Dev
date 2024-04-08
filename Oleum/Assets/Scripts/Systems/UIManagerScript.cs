@@ -16,6 +16,13 @@ public class UIManagerScript : MonoBehaviour
     private ObjectiveScript objectives;
     private Dropdown powerCellPipeDropdown;
 
+    public void ResetInteractButtons()
+    {
+
+        InteractButtons.GetComponent<TransportLocationsScript>().ResetInteractButtons();
+
+    }
+
     public TransportLocationsScript GetInteractButtons()
     {
 
