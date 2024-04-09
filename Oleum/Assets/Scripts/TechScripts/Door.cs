@@ -110,6 +110,20 @@ public class Door : MonoBehaviour, IInteractable
 
     }
 
+    public void OnStart(Player player)
+    {
+
+
+
+    }
+
+    public void OnEnd(Player player)
+    {
+
+
+
+    }
+
     public void SetColliderActive(bool state)
     {
 

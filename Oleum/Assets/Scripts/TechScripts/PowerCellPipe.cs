@@ -12,6 +12,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         public Vector3 position;
         public Quaternion rotation;
         public string name;
+        public Player player;
         
         public TransportLocation(PowerCellPipe pipe)
         {
@@ -45,28 +46,6 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     private static List<TransportLocation> transports = new List<TransportLocation>();
 
     public Player player { get; set; }
-
-    public void ButtonFunction(TransportLocation location, int option)
-    {
-
-        switch (option)
-        {
-
-            case 0:
-                location.TransportActivePowerCell();
-
-                break;
-            case 1:
-                location.TransportDeactivePowerCell();
-
-                break;
-
-        }
-        player.Inventory.RemoveCurrentItem();
-        player.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
-        player.InteractActiveState.AddInteractItem("Get PowerCell", this.GetInstanceID(), gameObject, GetPowerCell);
-
-    }
 
     public void AddActivePowerCell()
     {
@@ -112,11 +91,36 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
 
-        
+        if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)" || player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)")
+        {
+
+            MakeUI(player);
+
+        }
+        else if (!(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
+        {
+
+            GetPowerCell(player);
+
+        }
 
     }
 
-    public void MakeUI()
+    public void OnStart(Player player)
+    {
+
+
+
+    }
+
+    public void OnEnd(Player player)
+    {
+
+
+
+    }
+
+    public void MakeUI(Player player)
     {
 
         player.UIManager.ResetInteractButtons();

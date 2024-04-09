@@ -13,21 +13,20 @@ public class PlayerInteractActiveState : PlayerInteractState
         public string name;
         public int id;
         public GameObject obj;
-        public Interact interact;
+        public IInteractable interactObj;
 
-        public InteractItem(string name, int id, GameObject obj, Interact interact)
+        public InteractItem(string name, int id, GameObject obj, IInteractable interactObj)
         {
 
             this.name = name;
             this.id = id;
             this.obj = obj;
-            this.interact = interact;
+            this.interactObj = interactObj;
 
         }
 
     }
 
-    public delegate void Interact(Player player);
     private List<InteractItem> interactItems = new List<InteractItem>();
 
     
@@ -66,7 +65,7 @@ public class PlayerInteractActiveState : PlayerInteractState
         base.PhysicsUpdate();
     }
 
-    public void AddInteractItem(string name, int id, GameObject obj, Interact interact)
+    public void AddInteractItem(string name, int id, GameObject obj, IInteractable interactObj)
     {
 
         /*for (int i = 0; i < interactItems.Count; i++)
@@ -81,7 +80,8 @@ public class PlayerInteractActiveState : PlayerInteractState
 
         }*/
 
-        interactItems.Add(new InteractItem(name, id, obj, interact));
+        interactItems.Add(new InteractItem(name, id, obj, interactObj));
+        interactObj.OnStart(player);
 
     }
 
@@ -94,6 +94,7 @@ public class PlayerInteractActiveState : PlayerInteractState
             if (interactItems[i].id == id)
             {
 
+                interactItems[i].interactObj.OnEnd(player);
                 interactItems.RemoveAt(i);
 
             }
@@ -119,7 +120,7 @@ public class PlayerInteractActiveState : PlayerInteractState
         if (Input.GetKeyDown(KeyCode.E))
         {
 
-            interactItems[closestInteract].interact.Invoke(player);
+            interactItems[closestInteract].interactObj.Interact(player);
 
         }
 

@@ -145,4 +145,18 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     }
 
+    public void OnStart(Player player)
+    {
+
+        
+
+    }
+
+    public void OnEnd(Player player)
+    {
+
+
+
+    }
+
 }

@@ -21,6 +21,13 @@ public class Item
 
     }
 
+    public GameObject GetObj()
+    {
+
+        return inHandGameObject;
+
+    }
+
     public virtual void Interact()
     {
 

@@ -25,6 +25,23 @@ public class Inventory
 
     }
 
+    public GameObject GetItem(int slot)
+    {
+
+        if (slot >= Slots.Length)
+        {
+
+            return null;
+
+        }
+        else
+        {
+
+            return Slots[slot].GetObj();
+
+        }
+
+    }
 
     public string GetHeavyItemName()
     {

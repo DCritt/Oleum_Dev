@@ -87,6 +87,20 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
     }
 
+    public void OnStart(Player player)
+    {
+
+
+
+    }
+
+    public void OnEnd(Player player)
+    {
+
+
+
+    }
+
     public void StartDock()
     {
 

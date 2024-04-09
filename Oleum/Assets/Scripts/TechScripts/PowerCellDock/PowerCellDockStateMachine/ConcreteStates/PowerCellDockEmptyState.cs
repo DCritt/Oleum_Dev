@@ -36,24 +36,20 @@ public class PowerCellDockEmptyState : PowerCellDockState
     public override void InteractAction(Player player)
     {
 
-        if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)" || player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)") {
+        dock.player = player;
 
-            dock.player = player;
+        if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
+        {
             player.Inventory.DeleteCurrentItem();
+            dock.StartCoroutine(Dock());
 
-            if (dock.GetPlayerPowerCell().GetComponent<PowerCellScript>().IsActive())
-            {
+        }
+        else if (player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)")
+        {
 
-                dock.StartCoroutine(Dock());
-
-            }
-            else
-            {
-
-                dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 3);
-                dock.stateMachine.ChangeState(dock.deadState);
-    
-            }
+            player.Inventory.DeleteCurrentItem();
+            dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 3);
+            dock.stateMachine.ChangeState(dock.deadState);
     
         }
 
