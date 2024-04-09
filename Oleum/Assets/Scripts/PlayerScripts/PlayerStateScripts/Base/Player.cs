@@ -171,8 +171,6 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
         if (collision.isTrigger && collision.gameObject.TryGetComponent(out IInteractable interactObj))
         {
 
-            Debug.Log("Add = " + collision.name);
-
             StateMachine.ChangeState(InteractActiveState);
             InteractActiveState.AddInteractItem(interactObj.GetInteractText(this), interactObj.GetHashCode(), collision.gameObject, interactObj);
 
@@ -185,8 +183,6 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
 
         if (collision.isTrigger && collision.gameObject.TryGetComponent(out IInteractable interactObj))
         {
-
-            Debug.Log("Delete = " + collision.name);
 
             InteractActiveState.RemoveInteractItem(interactObj.GetHashCode());
 

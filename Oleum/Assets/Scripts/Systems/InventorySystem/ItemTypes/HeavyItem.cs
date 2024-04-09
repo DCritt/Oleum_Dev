@@ -14,20 +14,14 @@ public class HeavyItem : Item
 
         player.SetSpeedMultiplier(data.slowMultiplier);
 
-        Debug.Log("worked");
-
         if (obj == null)
         {
-
-            Debug.Log("null");
 
             inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
 
         }
         else
         {
-
-            Debug.Log("exists");
 
             inHandGameObject = obj;
             inHandGameObject.transform.SetParent(player.transform.GetChild(5));

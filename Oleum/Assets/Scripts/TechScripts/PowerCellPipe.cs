@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerCellPipe : MonoBehaviour, IInteractable
@@ -67,6 +68,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         if (numOfActivePowerCells != 0)
         {
 
+            Debug.Log(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData));
             player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Active)") as HeavyUtilityItemData, null);
             numOfActivePowerCells -= 1;
 
@@ -95,6 +97,8 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         {
 
             MakeUI(player);
+            player.StateMachine.ChangeState(player.DeadState);
+            player.Inventory.stateMachine.ChangeState(player.Inventory.DeactiveState);
 
         }
         else if (!(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
