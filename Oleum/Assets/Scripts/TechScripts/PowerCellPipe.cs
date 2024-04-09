@@ -39,12 +39,13 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
     }
 
-    private Player player;
     private TransportLocationsScript transportsUIScript;
     private int numOfActivePowerCells = 0;
     private int numOfDeactivePowerCells = 0;
     private static List<TransportLocation> transports = new List<TransportLocation>();
-    
+
+    public Player player { get; set; }
+
     public void ButtonFunction(TransportLocation location, int option)
     {
 
@@ -81,7 +82,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
     }
 
-    public void GetPowerCell()
+    public void GetPowerCell(Player player)
     {
 
         if (numOfActivePowerCells != 0)
@@ -101,23 +102,17 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
 
     }
 
-    public void Interact()
+    public string GetInteractText(Player player)
     {
 
-        if (player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)" || player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
-        {
+        return "Use PowerCell Pipe";
 
-            player.StateMachine.ChangeState(player.InteractActiveState);
-            player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
+    }
 
-        }
-        else if ((numOfActivePowerCells != 0 || numOfDeactivePowerCells != 0) && !(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
-        {
+    public void Interact(Player player)
+    {
 
-            player.StateMachine.ChangeState(player.InteractActiveState);
-            player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
-
-        }
+        
 
     }
 
@@ -165,27 +160,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.CompareTag("Player"))
-        {
-
-            player = collision.GetComponent<Player>();
-
-            if (player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)" || player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
-            {
-
-                player.StateMachine.ChangeState(player.InteractActiveState);
-                player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
-
-            }
-            else if ((numOfActivePowerCells != 0 || numOfDeactivePowerCells != 0) && !(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData)))
-            {
-
-                player.StateMachine.ChangeState(player.InteractActiveState);
-                player.InteractActiveState.AddInteractItem("Use PowerCellPipe", this.GetInstanceID(), gameObject, Interact);
-
-            }
-
-        }
+       
 
     }
 
@@ -193,14 +168,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
-        {
-
-            player = collision.gameObject.GetComponent<Player>();
-
-            player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
-
-        }
 
     }
+
 }

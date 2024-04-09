@@ -9,7 +9,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     [SerializeField] private Animator powerCellDockAnimator;
     [SerializeField] private AnimationClip dockingClip;
     private GameObject powerCell;
-    private Player player;
+    public Player player { get; set; }
 
     public PowerCellDockStateMachine stateMachine;
 
@@ -73,10 +73,17 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
     }
 
-    public void Interact()
+    public string GetInteractText(Player player)
     {
 
-        stateMachine.CurrPowerCellDockState.InteractAction();
+        return "Use PowerCell Dock";
+
+    }
+
+    public void Interact(Player player)
+    {
+
+        stateMachine.CurrPowerCellDockState.InteractAction(player);
 
     }
 
@@ -98,7 +105,7 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
+        /*if (collision.tag == "Player")
         {
 
             player = collision.GetComponent<Player>();
@@ -111,8 +118,8 @@ public class PowerCellDock : MonoBehaviour, IInteractable
 
             } 
 
-        }
-        else if (collision.tag == "PowerCell")
+        }*/
+        if (collision.tag == "PowerCell")
         {
 
             powerCell = collision.gameObject;
@@ -124,14 +131,15 @@ public class PowerCellDock : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.tag == "Player")
+        /*if (collision.tag == "Player")
         {
 
             player = collision.gameObject.GetComponent<Player>();
 
             player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
-        }
+        }*/
+
     }
 
 }

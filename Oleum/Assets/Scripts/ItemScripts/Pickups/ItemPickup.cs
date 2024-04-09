@@ -8,31 +8,31 @@ using UnityEngine.UIElements;
 public class ItemPickup : MonoBehaviour, IInteractable
 { 
     [SerializeField] private ItemData data;
-    private Player player;
+    public Player player { get; set; }
     private GameObject obj;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        /*if (collision.CompareTag("Player"))
         {
 
             player = collision.GetComponent<Player>();
             player.StateMachine.ChangeState(player.InteractActiveState);
             player.InteractActiveState.AddInteractItem(("Pickup " + data.displayName), this.GetInstanceID(), gameObject, Interact);
 
-        }
+        }*/
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Player"))
+        /*if (collision.CompareTag("Player"))
         {
 
             player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
-        }
+        }*/
 
     }
 
@@ -78,7 +78,14 @@ public class ItemPickup : MonoBehaviour, IInteractable
       
     }
 
-    public void Interact()
+    public string GetInteractText(Player player)
+    {
+
+        return ("Pickup " + data.displayName);
+
+    }
+
+    public void Interact(Player player)
     {
 
         Debug.Log(data.getType());

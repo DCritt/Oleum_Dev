@@ -19,7 +19,7 @@ public class KeyScript : ItemInteractScript
 
     }
 
-    public override void Interact()
+    public override void Interact(Player player)
     {
 
         door?.Unlock();

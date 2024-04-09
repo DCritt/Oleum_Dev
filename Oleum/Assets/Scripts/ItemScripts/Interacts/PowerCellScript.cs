@@ -47,10 +47,10 @@ public class PowerCellScript : ItemInteractScript
 
     }
 
-    public override void Interact()
+    public override void Interact(Player player)
     {
 
-        base.Interact();
+        base.Interact(player);
 
 
     }

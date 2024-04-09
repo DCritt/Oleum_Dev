@@ -27,7 +27,7 @@ public class PlayerInteractActiveState : PlayerInteractState
 
     }
 
-    public delegate void Interact();
+    public delegate void Interact(Player player);
     private List<InteractItem> interactItems = new List<InteractItem>();
 
     
@@ -69,6 +69,18 @@ public class PlayerInteractActiveState : PlayerInteractState
     public void AddInteractItem(string name, int id, GameObject obj, Interact interact)
     {
 
+        /*for (int i = 0; i < interactItems.Count; i++)
+        {
+
+            if (interactItems[i].id == id)
+            {
+
+                return;
+
+            }
+
+        }*/
+
         interactItems.Add(new InteractItem(name, id, obj, interact));
 
     }
@@ -107,7 +119,7 @@ public class PlayerInteractActiveState : PlayerInteractState
         if (Input.GetKeyDown(KeyCode.E))
         {
 
-            interactItems[closestInteract].interact.Invoke();
+            interactItems[closestInteract].interact.Invoke(player);
 
         }
 

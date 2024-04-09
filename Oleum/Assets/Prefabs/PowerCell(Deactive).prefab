@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6120630177303297804}
   - component: {fileID: 2421006060561840709}
   - component: {fileID: 338155977058132015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PowerCell(Deactive)
   m_TagString: PowerCell
   m_Icon: {fileID: 0}
@@ -235,9 +235,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4

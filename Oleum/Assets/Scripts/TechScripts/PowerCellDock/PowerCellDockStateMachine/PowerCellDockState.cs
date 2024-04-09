@@ -42,7 +42,7 @@ public class PowerCellDockState
 
     }
 
-    public virtual void InteractAction()
+    public virtual void InteractAction(Player player)
     {
 
 

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemInteractScript : MonoBehaviour, IInteractable
+public class ItemInteractScript : MonoBehaviour
 { 
 
-    public virtual void Interact()
+    public Player player { get; set; }
+
+    public virtual void Interact(Player player)
     {
         
 

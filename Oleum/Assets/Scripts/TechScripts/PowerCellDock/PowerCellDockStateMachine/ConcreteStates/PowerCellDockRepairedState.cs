@@ -11,9 +11,9 @@ public class PowerCellDockRepairedState : PowerCellDockState
 
     }
 
-    public override void InteractAction()
+    public override void InteractAction(Player player)
     {
-        base.InteractAction();
+        base.InteractAction(player);
     }
 
     public override void EnterState()

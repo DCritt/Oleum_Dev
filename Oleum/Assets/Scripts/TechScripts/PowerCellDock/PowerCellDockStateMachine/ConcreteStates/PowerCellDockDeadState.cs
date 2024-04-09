@@ -11,10 +11,10 @@ public class PowerCellDockDeadState : PowerCellDockState
 
     }
 
-    public override void InteractAction()
+    public override void InteractAction(Player player)
     {
 
-        if (dock.GetPlayer().Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData))
+        if (player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData))
         {
 
 
@@ -25,7 +25,7 @@ public class PowerCellDockDeadState : PowerCellDockState
 
             dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 0);
             dock.stateMachine.ChangeState(dock.emptyState);
-            dock.GetPlayer().Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Deactive)") as HeavyUtilityItemData, null);
+            player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Deactive)") as HeavyUtilityItemData, null);
 
         }
 

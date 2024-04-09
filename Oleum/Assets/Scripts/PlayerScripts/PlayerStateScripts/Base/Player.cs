@@ -164,6 +164,32 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
         Inventory.stateMachine.CurrInventoryState.PhysicsUpdate();
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.isTrigger && collision.gameObject.TryGetComponent(out IInteractable interactObj))
+        {
+
+            StateMachine.ChangeState(InteractActiveState);
+            InteractActiveState.AddInteractItem(interactObj.GetInteractText(this), interactObj.GetHashCode(), collision.gameObject, interactObj.Interact);
+
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.isTrigger && collision.gameObject.TryGetComponent(out IInteractable interactObj))
+        {
+
+            InteractActiveState.RemoveInteractItem(interactObj.GetHashCode());
+
+        }
+
+    }
+
     #endregion
 
     #region Damageable Functions

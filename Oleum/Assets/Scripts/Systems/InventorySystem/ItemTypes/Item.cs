@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Item : IInteractable
+public class Item
 {
 
     public ItemData data;
@@ -24,7 +24,7 @@ public class Item : IInteractable
     public virtual void Interact()
     {
 
-        interactScript.Interact();
+        interactScript.Interact(player);
 
     }
 

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class HealthKitScript : ItemInteractScript
 {
-    public override void Interact()
+    public override void Interact(Player player)
     {
 
-        base.Interact();
-
-        Player player = gameObject.GetComponentInParent<Player>();
+        base.Interact(player);
 
         if (player.StateMachine.CurrPlayerHealthState != player.HealthFullState)
         {

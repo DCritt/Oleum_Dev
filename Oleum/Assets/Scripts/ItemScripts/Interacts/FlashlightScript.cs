@@ -7,10 +7,10 @@ public class FlashlightScript : ItemInteractScript
 
     [SerializeField] private GameObject flashlight;
 
-    public override void Interact()
+    public override void Interact(Player player)
     {
 
-        base.Interact();
+        base.Interact(player);
 
         flashlight.SetActive(!(flashlight.activeInHierarchy));
 

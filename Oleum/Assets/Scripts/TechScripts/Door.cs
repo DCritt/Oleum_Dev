@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Door : MonoBehaviour, IInteractable
 {
 
-    private Player player;
+    public Player player { get; set; }
 
     [SerializeField] private bool locked = false;
 
@@ -26,14 +26,14 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
+        /*if (collision.gameObject.CompareTag("Player"))
         {
 
             player = collision.GetComponent<Player>();
             player.StateMachine.ChangeState(player.InteractActiveState);
             player.InteractActiveState.AddInteractItem(gameObject.name, this.GetInstanceID(), gameObject, Interact);
 
-        }
+        }*/
 
     }
 
@@ -47,12 +47,12 @@ public class Door : MonoBehaviour, IInteractable
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
+        /*if (collision.gameObject.CompareTag("Player"))
         {
 
             player?.InteractActiveState.RemoveInteractItem(this.GetInstanceID());
 
-        }
+        }*/
 
     }
 
@@ -63,7 +63,14 @@ public class Door : MonoBehaviour, IInteractable
 
     }
 
-    public void Interact()
+    public string GetInteractText(Player player)
+    {
+
+        return "Use Door";
+
+    }
+
+    public void Interact(Player player)
     {
 
         if (!(locked))

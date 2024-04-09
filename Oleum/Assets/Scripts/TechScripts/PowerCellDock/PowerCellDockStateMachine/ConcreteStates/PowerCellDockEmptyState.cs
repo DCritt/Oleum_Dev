@@ -33,23 +33,28 @@ public class PowerCellDockEmptyState : PowerCellDockState
         base.PhysicsUpdate();
     }
 
-    public override void InteractAction()
+    public override void InteractAction(Player player)
     {
 
-        dock.GetPlayer().Inventory.DeleteCurrentItem();
+        if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)" || player.Inventory.GetHeavyItemName() == "PowerCell(Deactive)") {
 
-        if (dock.GetPlayerPowerCell().GetComponent<PowerCellScript>().IsActive())
-        {
-        
-            dock.StartCoroutine(Dock());
+            dock.player = player;
+            player.Inventory.DeleteCurrentItem();
 
-        }
-        else
-        {
+            if (dock.GetPlayerPowerCell().GetComponent<PowerCellScript>().IsActive())
+            {
 
-            dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 3);
-            dock.stateMachine.ChangeState(dock.deadState);
+                dock.StartCoroutine(Dock());
 
+            }
+            else
+            {
+
+                dock.GetPowerCellDockAnimator().SetInteger("CurrAnim", 3);
+                dock.stateMachine.ChangeState(dock.deadState);
+    
+            }
+    
         }
 
     }

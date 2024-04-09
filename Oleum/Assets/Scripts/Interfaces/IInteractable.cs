@@ -4,6 +4,10 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Interact();
+
+    public Player player { get; set; }
+    string GetInteractText(Player player);
+    void Interact(Player player);
+    
 
 }
