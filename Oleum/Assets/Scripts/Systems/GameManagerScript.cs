@@ -28,7 +28,7 @@ public class GameManagerScript : MonoBehaviour
         for (int i = 0; i < itemDataList.Length; i++)
         {
 
-            if (itemDataList[i].displayName == name)
+            if (itemDataList[i].displayName == name || (itemDataList[i].displayName + "(Clone)") == name)
             {
 
                 return itemDataList[i];

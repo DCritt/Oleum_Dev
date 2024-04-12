@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,56 +29,55 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         public void TransportActivePowerCell()
         {
 
-            pipe.AddActivePowerCell();
+            pipe.AddPowerCell(0);
 
         }
 
         public void TransportDeactivePowerCell()
         {
 
-            pipe.AddDeactivePowerCell();
+            pipe.AddPowerCell(1);
 
         }
 
     }
 
     private TransportLocationsScript transportsUIScript;
-    private int numOfActivePowerCells = 0;
-    private int numOfDeactivePowerCells = 0;
+    [SerializeField] private GameObject powerCellHolder;
+    private int numOfPowerCells = 0;
     private static List<TransportLocation> transports = new List<TransportLocation>();
 
     public Player player { get; set; }
 
-    public void AddActivePowerCell()
+    public void AddPowerCell(int mode)
     {
 
-        numOfActivePowerCells += 1;
+        numOfPowerCells += 1;
 
-    }
+        switch (mode)
+        {
 
-    public void AddDeactivePowerCell() 
-    {
+            case 0:
+                Instantiate(GameManagerScript.instance.GetItemData("PowerCell(Active)").inHandGameObjectPrefab, powerCellHolder.transform.position, powerCellHolder.transform.rotation, powerCellHolder.transform);
 
-        numOfDeactivePowerCells += 1;
+                break;
+            case 1:
+                Instantiate(GameManagerScript.instance.GetItemData("PowerCell(Deactive)").inHandGameObjectPrefab, powerCellHolder.transform.position, powerCellHolder.transform.rotation, powerCellHolder.transform);
+
+                break;
+
+        }
 
     }
 
     public void GetPowerCell(Player player)
     {
 
-        if (numOfActivePowerCells != 0)
+        if (numOfPowerCells != 0)
         {
 
-            Debug.Log(player.Inventory.IsFull(GameManagerScript.instance.GetItemDataType("HeavyUtility") as HeavyItemData));
-            player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Active)") as HeavyUtilityItemData, null);
-            numOfActivePowerCells -= 1;
-
-        }
-        else if (numOfDeactivePowerCells != 0)
-        {
-
-            player.Inventory.AddItem(GameManagerScript.instance.GetItemData("PowerCell(Deactive)") as HeavyUtilityItemData, null);
-            numOfDeactivePowerCells -= 1;
+            player.Inventory.AddItem(GameManagerScript.instance.GetItemData(powerCellHolder.transform.GetChild(0).name) as HeavyUtilityItemData, powerCellHolder.transform.GetChild(0).gameObject);
+            numOfPowerCells -= 1;
 
         }
 
