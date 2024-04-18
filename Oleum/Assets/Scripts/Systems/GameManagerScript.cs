@@ -71,7 +71,7 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
 
-        //generator.SetGenerator(grid, spawnRoom, rooms, halls, count);
+        generator.SetGenerator(grid, spawnRoom, rooms, halls, count);
 
     }
 

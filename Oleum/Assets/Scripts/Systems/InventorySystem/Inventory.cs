@@ -5,12 +5,14 @@ using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class Inventory
 {
 
     public Item[] Slots = new Item[5] { null, null, null, null, null };
     public int currentItem;
     private Player player;
+    
 
     public InventoryStateMachine stateMachine { get; set; }
 

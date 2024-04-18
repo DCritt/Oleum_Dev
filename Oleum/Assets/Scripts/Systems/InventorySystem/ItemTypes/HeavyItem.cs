@@ -17,15 +17,15 @@ public class HeavyItem : Item
         if (obj == null)
         {
 
-            inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(5).position, player.transform.GetChild(5).rotation, player.transform.GetChild(5));
+            inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.heavyHolder.transform.position, player.heavyHolder.transform.rotation, player.heavyHolder.transform);
 
         }
         else
         {
 
             inHandGameObject = obj;
-            inHandGameObject.transform.SetParent(player.transform.GetChild(5));
-            inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(5).position, player.transform.GetChild(5).rotation);
+            inHandGameObject.transform.SetParent(player.heavyHolder.transform);
+            inHandGameObject.transform.SetPositionAndRotation(player.heavyHolder.transform.position, player.heavyHolder.transform.rotation);
 
         }
 

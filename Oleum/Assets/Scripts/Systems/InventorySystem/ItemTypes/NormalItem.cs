@@ -17,7 +17,7 @@ public class NormalItem : Item
 
             Debug.Log("null");
 
-            inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.transform.GetChild(4).position, player.transform.GetChild(4).rotation, player.transform.GetChild(4));
+            inHandGameObject = UnityEngine.Object.Instantiate(data.inHandGameObjectPrefab, player.normalHolder.transform.position, player.normalHolder.transform.rotation, player.normalHolder.transform);
 
         }
         else
@@ -25,8 +25,8 @@ public class NormalItem : Item
 
             Debug.Log("exists");
             inHandGameObject = obj;
-            inHandGameObject.transform.SetParent(player.transform.GetChild(4));
-            inHandGameObject.transform.SetPositionAndRotation(player.transform.GetChild(4).position, player.transform.GetChild(4).rotation);
+            inHandGameObject.transform.SetParent(player.normalHolder.transform);
+            inHandGameObject.transform.SetPositionAndRotation(player.normalHolder.transform.position, player.normalHolder.transform.rotation);
 
         }
 

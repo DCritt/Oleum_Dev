@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
     [field: SerializeField] public float MoveSpeed { get; private set; }
     [field: SerializeField] public float SprintMulti { get; private set; }
     public Rigidbody2D RB { get; set; }
+    [SerializeField] private GameObject playerHolder;
     [field: SerializeField] public Animator PlayerMaskAnim { get; private set; }
     [field: SerializeField] public Animator PlayerBodyAnim { get; private set; }
     [field: SerializeField] public Animator PlayerFeetAnim { get; private set; }
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
 
     public Inventory Inventory;
     public UIManagerScript UIManager;
+    public GameObject normalHolder;
+    public GameObject heavyHolder;
 
     #endregion
 
@@ -271,8 +274,8 @@ public class Player : MonoBehaviour, IDamageable, IPlayerMoveable
 
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = direction;
+        Vector2 direction = new Vector2(mousePosition.x - playerHolder.transform.position.x, mousePosition.y - playerHolder.transform.position.y);
+        playerHolder.transform.up = direction;
 
     }
 
