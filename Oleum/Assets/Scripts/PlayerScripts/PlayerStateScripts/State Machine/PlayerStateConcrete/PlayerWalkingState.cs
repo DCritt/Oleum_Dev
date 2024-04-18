@@ -45,6 +45,7 @@ public class PlayerWalkingState : PlayerState
         base.PhysicsUpdate();
 
         player.MovePlayer(_direction);
+
     }
 
     public void TestIdle()
