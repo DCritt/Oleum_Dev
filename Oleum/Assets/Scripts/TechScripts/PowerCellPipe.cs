@@ -22,7 +22,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
             this.pipe = pipe;
             position = pipe.gameObject.transform.position;
             rotation = pipe.gameObject.transform.rotation;
-            name = pipe.transform.parent.parent.name;
+            name = pipe.roomName;
 
         }
 
@@ -43,6 +43,7 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
     }
 
     private TransportLocationsScript transportsUIScript;
+    [SerializeField] private string roomName;
     [SerializeField] private GameObject powerCellHolder;
     private int numOfPowerCells = 0;
     private static List<TransportLocation> transports = new List<TransportLocation>();
@@ -134,16 +135,21 @@ public class PowerCellPipe : MonoBehaviour, IInteractable
         for (int i = 0; i < transports.Count; i++)
         {
 
-            if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
+            if (transports[i].name != roomName)
             {
 
-                temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportActivePowerCell));
+                if (player.Inventory.GetHeavyItemName() == "PowerCell(Active)")
+                {
 
-            }
-            else
-            {
+                    temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportActivePowerCell));
 
-                temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportDeactivePowerCell));
+                }
+                else
+                {
+
+                    temp.SpawnTransportLocationButton(transports[i].name, new UnityEngine.Events.UnityAction(transports[i].TransportDeactivePowerCell));
+
+                }
 
             }
 
