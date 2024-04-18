@@ -4454,7 +4454,6 @@ Transform:
   - {fileID: 2593236704803127300}
   - {fileID: 7491226042436187644}
   - {fileID: 479690571956758555}
-  - {fileID: 6013025431693860760}
   m_Father: {fileID: 5140331904484204345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6151325990383548320
@@ -5870,7 +5869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6422512706484168797, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
       propertyPath: roomName
-      value: PowerCellMainRoom
+      value: MainRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6203,72 +6202,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4669635358154923067, guid: b2502042b56a2c542b8c78e91529c760, type: 3}
   m_PrefabInstance: {fileID: 4027312480607339329}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4622298614200236489
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3937298965389976908}
-    m_Modifications:
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6016767275086508581, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: m_Name
-      value: PowerCellPipe
-      objectReference: {fileID: 0}
-    - target: {fileID: 6422512706484168797, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-      propertyPath: roomName
-      value: PowerCellMainRoom
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
---- !u!4 &6013025431693860760 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
-  m_PrefabInstance: {fileID: 4622298614200236489}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5672137399663020927
 PrefabInstance:

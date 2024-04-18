@@ -3041,6 +3041,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4432889606806507246}
+  - {fileID: 8872457095400040216}
+  - {fileID: 7391840933668539941}
+  - {fileID: 4811012183678284829}
   m_Father: {fileID: 791517315390926124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &246818992428290800
@@ -4048,3 +4051,193 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 7248989150923241565}
+--- !u!1001 &608740846774709038
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 453914845619984538}
+    m_Modifications:
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771136893908917545, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_Name
+      value: PowerCellRechargeStation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+--- !u!4 &7391840933668539941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+  m_PrefabInstance: {fileID: 608740846774709038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1569216402990105107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 453914845619984538}
+    m_Modifications:
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771136893908917545, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+      propertyPath: m_Name
+      value: PowerCellRechargeStation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+--- !u!4 &8872457095400040216 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7991556971419903243, guid: 1541823627708cb4a87912d884b147b6, type: 3}
+  m_PrefabInstance: {fileID: 1569216402990105107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5878073598104015436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 453914845619984538}
+    m_Modifications:
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016767275086508581, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: m_Name
+      value: PowerCellPipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422512706484168797, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+      propertyPath: roomName
+      value: RechargeRoom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+--- !u!4 &4811012183678284829 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1393647326541637201, guid: 985cfd6ee594bbd4682052e4f858d154, type: 3}
+  m_PrefabInstance: {fileID: 5878073598104015436}
+  m_PrefabAsset: {fileID: 0}
