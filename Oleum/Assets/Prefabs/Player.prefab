@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 69438440206664998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -526,7 +526,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1048,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 4791959550374693116}
     - target: {fileID: 6791086619547100806, guid: ed8702b2758a6b14db4ed12b2b814582, type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8808030224761340535, guid: ed8702b2758a6b14db4ed12b2b814582, type: 3}
       propertyPath: m_Name
