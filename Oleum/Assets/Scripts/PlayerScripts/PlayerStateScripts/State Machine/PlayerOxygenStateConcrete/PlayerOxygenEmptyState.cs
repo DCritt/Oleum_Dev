@@ -36,7 +36,16 @@ public class PlayerOxygenEmptyState : PlayerOxygenState
 
     public override void FrameUpdate()
     {
+
         base.FrameUpdate();
+
+        if (player.StateMachine.CurrPlayerHealthState != player.HealthDrainState) {
+
+
+            player.StateMachine.ChangeState(player.HealthDrainState);
+
+        }
+
     }
 
     public override void PhysicsUpdate()
