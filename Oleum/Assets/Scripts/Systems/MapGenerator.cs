@@ -5,9 +5,11 @@ using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
-{
+{ 
 
     private Grid grid;
+
+    public MapGrid map;
 
     private GameObject spawnRoom;
 
@@ -23,14 +25,14 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
 
-
+        map = new MapGrid();
 
     }
 
     private void Start()
     {
 
-      
+        //map.AddTiles(new Vector2Int(0, 0), new Vector2Int(1000, -1000));
 
     }
 
@@ -63,7 +65,7 @@ public class MapGenerator : MonoBehaviour
 
         spawnRoom = UnityEngine.Object.Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
 
-        Generate(spawnRoom.GetComponent<Room>());
+        //Generate(spawnRoom.GetComponent<Room>());
 
     }
 

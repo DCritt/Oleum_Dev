@@ -12,6 +12,14 @@ public class Room : MonoBehaviour
     private MapGenerator mapGen;
     [SerializeField] private LayerMask room;
 
+    public void Start()
+    {
+
+        Debug.Log((int)gameObject.transform.position.x + " " + (int)gameObject.transform.position.y);
+
+        GameManagerScript.instance.generator.map.AddTile(new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.y));
+
+    }
 
     public void SetMapGen(MapGenerator mapGen)
     {

@@ -67,7 +67,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
         if (data != null && gameObject.transform.childCount == 0)
         {
 
-            Debug.Log("hello");
+            //Debug.Log("hello");
 
             data.SetType();
             gameObject.GetComponent<SpriteRenderer>().sprite = null;

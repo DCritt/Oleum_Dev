@@ -10,7 +10,7 @@ public class GameManagerScript : MonoBehaviour
     public Objective mainObjective;
     public Objective sideObjective;
 
-    [SerializeField] private MapGenerator generator;
+    [SerializeField] public MapGenerator generator;
 
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject spawnRoom;
