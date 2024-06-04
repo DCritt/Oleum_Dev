@@ -8,8 +8,9 @@ public class MapGenerator : MonoBehaviour
 { 
 
     private Grid grid;
-
-    public MapGrid map;
+    [SerializeField] private Tilemap floor;
+    [SerializeField] private Tilemap walls;
+    [SerializeField] private Tilemap onFloor;
 
     private GameObject spawnRoom;
 
@@ -25,14 +26,15 @@ public class MapGenerator : MonoBehaviour
     private void Awake()
     {
 
-        map = new MapGrid();
+  
 
     }
 
     private void Start()
     {
 
-        //map.AddTiles(new Vector2Int(0, 0), new Vector2Int(1000, -1000));
+        //map.AddTiles(new Vector2Int(0, 0), new Vector2Int(1000, -1000
+        MapGrid.GeneratePath(new Vector2Int(20, 40), new Vector2Int(40, 40));
 
     }
 

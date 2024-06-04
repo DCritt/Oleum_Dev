@@ -859,7 +859,7 @@ MonoBehaviour:
   - {x: 9, y: 3, z: 0}
   m_ShapePathHash: -1417284331
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38134
+  m_InstanceId: 34024
   m_LocalBounds:
     m_Center: {x: 9.125, y: 4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -921,7 +921,7 @@ MonoBehaviour:
   - {x: -3, y: 5, z: 0}
   m_ShapePathHash: 2090202389
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38142
+  m_InstanceId: 34032
   m_LocalBounds:
     m_Center: {x: -6, y: 5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   - {x: -3, y: -5.25, z: 0}
   m_ShapePathHash: 680916245
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38126
+  m_InstanceId: 34014
   m_LocalBounds:
     m_Center: {x: -6, y: -5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   - {x: 9, y: -3, z: 0}
   m_ShapePathHash: -1417284331
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38112
+  m_InstanceId: 34000
   m_LocalBounds:
     m_Center: {x: 9.125, y: -4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   - {x: 9, y: -5.25, z: 0}
   m_ShapePathHash: 972420373
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38122
+  m_InstanceId: 34010
   m_LocalBounds:
     m_Center: {x: 6, y: -5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   - {x: -9, y: -5.25, z: 0}
   m_ShapePathHash: -1251085035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38064
+  m_InstanceId: 33952
   m_LocalBounds:
     m_Center: {x: -9.125, y: -4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   - {x: 9, y: 5, z: 0}
   m_ShapePathHash: -1749682923
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38158
+  m_InstanceId: 34046
   m_LocalBounds:
     m_Center: {x: 6, y: 5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1521,6 +1521,8 @@ MonoBehaviour:
   room:
     serializedVersion: 2
     m_Bits: 128
+  topOffset: {x: -10, y: 6}
+  bottomOffset: {x: 10, y: -6}
 --- !u!1 &8584256733409641303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +3673,7 @@ MonoBehaviour:
   - {x: -9, y: 3, z: 0}
   m_ShapePathHash: -1787955947
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38082
+  m_InstanceId: 33970
   m_LocalBounds:
     m_Center: {x: -9.125, y: 4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}

@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
 
+    public GameObject marker; 
+
     public static GameManagerScript instance;
 
     public Objective mainObjective;
     public Objective sideObjective;
 
-    [SerializeField] public MapGenerator generator;
+    [SerializeField] private MapGenerator generator;
 
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject spawnRoom;

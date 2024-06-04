@@ -1037,6 +1037,8 @@ MonoBehaviour:
   room:
     serializedVersion: 2
     m_Bits: 128
+  topOffset: {x: 0, y: 0}
+  bottomOffset: {x: 0, y: 0}
 --- !u!1 &4850990221944057030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,7 +1097,7 @@ MonoBehaviour:
   - {x: 3, y: -0.25, z: 0}
   m_ShapePathHash: -1852443371
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39988
+  m_InstanceId: 42488
   m_LocalBounds:
     m_Center: {x: -2, y: -0.125, z: 0}
     m_Extent: {x: 5, y: 0.125, z: 0}
@@ -1938,7 +1940,7 @@ MonoBehaviour:
   - {x: 3, y: -0.25, z: 0}
   m_ShapePathHash: -1852443371
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39966
+  m_InstanceId: 42464
   m_LocalBounds:
     m_Center: {x: -2, y: -0.125, z: 0}
     m_Extent: {x: 5, y: 0.125, z: 0}
@@ -1953,6 +1955,10 @@ PrefabInstance:
     - target: {fileID: 2883920520872913110, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
       propertyPath: m_Name
       value: RoomMinimapMarker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2883920520872913110, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5739923327344041197, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
       propertyPath: m_LocalScale.x
