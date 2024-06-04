@@ -34,7 +34,11 @@ public class MapGenerator : MonoBehaviour
     {
 
         //map.AddTiles(new Vector2Int(0, 0), new Vector2Int(1000, -1000
-        MapGrid.GeneratePath(new Vector2Int(20, 40), new Vector2Int(40, 40));
+        //MapGrid.GeneratePath(new Vector2Int(-5, 15), new Vector2Int(20, 15));
+        //Debug.Log(MapGrid.CheckTile(new Vector2Int(3, 15)));
+
+        MapGrid.AddTiles(new Vector2Int(40, 40), new Vector2Int(60, 20));
+        MapGrid.GeneratePath(new Vector2Int(20, 30), new Vector2Int(80, 30));
 
     }
 

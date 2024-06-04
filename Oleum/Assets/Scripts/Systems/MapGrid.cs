@@ -171,15 +171,18 @@ public static class MapGrid
         bool success = false;
         Queue<Vector2Int> pointList = new Queue<Vector2Int>();
         pointList.Enqueue(start);
+        int runs = 0;
+        Dictionary<Vector2Int, bool> used = new Dictionary<Vector2Int, bool>();
 
         while (!success && pointList.Count != 0)
         {
 
-            Debug.Log(nbrs.Count);
-
-            Debug.Log("hello");
-
             Vector2Int currPos = pointList.Dequeue();
+            bool addedNbrs = false;
+            runs += 1;
+
+            Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
+            Debug.Log("Count = " + pointList.Count);
 
             nbrs[currPos] = new List<Vector2Int>();
 
@@ -190,49 +193,131 @@ public static class MapGrid
 
             }
 
-            if (!nbrs.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 4), new Vector2Int(currPos.x + 4, currPos.y + 1)) && (Mathf.Abs(start.y - currPos.y) < 50))
+            if ((currPos.y < end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
             {
 
+                Debug.Log("up");
+
+                addedNbrs = true;
                 Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
                 nbrs[currPos].Add(up);
                 pointList.Enqueue(up);
+                used[up] = true;
 
             }
 
-            if (!nbrs.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 4)) && (Mathf.Abs(start.y - currPos.y) < 50))
+            if ((currPos.y > end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
             {
 
+                Debug.Log("down");
+
+                addedNbrs = true;
                 Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
                 nbrs[currPos].Add(down);
                 pointList.Enqueue(down);
+                used[down] = true;
 
             }
 
-            if (!nbrs.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)) && (Mathf.Abs(start.x - currPos.x) < 50))
+            if ((currPos.x > end.x) && !used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
             {
 
+                Debug.Log("left");
+
+                addedNbrs = true;
                 Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
                 nbrs[currPos].Add(left);
                 pointList.Enqueue(left);
+                used[left] = true;
 
             }
 
-            if (!nbrs.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 4, currPos.y - 4)) && (Mathf.Abs(start.x - currPos.x) < 50))
+            if ((currPos.x < end.x) && !used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
             {
 
+                Debug.Log("right");
+
+                addedNbrs = true;
                 Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
                 nbrs[currPos].Add(right);
                 pointList.Enqueue(right);
+                used[right] = true;
+
+            }
+
+            if (runs > 100000)
+            {
+
+                pointList.Clear();
+
+            }
+
+            Debug.Log(runs);
+
+            if (!addedNbrs && runs < 200)
+            {
+
+                Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
+
+                if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
+                {
+
+                    Debug.Log("up");
+
+                    Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
+
+                    nbrs[currPos].Add(up);
+                    pointList.Enqueue(up);
+                    used[up] = true;
+
+                }
+
+                if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
+                {
+
+                    Debug.Log("down");
+
+                    Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
+
+                    nbrs[currPos].Add(down);
+                    pointList.Enqueue(down);
+                    used[down] = true;
+
+                }
+
+                if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
+                {
+
+                    Debug.Log("left");
+
+                    Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
+
+                    nbrs[currPos].Add(left);
+                    pointList.Enqueue(left);
+                    used[left] = true;
+
+                }
+
+                if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
+                {
+
+                    Debug.Log("right");
+
+                    Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
+
+                    nbrs[currPos].Add(right);
+                    pointList.Enqueue(right);
+                    used[right] = true;
+
+                }
 
             }
 
         }
-
-        Debug.Log("here");
 
         Queue<Vector2Int> toVisit = new Queue<Vector2Int>();
         toVisit.Enqueue(start);
@@ -242,8 +327,6 @@ public static class MapGrid
         while (toVisit.Count != 0)
         {
 
-            Debug.Log("while");
-
             Vector2Int curr = toVisit.Dequeue();
 
             if (nbrs.ContainsKey(curr)) { 
@@ -251,28 +334,14 @@ public static class MapGrid
                 foreach (Vector2Int n in nbrs[curr])
                 {
 
-                    Debug.Log("foreach");
-
                     if (!visited.ContainsKey(n))
                     {
 
-                        Debug.Log("here");
 
                         pred[n] = curr;
-
-                        Debug.Log("pred");
-
                         dist[n] = 1 + dist[curr];
-
-                        Debug.Log("dist");
-                        
                         visited[n] = true;
-
-                        Debug.Log("visited");
-
-                        toVisit.Enqueue(n); 
-                        
-                        Debug.Log("Enqueue");
+                        toVisit.Enqueue(n);
 
                     }
 
