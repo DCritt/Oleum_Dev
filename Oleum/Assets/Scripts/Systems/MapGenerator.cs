@@ -38,7 +38,17 @@ public class MapGenerator : MonoBehaviour
         //Debug.Log(MapGrid.CheckTile(new Vector2Int(3, 15)));
 
         MapGrid.AddTiles(new Vector2Int(40, 40), new Vector2Int(60, 20));
-        MapGrid.GeneratePath(new Vector2Int(20, 30), new Vector2Int(80, 30));
+        Stack<Vector2Int> path = MapGrid.GeneratePath(new Vector2Int(20, 30), new Vector2Int(80, 30));
+
+        while(path.Count > 0)
+        {
+
+            Debug.Log("(" + path.Peek().x + ", " + path.Peek().y + ")");
+
+            Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Peek(), Quaternion.identity);
+            path.Pop();
+
+        }
 
     }
 
@@ -71,7 +81,7 @@ public class MapGenerator : MonoBehaviour
 
         spawnRoom = UnityEngine.Object.Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
 
-        //Generate(spawnRoom.GetComponent<Room>());
+        Generate(spawnRoom.GetComponent<Room>());
 
     }
 

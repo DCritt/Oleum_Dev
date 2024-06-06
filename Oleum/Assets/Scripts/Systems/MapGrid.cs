@@ -158,10 +158,8 @@ public static class MapGrid
 
     }
 
-    public static List<Vector2Int> GeneratePath(Vector2Int start, Vector2Int end)
+    public static Stack<Vector2Int> GeneratePath(Vector2Int start, Vector2Int end)
     {
-
-        List<Vector2Int> path = new List<Vector2Int>();
 
         Dictionary<Vector2Int, List<Vector2Int>> nbrs = new Dictionary<Vector2Int, List<Vector2Int>>();
         Dictionary<Vector2Int, bool> visited = new Dictionary<Vector2Int, bool>();
@@ -181,7 +179,7 @@ public static class MapGrid
             bool addedNbrs = false;
             runs += 1;
 
-            Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
+            Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
             Debug.Log("Count = " + pointList.Count);
 
             nbrs[currPos] = new List<Vector2Int>();
@@ -249,7 +247,7 @@ public static class MapGrid
 
             }
 
-            if (runs > 100000)
+            if (runs > 1000000)
             {
 
                 pointList.Clear();
@@ -258,60 +256,68 @@ public static class MapGrid
 
             Debug.Log(runs);
 
-            if (!addedNbrs && runs < 200)
+            if (!addedNbrs && runs < 1000000)
             {
 
                 Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
 
-                if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
-                {
+                if (CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)) || CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4))) {
 
-                    Debug.Log("up");
+                    if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
+                    {
 
-                    Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
+                        Debug.Log("up");
 
-                    nbrs[currPos].Add(up);
-                    pointList.Enqueue(up);
-                    used[up] = true;
+                        Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
-                }
+                        nbrs[currPos].Add(up);
+                        pointList.Enqueue(up);
+                        used[up] = true;
 
-                if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
-                {
+                    }
 
-                    Debug.Log("down");
+                    if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
+                    {
 
-                    Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
+                        Debug.Log("down");
 
-                    nbrs[currPos].Add(down);
-                    pointList.Enqueue(down);
-                    used[down] = true;
+                        Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
-                }
+                        nbrs[currPos].Add(down);
+                        pointList.Enqueue(down);
+                        used[down] = true;
 
-                if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
-                {
-
-                    Debug.Log("left");
-
-                    Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
-
-                    nbrs[currPos].Add(left);
-                    pointList.Enqueue(left);
-                    used[left] = true;
+                    }
 
                 }
 
-                if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
-                {
+                if (CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)) || CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5))) {
 
-                    Debug.Log("right");
+                    if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
+                    {
 
-                    Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
+                        Debug.Log("left");
 
-                    nbrs[currPos].Add(right);
-                    pointList.Enqueue(right);
-                    used[right] = true;
+                        Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
+
+                        nbrs[currPos].Add(left);
+                        pointList.Enqueue(left);
+                        used[left] = true;
+
+                    }
+
+                    if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
+                    {
+
+                        Debug.Log("right");
+
+                        Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
+
+                        nbrs[currPos].Add(right);
+                        pointList.Enqueue(right);
+                        used[right] = true;
+
+                    }
 
                 }
 
@@ -353,25 +359,25 @@ public static class MapGrid
 
         Debug.Log("distance" + dist[end]);
 
-        Stack<Vector2Int> stack = new Stack<Vector2Int>();
+        Stack<Vector2Int> path = new Stack<Vector2Int>();
         Vector2Int temp = end;
-        stack.Push(temp);
+        path.Push(temp);
         while (temp != start)
         {
 
             temp = pred[temp];
-            stack.Push(temp);
+            path.Push(temp);
 
         }
 
 
-        while (stack.Count > 0)
+        /*while (path.Count > 0)
         {
 
-            Debug.Log("(" + stack.Peek().x + ", " + stack.Peek().y + ")");
-            stack.Pop();
+            Debug.Log("(" + path.Peek().x + ", " + path.Peek().y + ")");
+            path.Pop();
 
-        }
+        }*/
 
         return path;
 
