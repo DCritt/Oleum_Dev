@@ -12,13 +12,13 @@ public class Room : MonoBehaviour
     private MapGenerator mapGen;
     [SerializeField] private LayerMask room;
 
-    [SerializeField] private Vector2Int topOffset;
-    [SerializeField] private Vector2Int bottomOffset;
+    [SerializeField] public Vector2Int topOffset;
+    [SerializeField] public Vector2Int bottomOffset;
 
     public void Start()
     {
 
-        MapGrid.AddTiles((new Vector2Int(((int)gameObject.transform.position.x + topOffset.x), ((int)gameObject.transform.position.y + topOffset.y))), (new Vector2Int(((int)gameObject.transform.position.x + bottomOffset.x), ((int)gameObject.transform.position.y + bottomOffset.y))));
+        //MapGrid.AddTiles((new Vector2Int(((int)gameObject.transform.position.x + topOffset.x), ((int)gameObject.transform.position.y + topOffset.y))), (new Vector2Int(((int)gameObject.transform.position.x + bottomOffset.x), ((int)gameObject.transform.position.y + bottomOffset.y))));
 
     }
 

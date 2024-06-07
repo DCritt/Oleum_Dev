@@ -111,8 +111,12 @@ public static class MapGrid
         for (int i = top.y; i >= bottom.y; i--)
         {
 
+            Debug.Log(i);
+
             for (int j = top.x; j <= bottom.x; j++)
             {
+
+                Debug.Log(j);
 
                 if (CheckTile(new Vector2Int(j, i)))
                 {
