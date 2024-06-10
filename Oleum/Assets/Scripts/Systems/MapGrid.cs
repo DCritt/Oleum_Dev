@@ -11,63 +11,7 @@ using Random = UnityEngine.Random;
 public static class MapGrid
 {
 
-    private struct priorityDirection
-    {
-
-        public Vector2Int direction;
-        public int priority;
-
-        public priorityDirection(Vector2Int direction, int priority)
-        {
-
-            this.direction = direction;
-            this.priority = priority;
-
-        }
-
-    }
-
     private static Dictionary<Vector2Int, bool> grid = new Dictionary<Vector2Int, bool>();
-
-    private static priorityDirection up = new priorityDirection(new Vector2Int(0, 1), 0);
-    private static priorityDirection down = new priorityDirection(new Vector2Int(0, -1), 0);
-    private static priorityDirection left = new priorityDirection(new Vector2Int(-1, 0), 0);
-    private static priorityDirection right = new priorityDirection(new Vector2Int(1, 0), 0);
-
-    private static priorityDirection GetDirection(int index)
-    {
-
-        switch(index)
-        {
-
-            case 0:
-
-                return up;
-                break;
-
-            case 1:
-
-                return down;
-                break;
-
-            case 2:
-
-                return left;
-                break;
-
-            case 3:
-
-                return right;
-                break;
-
-            default:
-
-                return new priorityDirection(new Vector2Int(0, 0), 0);
-                break;
-
-        }
-
-    }
 
     public static void AddTile(Vector2Int tile)
     {
@@ -107,6 +51,8 @@ public static class MapGrid
 
     public static bool CheckTiles(Vector2Int top, Vector2Int bottom)
     {
+
+
 
         for (int i = top.y; i >= bottom.y; i--)
         {
@@ -361,16 +307,29 @@ public static class MapGrid
             
      }
 
-        Debug.Log("distance" + dist[end]);
-
-        Stack<Vector2Int> path = new Stack<Vector2Int>();
-        Vector2Int temp = end;
-        path.Push(temp);
-        while (temp != start)
+        if (pred.ContainsKey(end))
         {
 
-            temp = pred[temp];
+            Debug.Log("distance" + dist[end]);
+
+            Stack<Vector2Int> path = new Stack<Vector2Int>();
+            Vector2Int temp = end;
             path.Push(temp);
+            while (temp != start)
+            {
+
+                temp = pred[temp];
+                path.Push(temp);
+
+            }
+
+            return path;
+
+        }
+        else
+        {
+
+            return null;
 
         }
 
@@ -382,8 +341,6 @@ public static class MapGrid
             path.Pop();
 
         }*/
-
-        return path;
 
     }
 

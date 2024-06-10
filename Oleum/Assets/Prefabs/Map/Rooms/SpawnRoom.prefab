@@ -1521,8 +1521,8 @@ MonoBehaviour:
   room:
     serializedVersion: 2
     m_Bits: 128
-  topOffset: {x: -10, y: 6}
-  bottomOffset: {x: 10, y: -6}
+  topOffset: {x: -9, y: 5}
+  bottomOffset: {x: 9, y: -5}
 --- !u!1 &8584256733409641303
 GameObject:
   m_ObjectHideFlags: 0

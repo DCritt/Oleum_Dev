@@ -16,12 +16,7 @@ MonoBehaviour:
   description: You are tasked with repairing or replacing bad powercells in a facility.
   maxProgress: 5
   objectiveObj: {fileID: 7123068279749623831, guid: 02043eb2b3e684d4e95190b41fa83286, type: 3}
-  rooms:
-    mainRooms:
-    - obj: {fileID: 0}
-      chance: 100
-    sideRooms:
-    - obj: {fileID: 0}
-      chance: 50
-    - obj: {fileID: 0}
-      chance: 50
+  mainRooms:
+  - {fileID: 4061830398468735537, guid: 451bbed66d0373447b187850c191e71f, type: 3}
+  sideRooms:
+  - {fileID: 3652875032041147140, guid: f1612e21d31a9fb4f9f93351b2326b64, type: 3}

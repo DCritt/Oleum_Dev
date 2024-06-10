@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
+using System.IO;
 
 public class MapGenerator : MonoBehaviour
 { 
@@ -95,12 +96,40 @@ public class MapGenerator : MonoBehaviour
 
     }
 
+    public void SpawnObjectiveRooms(List<GameObject> objectiveRooms, ref List<Room> mapRooms)
+    {
+
+        for (int i = 0; i < objectiveRooms.Count; i++)
+        {
+
+            GameObject room = objectiveRooms[i];
+            Room roomRoom = room.GetComponent<Room>();
+            Vector2Int spawnPoint = new Vector2Int((Random.Range((int)-mapSize, (int)mapSize)), (Random.Range((int)-mapSize, (int)mapSize)));
+
+            while (MapGrid.CheckTiles(new Vector2Int((roomRoom.topOffset.x + spawnPoint.x), (roomRoom.topOffset.y + spawnPoint.y)), new Vector2Int((roomRoom.bottomOffset.x + spawnPoint.x), (roomRoom.bottomOffset.y + spawnPoint.y))))
+            {
+
+                spawnPoint.x = Random.Range((int)-mapSize, (int)mapSize);
+                spawnPoint.y = Random.Range((int)-mapSize, (int)mapSize);
+
+            }
+
+            mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.identity, grid.transform).GetComponent<Room>());
+            MapGrid.AddTiles(new Vector2Int((spawnPoint.x + roomRoom.topOffset.x), (spawnPoint.y + roomRoom.topOffset.y)), new Vector2Int((spawnPoint.x + roomRoom.bottomOffset.x), (spawnPoint.y + roomRoom.bottomOffset.y)));
+
+        }
+
+    }
+
     public void GenerateMap()
     {
 
         spawnRoom = Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
         MapGrid.AddTiles(new Vector2Int((spawnRoom.GetComponent<Room>().topOffset.x), (spawnRoom.GetComponent<Room>().topOffset.y)), new Vector2Int((spawnRoom.GetComponent<Room>().bottomOffset.x), (spawnRoom.GetComponent<Room>().bottomOffset.y)));
         List<Room> mapRooms = new List<Room>();
+
+        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref mapRooms);
+        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref mapRooms);
 
         for (int i = 0; i < 8; i++)
         {
@@ -119,6 +148,43 @@ public class MapGenerator : MonoBehaviour
 
             mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.identity, grid.transform).GetComponent<Room>());
             MapGrid.AddTiles(new Vector2Int((spawnPoint.x + roomRoom.topOffset.x), (spawnPoint.y + roomRoom.topOffset.y)), new Vector2Int((spawnPoint.x + roomRoom.bottomOffset.x), (spawnPoint.y + roomRoom.bottomOffset.y)));
+
+        }
+
+        GameObject spawn1 = spawnRoom.GetComponent<Room>().spawns[0];
+
+        GameObject spawn2 = mapRooms[2].spawns[0];
+        GameObject spawn3 = mapRooms[3].spawns[0];
+
+        Stack<Vector2Int> pathway = MapGrid.GeneratePath(new Vector2Int((int)spawn1.transform.position.x + 5, (int)spawn1.transform.position.y), new Vector2Int((int)spawn2.transform.position.x + 5, (int)spawn2.transform.position.y));
+
+        if (pathway != null)
+        {
+
+            while (pathway.Count > 0)
+            {
+                Debug.Log("(" + pathway.Peek().x + ", " + pathway.Peek().y + ")");
+
+                Instantiate(GameManagerScript.instance.marker, (Vector3Int)pathway.Peek(), Quaternion.identity);
+                pathway.Pop();
+
+            }
+
+        }
+
+        pathway = MapGrid.GeneratePath(new Vector2Int((int)spawn1.transform.position.x + 5, (int)spawn1.transform.position.y), new Vector2Int((int)spawn3.transform.position.x + 5, (int)spawn3.transform.position.y));
+
+        if (pathway != null)
+        {
+
+            while (pathway.Count > 0)
+            {
+                Debug.Log("(" + pathway.Peek().x + ", " + pathway.Peek().y + ")");
+
+                Instantiate(GameManagerScript.instance.marker, (Vector3Int)pathway.Peek(), Quaternion.identity);
+                pathway.Pop();
+
+            }
 
         }
 
