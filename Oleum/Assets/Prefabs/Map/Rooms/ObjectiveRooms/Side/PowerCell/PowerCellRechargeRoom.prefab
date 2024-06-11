@@ -2964,6 +2964,8 @@ MonoBehaviour:
     m_Bits: 128
   topOffset: {x: 0, y: 7}
   bottomOffset: {x: 17, y: -7}
+  openings:
+  - {x: -6, y: 0}
 --- !u!61 &3422687728424262885
 BoxCollider2D:
   m_ObjectHideFlags: 0

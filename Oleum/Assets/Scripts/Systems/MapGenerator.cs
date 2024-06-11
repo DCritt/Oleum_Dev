@@ -90,6 +90,7 @@ public class MapGenerator : MonoBehaviour
 
             }
 
+            roomRoom.rotation = spawnRotation;
             mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
 
@@ -117,6 +118,7 @@ public class MapGenerator : MonoBehaviour
 
             }
 
+            roomRoom.rotation = spawnRotation;
             mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
 
@@ -136,42 +138,51 @@ public class MapGenerator : MonoBehaviour
 
         SpawnMapRooms(8, ref mapRooms);
 
-        GameObject spawn1 = spawnRoom.GetComponent<Room>().spawns[0];
-
-        GameObject spawn2 = mapRooms[2].spawns[0];
-        GameObject spawn3 = mapRooms[3].spawns[0];
-
-        Stack<Vector2Int> pathway = MapGrid.GeneratePath(new Vector2Int((int)spawn1.transform.position.x + 5, (int)spawn1.transform.position.y), new Vector2Int((int)spawn2.transform.position.x + 5, (int)spawn2.transform.position.y));
-
-        if (pathway != null)
+        for (int i = 0; i < mapRooms.Count; i++)
         {
 
-            while (pathway.Count > 0)
-            {
-                //Debug.Log("(" + pathway.Peek().x + ", " + pathway.Peek().y + ")");
+            Room roomRoom = mapRooms[i];
+            Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
 
-                Instantiate(GameManagerScript.instance.marker, (Vector3Int)pathway.Peek(), Quaternion.identity);
-                pathway.Pop();
+            Stack<Vector2Int> path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[0], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(roomRoom, roomRoom.openings[0], roomRoom.rotation));
+
+            while (path.Count > 0)
+            {
+
+                Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
 
             }
 
         }
 
-        pathway = MapGrid.GeneratePath(new Vector2Int((int)spawn1.transform.position.x + 5, (int)spawn1.transform.position.y), new Vector2Int((int)spawn3.transform.position.x + 5, (int)spawn3.transform.position.y));
-
-        if (pathway != null)
+        /*for (int i = 0; i < spawnRoom.GetComponent<Room>().openings.Length; i++)
         {
 
-            while (pathway.Count > 0)
-            {
-                //Debug.Log("(" + pathway.Peek().x + ", " + pathway.Peek().y + ")");
+            Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
+            Room currRoom = mapRooms[i];
 
-                Instantiate(GameManagerScript.instance.marker, (Vector3Int)pathway.Peek(), Quaternion.identity);
-                pathway.Pop();
+            for (int j = 0; j < currRoom.openings.Length; j++)
+            {
+
+                Debug.Log("j = " + j);
+
+                Stack<Vector2Int> path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[i], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(currRoom, currRoom.openings[j], currRoom.rotation));
+                
+                if (path != null)
+                {
+
+                    while (path.Count > 0)
+                    {
+
+                        Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
+
+                    }
+
+                }
 
             }
 
-        }
+        }*/
 
     }
 

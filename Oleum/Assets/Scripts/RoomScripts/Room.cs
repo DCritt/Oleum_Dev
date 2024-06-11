@@ -12,8 +12,14 @@ public class Room : MonoBehaviour
     private MapGenerator mapGen;
     [SerializeField] private LayerMask room;
 
-    [SerializeField] public Vector2Int topOffset;
-    [SerializeField] public Vector2Int bottomOffset;
+    public Vector2Int topOffset;
+    public Vector2Int bottomOffset;
+
+    public int rotation;
+
+    public Vector2Int[] openings;
+
+    
 
     public void Start()
     {

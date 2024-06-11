@@ -13,6 +13,33 @@ public static class MapGrid
 
     private static Dictionary<Vector2Int, bool> grid = new Dictionary<Vector2Int, bool>();
 
+    public static Vector2Int GetRoomOpeningLocation(Room room, Vector2Int loc, int rot)
+    {
+
+        switch(rot)
+        {
+
+            case 90:
+
+                return (new Vector2Int((int)room.transform.position.x - loc.y, (int)room.transform.position.y + loc.x));       
+
+            case 180:
+
+                return (new Vector2Int((int)room.transform.position.x - loc.x, (int)room.transform.position.y - loc.y));
+
+            case 270:
+
+                return (new Vector2Int((int)room.transform.position.x + loc.y, (int)room.transform.position.y - loc.x));
+
+            default:
+
+                return (new Vector2Int((int)room.transform.position.x + loc.x, (int)room.transform.position.y + loc.y));
+
+
+        }
+
+    }
+
     public static void AddTile(Vector2Int tile)
     {
 

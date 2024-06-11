@@ -312,6 +312,12 @@ MonoBehaviour:
     m_Bits: 128
   topOffset: {x: 0, y: 5}
   bottomOffset: {x: 14, y: -5}
+  rotation: 0
+  openings:
+  - {x: -5, y: 0}
+  - {x: 19, y: 0}
+  - {x: 7, y: 11}
+  - {x: 7, y: -11}
 --- !u!1 &1376991163728721522
 GameObject:
   m_ObjectHideFlags: 0
