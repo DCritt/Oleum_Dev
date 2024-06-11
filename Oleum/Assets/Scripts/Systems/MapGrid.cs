@@ -42,6 +42,40 @@ public static class MapGrid
         
     }
 
+    public static void AddRoomTiles(Room room, Vector2Int loc, int rot)
+    {
+
+        switch (rot)
+        {
+
+            case 0:
+
+                AddTiles(new Vector2Int((loc.x + room.topOffset.x), (loc.y + room.topOffset.y)), new Vector2Int((loc.x + room.bottomOffset.x), (loc.y + room.bottomOffset.y)));
+                break;
+
+            case 90:
+
+                AddTiles(new Vector2Int((loc.x - room.topOffset.y), (loc.y + room.bottomOffset.x)), new Vector2Int((loc.x - room.bottomOffset.y), (loc.y + room.topOffset.x)));
+                break;
+
+            case 180:
+
+                AddTiles(new Vector2Int((loc.x - room.bottomOffset.x), (loc.y - room.bottomOffset.y)), new Vector2Int((loc.x - room.topOffset.x), (loc.y - room.topOffset.y)));
+                break;
+
+            case 270:
+
+                AddTiles(new Vector2Int((loc.x + room.bottomOffset.y), (loc.y - room.topOffset.x)), new Vector2Int((loc.x + room.topOffset.y), (loc.y - room.bottomOffset.x)));
+                break;
+
+            default:
+
+                return;
+
+        }
+
+    }
+
     public static bool CheckTile(Vector2Int tile)
     {
 
@@ -57,12 +91,8 @@ public static class MapGrid
         for (int i = top.y; i >= bottom.y; i--)
         {
 
-            Debug.Log(i);
-
             for (int j = top.x; j <= bottom.x; j++)
             {
-
-                Debug.Log(j);
 
                 if (CheckTile(new Vector2Int(j, i)))
                 {
@@ -76,6 +106,36 @@ public static class MapGrid
         }
 
         return false;
+
+    }
+
+    public static bool CheckRoomTiles(Room room, Vector2Int loc, int rot)
+    {
+
+        switch(rot)
+        {
+
+            case 0:
+
+                return (CheckTiles(new Vector2Int((loc.x + room.topOffset.x), (loc.y + room.topOffset.y)), new Vector2Int((loc.x + room.bottomOffset.x), (loc.y + room.bottomOffset.y))));
+
+            case 90:
+
+                return (CheckTiles(new Vector2Int((loc.x - room.topOffset.y), (loc.y + room.bottomOffset.x)), new Vector2Int((loc.x - room.bottomOffset.y), (loc.y + room.topOffset.x))));
+
+            case 180:
+
+                return (CheckTiles(new Vector2Int((loc.x - room.bottomOffset.x), (loc.y - room.bottomOffset.y)), new Vector2Int((loc.x - room.topOffset.x), (loc.y - room.topOffset.y))));
+
+            case 270:
+
+                return (CheckTiles(new Vector2Int((loc.x + room.bottomOffset.y), (loc.y - room.topOffset.x)), new Vector2Int((loc.x + room.topOffset.y), (loc.y - room.bottomOffset.x))));
+
+            default:
+
+                return false;
+
+        }
 
     }
 
@@ -129,8 +189,8 @@ public static class MapGrid
             bool addedNbrs = false;
             runs += 1;
 
-            Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
-            Debug.Log("Count = " + pointList.Count);
+            //Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
+            //Debug.Log("Count = " + pointList.Count);
 
             nbrs[currPos] = new List<Vector2Int>();
 
@@ -144,7 +204,7 @@ public static class MapGrid
             if ((currPos.y < end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
             {
 
-                Debug.Log("up");
+                //Debug.Log("up");
 
                 addedNbrs = true;
                 Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
@@ -158,7 +218,7 @@ public static class MapGrid
             if ((currPos.y > end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
             {
 
-                Debug.Log("down");
+                //Debug.Log("down");
 
                 addedNbrs = true;
                 Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
@@ -172,7 +232,7 @@ public static class MapGrid
             if ((currPos.x > end.x) && !used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
             {
 
-                Debug.Log("left");
+                //Debug.Log("left");
 
                 addedNbrs = true;
                 Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
@@ -186,7 +246,7 @@ public static class MapGrid
             if ((currPos.x < end.x) && !used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
             {
 
-                Debug.Log("right");
+                //Debug.Log("right");
 
                 addedNbrs = true;
                 Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
@@ -204,19 +264,19 @@ public static class MapGrid
 
             }
 
-            Debug.Log(runs);
+            //Debug.Log(runs);
 
             if (!addedNbrs && runs < 1000000)
             {
 
-                Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
+                //Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
 
                 if (CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)) || CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4))) {
 
                     if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
                     {
 
-                        Debug.Log("up");
+                        //Debug.Log("up");
 
                         Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
@@ -229,7 +289,7 @@ public static class MapGrid
                     if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
                     {
 
-                        Debug.Log("down");
+                        //Debug.Log("down");
 
                         Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
@@ -246,7 +306,7 @@ public static class MapGrid
                     if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
                     {
 
-                        Debug.Log("left");
+                        //Debug.Log("left");
 
                         Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
@@ -259,7 +319,7 @@ public static class MapGrid
                     if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
                     {
 
-                        Debug.Log("right");
+                        //Debug.Log("right");
 
                         Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
