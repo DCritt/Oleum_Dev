@@ -4,6 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
 using System.IO;
+using System.CodeDom.Compiler;
 
 public class MapGenerator : MonoBehaviour
 { 
@@ -68,7 +69,7 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void SpawnObjectiveRooms(List<GameObject> objectiveRooms, ref List<Room> mapRooms)
+    public void SpawnObjectiveRooms(List<GameObject> objectiveRooms, ref List<Room> objRooms)
     {
 
         for (int i = 0; i < objectiveRooms.Count; i++)
@@ -78,8 +79,6 @@ public class MapGenerator : MonoBehaviour
             Room roomRoom = room.GetComponent<Room>();
             Vector2Int spawnPoint = new Vector2Int((Random.Range((int)-mapSize, (int)mapSize)), (Random.Range((int)-mapSize, (int)mapSize)));
             int spawnRotation = (90 * ((int)Random.Range(0, 4)));
-
-            Debug.Log("rotation = " + spawnRotation);
 
             while (MapGrid.CheckRoomTiles(roomRoom, spawnPoint, spawnRotation))
             {
@@ -91,7 +90,7 @@ public class MapGenerator : MonoBehaviour
             }
 
             roomRoom.rotation = spawnRotation;
-            mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
+            objRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
 
         }
@@ -126,63 +125,88 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void GenerateMap()
+    public void SpawnMapHallways(ref List<Room> mapRooms)
     {
 
-        spawnRoom = Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
-        MapGrid.AddTiles(new Vector2Int((spawnRoom.GetComponent<Room>().topOffset.x), (spawnRoom.GetComponent<Room>().topOffset.y)), new Vector2Int((spawnRoom.GetComponent<Room>().bottomOffset.x), (spawnRoom.GetComponent<Room>().bottomOffset.y)));
-        List<Room> mapRooms = new List<Room>();
-
-        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref mapRooms);
-        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.sideRooms, ref mapRooms);
-
-        SpawnMapRooms(8, ref mapRooms);
+        Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
 
         for (int i = 0; i < mapRooms.Count; i++)
         {
 
-            Room roomRoom = mapRooms[i];
-            Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
+            Vector2Int loc = new Vector2Int((int)mapRooms[i].transform.position.x, (int)mapRooms[i].transform.position.y);
+            List<int> possOpenings = new List<int>();
 
-            Stack<Vector2Int> path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[0], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(roomRoom, roomRoom.openings[0], roomRoom.rotation));
-
-            while (path.Count > 0)
+            if (loc.x < 0)
             {
 
-                Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
+                possOpenings.Add(0);
+
+            }
+            if (loc.x >= 0)
+            {
+
+                possOpenings.Add(1);
+
+            }
+            if (loc.y >= 0)
+            {
+
+                possOpenings.Add(2);
+
+            }
+            if (loc.y < 0)
+            {
+
+                possOpenings.Add(3);
 
             }
 
-        }
+            int spawnRoomIndex = Random.Range(0, possOpenings.Count);
 
-        /*for (int i = 0; i < spawnRoom.GetComponent<Room>().openings.Length; i++)
-        {
+            Stack<Vector2Int> path = null;
+            int runs = 0;
 
-            Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
-            Room currRoom = mapRooms[i];
-
-            for (int j = 0; j < currRoom.openings.Length; j++)
+            while (path == null && runs <= 4)
             {
 
-                Debug.Log("j = " + j);
+                runs++;
+                int roomIndex = Random.Range(0, mapRooms[i].openings.Length);
 
-                Stack<Vector2Int> path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[i], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(currRoom, currRoom.openings[j], currRoom.rotation));
-                
-                if (path != null)
+                path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[spawnRoomIndex], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(mapRooms[i], mapRooms[i].openings[roomIndex], mapRooms[i].rotation));
+
+            }
+
+            if (path != null)
+            {
+
+                while (path.Count > 0)
                 {
 
-                    while (path.Count > 0)
-                    {
-
-                        Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
-
-                    }
+                    Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
 
                 }
 
             }
 
-        }*/
+
+        }
+
+    }
+
+    public void GenerateMap()
+    {
+        
+        spawnRoom = Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
+        MapGrid.AddTiles(new Vector2Int((spawnRoom.GetComponent<Room>().topOffset.x), (spawnRoom.GetComponent<Room>().topOffset.y)), new Vector2Int((spawnRoom.GetComponent<Room>().bottomOffset.x), (spawnRoom.GetComponent<Room>().bottomOffset.y)));
+        List<Room> mapRooms = new List<Room>();
+        List<Room> objRooms = new List<Room>();
+
+        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref objRooms);
+        SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.sideRooms, ref objRooms);
+
+        SpawnMapRooms(8, ref mapRooms);
+
+        SpawnMapHallways(ref mapRooms);
 
     }
 
