@@ -859,7 +859,7 @@ MonoBehaviour:
   - {x: 9, y: 3, z: 0}
   m_ShapePathHash: -1417284331
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91682
+  m_InstanceId: 46894
   m_LocalBounds:
     m_Center: {x: 9.125, y: 4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -921,7 +921,7 @@ MonoBehaviour:
   - {x: -3, y: 5, z: 0}
   m_ShapePathHash: 2090202389
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91690
+  m_InstanceId: 46902
   m_LocalBounds:
     m_Center: {x: -6, y: 5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   - {x: -3, y: -5.25, z: 0}
   m_ShapePathHash: 680916245
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91672
+  m_InstanceId: 46884
   m_LocalBounds:
     m_Center: {x: -6, y: -5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   - {x: 9, y: -3, z: 0}
   m_ShapePathHash: -1417284331
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91658
+  m_InstanceId: 46870
   m_LocalBounds:
     m_Center: {x: 9.125, y: -4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   - {x: 9, y: -5.25, z: 0}
   m_ShapePathHash: 972420373
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91668
+  m_InstanceId: 46880
   m_LocalBounds:
     m_Center: {x: 6, y: -5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   - {x: -9, y: -5.25, z: 0}
   m_ShapePathHash: -1251085035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91610
+  m_InstanceId: 46822
   m_LocalBounds:
     m_Center: {x: -9.125, y: -4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   - {x: 9, y: 5, z: 0}
   m_ShapePathHash: -1749682923
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91704
+  m_InstanceId: 46916
   m_LocalBounds:
     m_Center: {x: 6, y: 5.125, z: 0}
     m_Extent: {x: 3, y: 0.125, z: 0}
@@ -1523,11 +1523,16 @@ MonoBehaviour:
     m_Bits: 128
   topOffset: {x: -9, y: 5}
   bottomOffset: {x: 9, y: -5}
+  rotation: 0
   openings:
-  - {x: -15, y: 0}
-  - {x: 15, y: 0}
-  - {x: 0, y: 11}
-  - {x: 0, y: -11}
+  - loc: {x: -14, y: 0}
+    used: 0
+  - loc: {x: 14, y: 0}
+    used: 0
+  - loc: {x: 0, y: 10}
+    used: 0
+  - loc: {x: 0, y: -10}
+    used: 0
 --- !u!1 &8584256733409641303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,7 +3683,7 @@ MonoBehaviour:
   - {x: -9, y: 3, z: 0}
   m_ShapePathHash: -1787955947
   m_Mesh: {fileID: 0}
-  m_InstanceId: 91628
+  m_InstanceId: 46840
   m_LocalBounds:
     m_Center: {x: -9.125, y: 4.125, z: 0}
     m_Extent: {x: 0.125, y: 1.125, z: 0}
@@ -4060,6 +4065,14 @@ PrefabInstance:
     - target: {fileID: 2883920520872913110, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
       propertyPath: m_Name
       value: RoomMinimapMarker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739923327344041197, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739923327344041197, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 5739923327344041197, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
       propertyPath: m_LocalPosition.x

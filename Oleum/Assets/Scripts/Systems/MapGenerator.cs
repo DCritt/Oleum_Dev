@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
 using System.IO;
 using System.CodeDom.Compiler;
+using Unity.VisualScripting;
 
 public class MapGenerator : MonoBehaviour
 { 
@@ -13,8 +14,10 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap floor;
     [SerializeField] private Tilemap walls;
     [SerializeField] private Tilemap onFloor;
+    [SerializeField] private Tile floorTile;
 
-    [SerializeField] private float mapSize;
+    [SerializeField] private int mapSize;
+    [SerializeField] private int roomNum;
 
     private GameObject spawnRoom;
 
@@ -29,7 +32,22 @@ public class MapGenerator : MonoBehaviour
     private List<GameObject> activeMap = new List<GameObject>();
     private Queue<GameObject> roomRotationQueue = new Queue<GameObject>();
 
+    public void Start()
+    {
 
+        MyList<int> list = new MyList<int>();
+        list.InsertLast(0);
+        list.InsertLast(1);
+        list.InsertLast(2);
+
+        Debug.Log(list[1] + " " + list[2]);
+
+        list.Swap(1, 2);
+
+        Debug.Log(list[1] + " " + list[2]);
+
+
+    }
     public GameObject[] GetRoomType(int i)
     {
 
@@ -77,14 +95,14 @@ public class MapGenerator : MonoBehaviour
 
             GameObject room = objectiveRooms[i];
             Room roomRoom = room.GetComponent<Room>();
-            Vector2Int spawnPoint = new Vector2Int((Random.Range((int)-mapSize, (int)mapSize)), (Random.Range((int)-mapSize, (int)mapSize)));
+            Vector2Int spawnPoint = new Vector2Int(MyMath.RandRange2SidedGap((int)(mapSize * 1.5), (int)(mapSize / 2)), MyMath.RandRange2SidedGap((int)(mapSize * 1.5), (int)(mapSize / 2)));
             int spawnRotation = (90 * ((int)Random.Range(0, 4)));
 
             while (MapGrid.CheckRoomTiles(roomRoom, spawnPoint, spawnRotation))
             {
 
-                spawnPoint.x = Random.Range((int)-mapSize, (int)mapSize);
-                spawnPoint.y = Random.Range((int)-mapSize, (int)mapSize);
+                spawnPoint.x = MyMath.RandRange2SidedGap((int)(mapSize * 1.5), (int)(mapSize / 2));
+                spawnPoint.y = MyMath.RandRange2SidedGap((int)(mapSize * 1.5), (int)(mapSize / 2));
                 spawnRotation = (90 * ((int)Random.Range(0, 4)));
 
             }
@@ -105,14 +123,15 @@ public class MapGenerator : MonoBehaviour
 
             GameObject room = roomList.GetRandList().GetRoom();
             Room roomRoom = room.GetComponent<Room>();
-            Vector2Int spawnPoint = new Vector2Int((Random.Range((int)-mapSize, (int)mapSize)), (Random.Range((int)-mapSize, (int)mapSize)));
+            Vector2Int spawnPoint = new Vector2Int(MyMath.RandRange2SidedGap(mapSize, 10), MyMath.RandRange2SidedGap(mapSize, 10));
+
             int spawnRotation = (90 * ((int)Random.Range(0, 4)));
 
             while (MapGrid.CheckRoomTiles(roomRoom, spawnPoint, spawnRotation))
             {
 
-                spawnPoint.x = Random.Range((int)-mapSize, (int)mapSize);
-                spawnPoint.y = Random.Range((int)-mapSize, (int)mapSize);
+                spawnPoint.x = MyMath.RandRange2SidedGap(mapSize, 10);
+                spawnPoint.y = MyMath.RandRange2SidedGap(mapSize, 10);
                 spawnRotation = (90 * ((int)Random.Range(0, 4)));
 
             }
@@ -120,6 +139,40 @@ public class MapGenerator : MonoBehaviour
             roomRoom.rotation = spawnRotation;
             mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
+
+        }
+
+    }
+
+    public void AddFloorTiles(Tile tile, Vector2Int top, Vector2Int bottom)
+    {
+
+        for (int i = top.y; i > bottom.y; i--)
+        {
+
+            for (int j = top.x; j < bottom.x; j++)
+            {
+
+                floor.SetTile(new Vector3Int(j, i, 0), tile);
+                //Instantiate(GameManagerScript.instance.mapMarker, new Vector3Int(j, i, 0), Quaternion.identity, grid.transform);
+
+            }
+
+        }
+
+    }
+
+    public void SpawnHallwayTiles(Stack<Vector2Int> path, int width)
+    {
+
+        while (path.Count > 0)
+        {
+
+            Vector2Int top = new Vector2Int((path.Peek().x - width), (path.Peek().y + width));
+            Vector2Int bottom = new Vector2Int((path.Peek().x + width), (path.Peek().y - width));
+
+            AddFloorTiles(floorTile, top, bottom);
+            path.Pop();
 
         }
 
@@ -161,7 +214,39 @@ public class MapGenerator : MonoBehaviour
 
             }
 
-            int spawnRoomIndex = Random.Range(0, possOpenings.Count);
+            int spawnRoomIndex = -1;
+            int roomIndex = -1;
+
+            if (possOpenings.Count > 1)
+            {
+
+                for (int j = 0; j < possOpenings.Count; j++)
+                {
+
+                    if (!spawnRoomRoom.openings[possOpenings[j]].used)
+                    {
+
+                        spawnRoomIndex = possOpenings[j];
+                        j = possOpenings.Count;
+
+                    }
+
+                }
+
+                if (spawnRoomIndex == -1)
+                {
+
+                    spawnRoomIndex = Random.Range(0, possOpenings.Count);
+
+                }
+
+            }
+            else
+            {
+
+                spawnRoomIndex = 0;
+
+            }
 
             Stack<Vector2Int> path = null;
             int runs = 0;
@@ -170,21 +255,19 @@ public class MapGenerator : MonoBehaviour
             {
 
                 runs++;
-                int roomIndex = Random.Range(0, mapRooms[i].openings.Length);
+                roomIndex = Random.Range(0, mapRooms[i].openings.Length);
 
-                path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[spawnRoomIndex], spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(mapRooms[i], mapRooms[i].openings[roomIndex], mapRooms[i].rotation));
+                path = MapGrid.GeneratePath(MapGrid.GetRoomOpeningLocation(spawnRoomRoom, spawnRoomRoom.openings[spawnRoomIndex].loc, spawnRoomRoom.rotation), MapGrid.GetRoomOpeningLocation(mapRooms[i], mapRooms[i].openings[roomIndex].loc, mapRooms[i].rotation));
 
             }
 
             if (path != null)
             {
 
-                while (path.Count > 0)
-                {
+                spawnRoomRoom.openings[spawnRoomIndex].used = true;
+                mapRooms[i].openings[roomIndex].used = true;
 
-                    Instantiate(GameManagerScript.instance.marker, (Vector3Int)path.Pop(), Quaternion.identity, grid.transform);
-
-                }
+                SpawnHallwayTiles(path, 2);
 
             }
 
@@ -204,7 +287,7 @@ public class MapGenerator : MonoBehaviour
         SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref objRooms);
         SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.sideRooms, ref objRooms);
 
-        SpawnMapRooms(8, ref mapRooms);
+        SpawnMapRooms(roomNum, ref mapRooms);
 
         SpawnMapHallways(ref mapRooms);
 

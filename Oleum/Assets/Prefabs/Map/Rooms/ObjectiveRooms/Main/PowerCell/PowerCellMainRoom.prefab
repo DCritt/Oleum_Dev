@@ -4158,8 +4158,10 @@ MonoBehaviour:
     m_Bits: 128
   topOffset: {x: 0, y: 9}
   bottomOffset: {x: 21, y: -9}
+  rotation: 0
   openings:
-  - {x: -6, y: 0}
+  - loc: {x: -5, y: 0}
+    used: 0
 --- !u!61 &6399457828468495765
 BoxCollider2D:
   m_ObjectHideFlags: 0

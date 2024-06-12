@@ -386,7 +386,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &333107724
+--- !u!43 &530920443
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1636,8 +1636,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.44140625, z: 0}
   - {x: 0.5, y: -0.44140625, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 333107724}
-  m_InstanceId: 29174
+  m_Mesh: {fileID: 530920443}
+  m_InstanceId: 29176
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.44140625, z: 0}
@@ -1767,9 +1767,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 34190035}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
+      propertyPath: roomNum
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: roomList
       value: 
       objectReference: {fileID: 11400000, guid: 773a1f2798c6b5e46bc5767757396ca8, type: 2}
+    - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
+      propertyPath: floorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: f3d1186ebe93552439ba755f460e1bef, type: 2}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: map.marker
       value: 
@@ -1794,6 +1802,10 @@ PrefabInstance:
       propertyPath: marker
       value: 
       objectReference: {fileID: 5035649032386701665, guid: ed0881808a2cb8647a16cc7698fbd7a0, type: 3}
+    - target: {fileID: 6049480915458212041, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
+      propertyPath: mapMarker
+      value: 
+      objectReference: {fileID: 2883920520872913110, guid: 4b0d1d439bc935f4a97e74f544e29e75, type: 3}
     - target: {fileID: 6049480915458212041, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: spawnRoom
       value: 

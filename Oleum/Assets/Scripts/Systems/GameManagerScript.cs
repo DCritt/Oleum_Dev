@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
 
-    public GameObject marker; 
+    public GameObject marker;
+    public GameObject mapMarker;
 
     public static GameManagerScript instance;
 

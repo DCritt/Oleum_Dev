@@ -4,6 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[System.Serializable]
+public struct RoomOpening
+{
+
+    public Vector2Int loc;
+    public bool used;
+
+
+    public RoomOpening(Vector2Int loc, bool used)
+    {
+
+        this.loc = loc;
+        this.used = used;
+
+    }
+
+}
+
 public class Room : MonoBehaviour
 {
 
@@ -17,7 +35,7 @@ public class Room : MonoBehaviour
 
     public int rotation;
 
-    public Vector2Int[] openings;
+    public RoomOpening[] openings;
 
     
 
