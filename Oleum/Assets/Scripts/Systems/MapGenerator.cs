@@ -14,7 +14,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap floor;
     [SerializeField] private Tilemap walls;
     [SerializeField] private Tilemap onFloor;
+    [SerializeField] private Tilemap minimap;
     [SerializeField] private Tile floorTile;
+    [SerializeField] private Tile minimapSquare;
 
     [SerializeField] private int mapSize;
     [SerializeField] private int roomNum;
@@ -33,19 +35,16 @@ public class MapGenerator : MonoBehaviour
     private Queue<GameObject> roomRotationQueue = new Queue<GameObject>();
 
     public void Start()
-    {
+    { 
 
         MyList<int> list = new MyList<int>();
         list.InsertLast(0);
         list.InsertLast(1);
         list.InsertLast(2);
 
-        Debug.Log(list[1] + " " + list[2]);
+        list.RemoveAt(2);
 
-        list.Swap(1, 2);
-
-        Debug.Log(list[1] + " " + list[2]);
-
+        list.Print();
 
     }
     public GameObject[] GetRoomType(int i)
@@ -154,6 +153,7 @@ public class MapGenerator : MonoBehaviour
             {
 
                 floor.SetTile(new Vector3Int(j, i, 0), tile);
+                minimap.SetTile(new Vector3Int(j, i, 0), minimapSquare);
                 //Instantiate(GameManagerScript.instance.mapMarker, new Vector3Int(j, i, 0), Quaternion.identity, grid.transform);
 
             }
@@ -162,10 +162,10 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void SpawnHallwayTiles(Stack<Vector2Int> path, int width)
+    public void SpawnHallwayTiles(MyStack<Vector2Int> path, int width)
     {
 
-        while (path.Count > 0)
+        while (path.size > 0)
         {
 
             Vector2Int top = new Vector2Int((path.Peek().x - width), (path.Peek().y + width));
@@ -248,7 +248,7 @@ public class MapGenerator : MonoBehaviour
 
             }
 
-            Stack<Vector2Int> path = null;
+            MyStack<Vector2Int> path = null;
             int runs = 0;
 
             while (path == null && runs <= 4)

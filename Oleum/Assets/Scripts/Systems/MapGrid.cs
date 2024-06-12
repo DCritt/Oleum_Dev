@@ -195,10 +195,10 @@ public static class MapGrid
 
     }
 
-    public static Stack<Vector2Int> GeneratePath(Vector2Int start, Vector2Int end)
+    public static MyStack<Vector2Int> GeneratePath(Vector2Int start, Vector2Int end)
     {
 
-        Dictionary<Vector2Int, List<Vector2Int>> nbrs = new Dictionary<Vector2Int, List<Vector2Int>>();
+        Dictionary<Vector2Int, MyList<Vector2Int>> nbrs = new Dictionary<Vector2Int, MyList<Vector2Int>>();
         Dictionary<Vector2Int, bool> visited = new Dictionary<Vector2Int, bool>();
         Dictionary<Vector2Int, Vector2Int> pred = new Dictionary<Vector2Int, Vector2Int>();
         Dictionary<Vector2Int, int> dist = new Dictionary<Vector2Int, int>();
@@ -219,7 +219,7 @@ public static class MapGrid
             //Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
             //Debug.Log("Count = " + pointList.Count);
 
-            nbrs[currPos] = new List<Vector2Int>();
+            nbrs[currPos] = new MyList<Vector2Int>();
 
             if (currPos == end)
             {
@@ -236,7 +236,7 @@ public static class MapGrid
                 addedNbrs = true;
                 Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
-                nbrs[currPos].Add(up);
+                nbrs[currPos].InsertLast(up);
                 pointList.Enqueue(up);
                 used[up] = true;
 
@@ -250,7 +250,7 @@ public static class MapGrid
                 addedNbrs = true;
                 Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
-                nbrs[currPos].Add(down);
+                nbrs[currPos].InsertLast(down);
                 pointList.Enqueue(down);
                 used[down] = true;
 
@@ -264,7 +264,7 @@ public static class MapGrid
                 addedNbrs = true;
                 Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
-                nbrs[currPos].Add(left);
+                nbrs[currPos].InsertLast(left);
                 pointList.Enqueue(left);
                 used[left] = true;
 
@@ -278,7 +278,7 @@ public static class MapGrid
                 addedNbrs = true;
                 Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
-                nbrs[currPos].Add(right);
+                nbrs[currPos].InsertLast(right);
                 pointList.Enqueue(right);
                 used[right] = true;
 
@@ -307,7 +307,7 @@ public static class MapGrid
 
                         Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
-                        nbrs[currPos].Add(up);
+                        nbrs[currPos].InsertLast(up);
                         pointList.Enqueue(up);
                         used[up] = true;
 
@@ -320,7 +320,7 @@ public static class MapGrid
 
                         Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
-                        nbrs[currPos].Add(down);
+                        nbrs[currPos].InsertLast(down);
                         pointList.Enqueue(down);
                         used[down] = true;
 
@@ -337,7 +337,7 @@ public static class MapGrid
 
                         Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
-                        nbrs[currPos].Add(left);
+                        nbrs[currPos].InsertLast(left);
                         pointList.Enqueue(left);
                         used[left] = true;
 
@@ -350,7 +350,7 @@ public static class MapGrid
 
                         Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
-                        nbrs[currPos].Add(right);
+                        nbrs[currPos].InsertLast(right);
                         pointList.Enqueue(right);
                         used[right] = true;
 
@@ -372,10 +372,12 @@ public static class MapGrid
 
             Vector2Int curr = toVisit.Dequeue();
 
-            if (nbrs.ContainsKey(curr)) { 
+            if (nbrs.ContainsKey(curr)) {
 
-                foreach (Vector2Int n in nbrs[curr])
+                for (int j = 0; j < nbrs[curr].size; j++)
                 {
+
+                    Vector2Int n = nbrs[curr][j];
 
                     if (!visited.ContainsKey(n))
                     {
@@ -399,7 +401,7 @@ public static class MapGrid
 
             Debug.Log("distance" + dist[end]);
 
-            Stack<Vector2Int> path = new Stack<Vector2Int>();
+            MyStack<Vector2Int> path = new MyStack<Vector2Int>();
             Vector2Int temp = end;
             path.Push(temp);
             while (temp != start)
