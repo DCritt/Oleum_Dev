@@ -37,7 +37,7 @@ public class MapGenerator : MonoBehaviour
     public void Start()
     { 
 
-        MyList<int> list = new MyList<int>();
+        MyList<int> list = new MyList<int>(3);
         list.InsertLast(0);
         list.InsertLast(1);
         list.InsertLast(2);
@@ -49,6 +49,13 @@ public class MapGenerator : MonoBehaviour
         list.Clear();
 
         Debug.Log(list.size + " is the size");
+
+        list.InsertLast(0);
+        list.InsertLast(1);
+        list.InsertLast(2);
+        list.InsertLast(3);
+
+        list.Print();
 
     }
     public GameObject[] GetRoomType(int i)

@@ -21,11 +21,12 @@ public class Node<T>
         this.data = data;
         this.next = next;
         this.prev = prev;
+
     }
 
 }
 
-public class ListStructure<T>
+public class LinkedListStructure<T>
 {
 
     public int size;
@@ -34,7 +35,7 @@ public class ListStructure<T>
     public Node<T> head { get; protected set; }
     public Node<T> tail { get; protected set; }
 
-    public ListStructure()
+    public LinkedListStructure()
     {
 
         head = null;
@@ -43,7 +44,7 @@ public class ListStructure<T>
         size = 0;
 
     }
-    public ListStructure(int maxSize)
+    public LinkedListStructure(int maxSize)
     {
 
         head = null;
@@ -296,7 +297,7 @@ public class ListStructure<T>
 
 }
 
-public class MyList<T> : ListStructure<T>
+public class MyList<T> : LinkedListStructure<T>
 {
 
     public MyList() : base()
@@ -451,7 +452,7 @@ public class MyList<T> : ListStructure<T>
 
 }
 
-public class MyStack<T> : ListStructure<T>
+public class MyStack<T> : LinkedListStructure<T>
 {
 
     public MyStack() : base()
@@ -569,7 +570,7 @@ public class MyStack<T> : ListStructure<T>
 
 }
 
-public class MyQueue<T> : ListStructure<T>
+public class MyQueue<T> : LinkedListStructure<T>
 {
 
     public MyQueue() : base()
