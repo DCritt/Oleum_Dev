@@ -204,12 +204,12 @@ public static class MapGrid
         Dictionary<Vector2Int, int> dist = new Dictionary<Vector2Int, int>();
 
         bool success = false;
-        Queue<Vector2Int> pointList = new Queue<Vector2Int>();
+        MyQueue<Vector2Int> pointList = new MyQueue<Vector2Int>();
         pointList.Enqueue(start);
         int runs = 0;
         Dictionary<Vector2Int, bool> used = new Dictionary<Vector2Int, bool>();
 
-        while (!success && pointList.Count != 0)
+        while (!success && pointList.size != 0)
         {
 
             Vector2Int currPos = pointList.Dequeue();
@@ -362,12 +362,12 @@ public static class MapGrid
 
         }
 
-        Queue<Vector2Int> toVisit = new Queue<Vector2Int>();
+        MyQueue<Vector2Int> toVisit = new MyQueue<Vector2Int>();
         toVisit.Enqueue(start);
         visited[start] = true;
         dist[start] = 0;
 
-        while (toVisit.Count != 0)
+        while (toVisit.size != 0)
         {
 
             Vector2Int curr = toVisit.Dequeue();

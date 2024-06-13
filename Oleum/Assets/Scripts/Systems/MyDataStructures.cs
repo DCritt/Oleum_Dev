@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -263,6 +264,26 @@ public class ListStructure<T>
 
         curr.prev = null;
         curr.next = null;
+
+    }
+
+    public void Clear()
+    {
+
+        Node<T> curr = head;
+
+        while (curr.next != null)
+        {
+
+            curr.prev = null;
+            curr = curr.next;
+            curr.prev.next = null;
+
+        }
+
+        head = null;
+        tail = null;
+        size = 0;
 
     }
 
@@ -541,6 +562,116 @@ public class MyStack<T> : ListStructure<T>
 
             Debug.Log("index" + i + " = " + curr.data);
             curr = curr.next;
+
+        }
+
+    }
+
+}
+
+public class MyQueue<T> : ListStructure<T>
+{
+
+    public MyQueue() : base()
+    {
+
+        
+
+    }
+    public MyQueue(int maxSize) : base(maxSize)
+    {
+
+
+
+    }
+    public MyQueue(MyQueue<T> queue)
+    {
+
+
+
+    }
+
+    public void Enqueue(T data)
+    {
+
+        if (maxSize != -1 && size == maxSize)
+        {
+
+            Debug.Log("can't exceed maxSize");
+            return;
+
+        }
+
+        size += 1;
+
+        if (head == null)
+        {
+
+            head = new Node<T>(data, null, null);
+            tail = head;
+            return;
+
+        }
+
+        Node<T> newNode = new Node<T>(data, head, null);
+        head.prev = newNode;
+        head = newNode;
+
+    }
+    public T Peek()
+    {
+
+        if (size == 0)
+        {
+
+            Debug.Log("stack empty");
+
+        }
+
+        return tail.data;
+
+    }
+    public T Dequeue()
+    {
+
+        if (size == 0)
+        {
+
+            Debug.Log("queue empty");
+
+        }
+
+        T data = tail.data;
+        size -= 1;
+
+        if (size == 0)
+        {
+
+            data = tail.data;
+            head = null;
+            tail = null;
+            return data;
+
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+        return data;
+
+    }
+    
+    public override void Print()
+    {
+
+        base.Print();
+
+        Node<T> curr = tail;
+
+        for (int i = 0; i < size; i++)
+        {
+
+            Debug.Log("index" + i + " = " + curr.data);
+            curr = tail.prev;
 
         }
 

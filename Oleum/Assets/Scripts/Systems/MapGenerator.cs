@@ -46,6 +46,10 @@ public class MapGenerator : MonoBehaviour
 
         list.Print();
 
+        list.Clear();
+
+        Debug.Log(list.size + " is the size");
+
     }
     public GameObject[] GetRoomType(int i)
     {
@@ -86,7 +90,7 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void SpawnObjectiveRooms(List<GameObject> objectiveRooms, ref List<Room> objRooms)
+    public void SpawnObjectiveRooms(List<GameObject> objectiveRooms, ref MyList<Room> objRooms)
     {
 
         for (int i = 0; i < objectiveRooms.Count; i++)
@@ -107,14 +111,14 @@ public class MapGenerator : MonoBehaviour
             }
 
             roomRoom.rotation = spawnRotation;
-            objRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
+            objRooms.InsertLast(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
 
         }
 
     }
 
-    public void SpawnMapRooms(int roomAmt, ref List<Room> mapRooms)
+    public void SpawnMapRooms(int roomAmt, ref MyList<Room> mapRooms)
     {
 
         for (int i = 0; i < roomAmt; i++)
@@ -136,7 +140,7 @@ public class MapGenerator : MonoBehaviour
             }
 
             roomRoom.rotation = spawnRotation;
-            mapRooms.Add(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
+            mapRooms.InsertLast(Instantiate(room, (Vector3Int)spawnPoint, Quaternion.Euler(new Vector3Int(0, 0, spawnRotation)), grid.transform).GetComponent<Room>());
             MapGrid.AddRoomTiles(roomRoom, spawnPoint, spawnRotation);
 
         }
@@ -178,56 +182,56 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void SpawnMapHallways(ref List<Room> mapRooms)
+    public void SpawnMapHallways(ref MyList<Room> mapRooms)
     {
 
         Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
 
-        for (int i = 0; i < mapRooms.Count; i++)
+        for (int i = 0; i < mapRooms.size; i++)
         {
 
             Vector2Int loc = new Vector2Int((int)mapRooms[i].transform.position.x, (int)mapRooms[i].transform.position.y);
-            List<int> possOpenings = new List<int>();
+            MyList<int> possOpenings = new MyList<int>();
 
             if (loc.x < 0)
             {
 
-                possOpenings.Add(0);
+                possOpenings.InsertLast(0);
 
             }
             if (loc.x >= 0)
             {
 
-                possOpenings.Add(1);
+                possOpenings.InsertLast(1);
 
             }
             if (loc.y >= 0)
             {
 
-                possOpenings.Add(2);
+                possOpenings.InsertLast(2);
 
             }
             if (loc.y < 0)
             {
 
-                possOpenings.Add(3);
+                possOpenings.InsertLast(3);
 
             }
 
             int spawnRoomIndex = -1;
             int roomIndex = -1;
 
-            if (possOpenings.Count > 1)
+            if (possOpenings.size > 1)
             {
 
-                for (int j = 0; j < possOpenings.Count; j++)
+                for (int j = 0; j < possOpenings.size; j++)
                 {
 
                     if (!spawnRoomRoom.openings[possOpenings[j]].used)
                     {
 
                         spawnRoomIndex = possOpenings[j];
-                        j = possOpenings.Count;
+                        j = possOpenings.size;
 
                     }
 
@@ -236,7 +240,7 @@ public class MapGenerator : MonoBehaviour
                 if (spawnRoomIndex == -1)
                 {
 
-                    spawnRoomIndex = Random.Range(0, possOpenings.Count);
+                    spawnRoomIndex = Random.Range(0, possOpenings.size);
 
                 }
 
@@ -281,8 +285,8 @@ public class MapGenerator : MonoBehaviour
         
         spawnRoom = Instantiate(spawnRoom, new Vector3(0, 0, 0), grid.transform.rotation, grid.transform);
         MapGrid.AddTiles(new Vector2Int((spawnRoom.GetComponent<Room>().topOffset.x), (spawnRoom.GetComponent<Room>().topOffset.y)), new Vector2Int((spawnRoom.GetComponent<Room>().bottomOffset.x), (spawnRoom.GetComponent<Room>().bottomOffset.y)));
-        List<Room> mapRooms = new List<Room>();
-        List<Room> objRooms = new List<Room>();
+        MyList<Room> mapRooms = new MyList<Room>();
+        MyList<Room> objRooms = new MyList<Room>();
 
         SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.mainRooms, ref objRooms);
         SpawnObjectiveRooms(GameManagerScript.instance.mainObjective.sideRooms, ref objRooms);
