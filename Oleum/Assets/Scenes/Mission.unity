@@ -2046,6 +2046,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 773a1f2798c6b5e46bc5767757396ca8, type: 2}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
+      propertyPath: wallTile
+      value: 
+      objectReference: {fileID: 11400000, guid: be0ef5060af2d624692243490166e18e, type: 2}
+    - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
+      propertyPath: blankTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f0235913c9446948906f23df408d2c3, type: 2}
+    - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: floorTile
       value: 
       objectReference: {fileID: 11400000, guid: 1dbbc33b37f4f4d44afeb6dbbb33c5a4, type: 2}

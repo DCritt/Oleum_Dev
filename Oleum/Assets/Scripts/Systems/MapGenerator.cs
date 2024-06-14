@@ -17,6 +17,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap minimap;
     [SerializeField] private RuleTile floorTile;
     [SerializeField] private Tile minimapSquare;
+    [SerializeField] private Tile blankTile;
+    [SerializeField] private RuleTile wallTile;
 
     [SerializeField] private int mapSize;
     [SerializeField] private int roomNum;
@@ -155,7 +157,7 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void AddFloorTiles(RuleTile tile, Vector2Int top, Vector2Int bottom)
+    public void AddFloorTiles(RuleTile tile, Vector2Int top, Vector2Int bottom, ref MyQueue<Vector2Int> wallQueue)
     {
 
         for (int i = top.y; i > bottom.y; i--)
@@ -174,7 +176,7 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void SpawnHallwayTiles(MyStack<Vector2Int> path, int width)
+    public void SpawnHallwayTiles(MyStack<Vector2Int> path, int width, ref MyQueue<Vector2Int> wallQueue)
     {
 
         while (path.size > 0)
@@ -183,7 +185,7 @@ public class MapGenerator : MonoBehaviour
             Vector2Int top = new Vector2Int((path.Peek().x - width), (path.Peek().y + (width - 1)));
             Vector2Int bottom = new Vector2Int((path.Peek().x + width), (path.Peek().y - (width + 1)));
 
-            AddFloorTiles(floorTile, top, bottom);
+            AddFloorTiles(floorTile, top, bottom, ref wallQueue);
             path.Pop();
 
         }
@@ -194,6 +196,7 @@ public class MapGenerator : MonoBehaviour
     {
 
         Room spawnRoomRoom = spawnRoom.GetComponent<Room>();
+        MyQueue<Vector2Int> wallQueue = new MyQueue<Vector2Int>();
 
         for (int i = 0; i < mapRooms.size; i++)
         {
@@ -279,7 +282,7 @@ public class MapGenerator : MonoBehaviour
                 spawnRoomRoom.openings[spawnRoomIndex].used = true;
                 mapRooms[i].openings[roomIndex].used = true;
 
-                SpawnHallwayTiles(path, hallwayWidth);
+                SpawnHallwayTiles(path, hallwayWidth, ref wallQueue);
 
             }
 
