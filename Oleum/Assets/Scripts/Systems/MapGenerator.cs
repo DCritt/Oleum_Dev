@@ -15,11 +15,12 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap walls;
     [SerializeField] private Tilemap onFloor;
     [SerializeField] private Tilemap minimap;
-    [SerializeField] private Tile floorTile;
+    [SerializeField] private RuleTile floorTile;
     [SerializeField] private Tile minimapSquare;
 
     [SerializeField] private int mapSize;
     [SerializeField] private int roomNum;
+    [SerializeField] private int hallwayWidth;
 
     private GameObject spawnRoom;
 
@@ -154,7 +155,7 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public void AddFloorTiles(Tile tile, Vector2Int top, Vector2Int bottom)
+    public void AddFloorTiles(RuleTile tile, Vector2Int top, Vector2Int bottom)
     {
 
         for (int i = top.y; i > bottom.y; i--)
@@ -163,7 +164,7 @@ public class MapGenerator : MonoBehaviour
             for (int j = top.x; j < bottom.x; j++)
             {
 
-                floor.SetTile(new Vector3Int(j, i, 0), tile);
+                floor.SetTile(new Vector3Int(j, i, 10), tile);
                 minimap.SetTile(new Vector3Int(j, i, 0), minimapSquare);
                 //Instantiate(GameManagerScript.instance.mapMarker, new Vector3Int(j, i, 0), Quaternion.identity, grid.transform);
 
@@ -179,8 +180,8 @@ public class MapGenerator : MonoBehaviour
         while (path.size > 0)
         {
 
-            Vector2Int top = new Vector2Int((path.Peek().x - width), (path.Peek().y + width));
-            Vector2Int bottom = new Vector2Int((path.Peek().x + width), (path.Peek().y - width));
+            Vector2Int top = new Vector2Int((path.Peek().x - width), (path.Peek().y + (width - 1)));
+            Vector2Int bottom = new Vector2Int((path.Peek().x + width), (path.Peek().y - (width + 1)));
 
             AddFloorTiles(floorTile, top, bottom);
             path.Pop();
@@ -278,7 +279,7 @@ public class MapGenerator : MonoBehaviour
                 spawnRoomRoom.openings[spawnRoomIndex].used = true;
                 mapRooms[i].openings[roomIndex].used = true;
 
-                SpawnHallwayTiles(path, 2);
+                SpawnHallwayTiles(path, hallwayWidth);
 
             }
 
