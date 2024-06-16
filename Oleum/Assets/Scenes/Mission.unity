@@ -471,7 +471,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc5f980f0881e7a47b8315f909b3f3ea, type: 3}
---- !u!43 &982414773
+--- !u!43 &874575790
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1903,8 +1903,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.44140625, z: 0}
   - {x: 0.5, y: -0.44140625, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 982414773}
-  m_InstanceId: 29190
+  m_Mesh: {fileID: 874575790}
+  m_InstanceId: 29196
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.44140625, z: 0}
@@ -2039,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 34190035}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: roomNum
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: roomList

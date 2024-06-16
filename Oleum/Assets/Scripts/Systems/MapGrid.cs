@@ -204,16 +204,17 @@ public static class MapGrid
         Dictionary<Vector2Int, int> dist = new Dictionary<Vector2Int, int>();
 
         bool success = false;
-        MyQueue<Vector2Int> pointList = new MyQueue<Vector2Int>();
-        pointList.Enqueue(start);
+        MyPriorityQueue<Vector2Int> pointList = new MyPriorityQueue<Vector2Int>();
+        pointList.Enqueue(start, 0);
         int runs = 0;
         Dictionary<Vector2Int, bool> used = new Dictionary<Vector2Int, bool>();
 
         while (!success && pointList.size != 0)
         {
 
+            //pointList.Print();
+
             Vector2Int currPos = pointList.Dequeue();
-            bool addedNbrs = false;
             runs += 1;
 
             //Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
@@ -228,135 +229,90 @@ public static class MapGrid
 
             }
 
-            if ((currPos.y < end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
+            if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
             {
 
-                //Debug.Log("up");
+                int priority = 0;
 
-                addedNbrs = true;
+                if ((currPos.y < end.y))
+                {
+
+                    priority = 1;
+
+                }
+
                 Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
                 nbrs[currPos].InsertLast(up);
-                pointList.Enqueue(up);
+                pointList.Enqueue(up, priority);
                 used[up] = true;
 
             }
 
-            if ((currPos.y > end.y) && !used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
+            if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
             {
 
-                //Debug.Log("down");
+                int priority = 0;
 
-                addedNbrs = true;
+                if ((currPos.y > end.y))
+                {
+
+                    priority = 1;
+
+                }
+
                 Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
                 nbrs[currPos].InsertLast(down);
-                pointList.Enqueue(down);
+                pointList.Enqueue(down, priority);
                 used[down] = true;
 
             }
 
-            if ((currPos.x > end.x) && !used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
+            if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
             {
 
-                //Debug.Log("left");
+                int priority = 0;
 
-                addedNbrs = true;
+                if ((currPos.x > end.x))
+                {
+
+                    priority = 1;
+
+                }
+
                 Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
                 nbrs[currPos].InsertLast(left);
-                pointList.Enqueue(left);
+                pointList.Enqueue(left, priority);
                 used[left] = true;
 
             }
 
-            if ((currPos.x < end.x) && !used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
+            if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
             {
 
-                //Debug.Log("right");
+                int priority = 0;
 
-                addedNbrs = true;
+                if ((currPos.x < end.x))
+                {
+
+                    priority = 1;
+
+                }
+
                 Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
                 nbrs[currPos].InsertLast(right);
-                pointList.Enqueue(right);
+                pointList.Enqueue(right, priority);
                 used[right] = true;
 
             }
 
-            if (runs > 1000000)
+            if (runs > 100000)
             {
 
                 pointList.Clear();
-
-            }
-
-            //Debug.Log(runs);
-
-            if (!addedNbrs && runs < 1000000)
-            {
-
-                //Debug.Log("none (" + currPos.x + ", " + currPos.y + ")");
-
-                if (CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)) || CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4))) {
-
-                    if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y + 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)))
-                    {
-
-                        //Debug.Log("up");
-
-                        Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
-
-                        nbrs[currPos].InsertLast(up);
-                        pointList.Enqueue(up);
-                        used[up] = true;
-
-                    }
-
-                    if (!used.ContainsKey(new Vector2Int(currPos.x, currPos.y - 1)) && !CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5)))
-                    {
-
-                        //Debug.Log("down");
-
-                        Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
-
-                        nbrs[currPos].InsertLast(down);
-                        pointList.Enqueue(down);
-                        used[down] = true;
-
-                    }
-
-                }
-
-                if (CheckTiles(new Vector2Int(currPos.x - 4, currPos.y + 5), new Vector2Int(currPos.x + 4, currPos.y + 1)) || CheckTiles(new Vector2Int(currPos.x - 4, currPos.y - 1), new Vector2Int(currPos.x + 4, currPos.y - 5))) {
-
-                    if (!used.ContainsKey(new Vector2Int(currPos.x - 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x - 5, currPos.y + 4), new Vector2Int(currPos.x - 1, currPos.y - 4)))
-                    {
-
-                        //Debug.Log("left");
-
-                        Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
-
-                        nbrs[currPos].InsertLast(left);
-                        pointList.Enqueue(left);
-                        used[left] = true;
-
-                    }
-
-                    if (!used.ContainsKey(new Vector2Int(currPos.x + 1, currPos.y)) && !CheckTiles(new Vector2Int(currPos.x + 1, currPos.y + 4), new Vector2Int(currPos.x + 5, currPos.y - 4)))
-                    {
-
-                        //Debug.Log("right");
-
-                        Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
-
-                        nbrs[currPos].InsertLast(right);
-                        pointList.Enqueue(right);
-                        used[right] = true;
-
-                    }
-
-                }
 
             }
 

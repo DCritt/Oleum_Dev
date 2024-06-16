@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Node<T>
 {
@@ -21,6 +22,20 @@ public class Node<T>
         this.data = data;
         this.next = next;
         this.prev = prev;
+
+    }
+
+}
+
+public class PriorityNode<T> : Node<T>
+{
+
+    public int priority;
+
+    public PriorityNode(T data, int priority, Node<T> next, Node<T> prev) : base(data, next, prev)
+    {
+
+        this.priority = priority;
 
     }
 
@@ -432,6 +447,33 @@ public class MyList<T> : LinkedListStructure<T>
 
     }
 
+    public void RemoveLast()
+    {
+
+        if (size == 0)
+        {
+
+            Debug.Log("queue empty");
+            return;
+
+        }
+
+        size -= 1;
+
+        if (size == 0)
+        {
+
+            head = null;
+            tail = null;
+            return;
+
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+
+    }
+
     public override void Print()
     {
 
@@ -588,7 +630,15 @@ public class MyQueue<T> : LinkedListStructure<T>
     public MyQueue(MyQueue<T> queue)
     {
 
+        Node<T> curr = queue.tail;
 
+        for (int i = 0; i < queue.size; i++)
+        {
+
+            Enqueue(curr.data);
+            curr = curr.prev;
+
+        }
 
     }
 
@@ -625,7 +675,7 @@ public class MyQueue<T> : LinkedListStructure<T>
         if (size == 0)
         {
 
-            Debug.Log("stack empty");
+            Debug.Log("queue empty");
 
         }
 
@@ -672,7 +722,199 @@ public class MyQueue<T> : LinkedListStructure<T>
         {
 
             Debug.Log("index" + i + " = " + curr.data);
-            curr = tail.prev;
+            curr = curr.prev;
+
+        }
+
+    }
+
+}
+
+public class MyPriorityQueue<T> : LinkedListStructure<T>
+{
+
+    MyList<PriorityNode<T>> priorityList = new MyList<PriorityNode<T>>();
+
+    public MyPriorityQueue() : base()
+    {
+
+
+
+    }
+
+    public MyPriorityQueue(int maxSize) : base(maxSize)
+    {
+
+
+
+    }
+
+    public MyPriorityQueue(MyPriorityQueue<T> priorityQueue)
+    {
+
+        Node<T> curr = priorityQueue.tail;
+
+        for (int i = 0; i < priorityQueue.size; i++)
+        {
+
+            Enqueue(curr.data, (curr as PriorityNode<T>).priority);
+            curr = curr.prev;
+
+        }
+
+    }
+
+    public void Enqueue(T data, int priority)
+    {
+
+        if (maxSize != -1 && size == maxSize)
+        {
+
+            Debug.Log("can't exceed maxSize");
+            return;
+
+        }
+
+        size += 1;
+
+        if (head == null)
+        {
+
+            head = new PriorityNode<T>(data, priority, null, null);
+            tail = head;
+            priorityList.InsertFirst(head as PriorityNode<T>);
+            return;
+
+        }
+
+        if ((head as PriorityNode<T>).priority >= priority)
+        {
+
+            head = new PriorityNode<T>(data, priority, head, null);
+            head.next.prev = head;
+            
+            if ((head.next as PriorityNode<T>).priority > priority)
+            {
+
+                priorityList.InsertFirst(head as PriorityNode<T>);
+
+            }
+            else
+            {
+
+                priorityList[0] = head as PriorityNode<T>;
+
+            }
+
+            return;
+
+        }
+
+        for (int i = 0; i < priorityList.size; i++)
+        {
+
+            PriorityNode<T> temp = priorityList[i];
+
+            if (priority < temp.priority)
+            {
+
+                temp.prev = new PriorityNode<T>(data, priority, temp, temp.prev);
+                temp.prev.prev.next = temp.prev;
+                if (i == 0)
+                {
+
+                    head = temp.prev;
+                    priorityList.InsertFirst(temp.prev as PriorityNode<T>);
+
+                }
+                else
+                {
+
+                    priorityList.InsertAt(temp.prev as PriorityNode<T>, i - 1);
+
+                }
+
+                return;
+
+            }
+            else if (priority == temp.priority)
+            {
+
+                temp.prev = new PriorityNode<T>(data, priority, temp, temp.prev);
+                temp.prev.prev.next = temp.prev;
+                priorityList[i] = temp.prev as PriorityNode<T>;
+                return;
+
+            }
+
+        }
+
+        tail.next = new PriorityNode<T>(data, priority, null, tail);
+        tail = tail.next;
+        priorityList.InsertLast(tail as PriorityNode<T>);
+        
+    }
+    public T Peek()
+    {
+
+        if (size == 0)
+        {
+
+            Debug.Log("priority queue empty");
+
+        }
+
+        return tail.data;
+
+    }
+    public T Dequeue()
+    {
+
+        if (size == 0)
+        {
+
+            Debug.Log("queue empty");
+
+        }
+
+        T data = tail.data;
+        size -= 1;
+
+        if ((tail as PriorityNode<T>) == priorityList[priorityList.size - 1])
+        {
+
+            priorityList.RemoveLast();
+
+        }
+
+        if (size == 0)
+        {
+
+            data = tail.data;
+            head = null;
+            tail = null;
+            return data;
+
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+        return data;
+
+    }
+
+    public override void Print()
+    {
+
+        base.Print();
+
+        Node<T> curr = tail;
+
+        for (int i = 0; i < size; i++)
+        {
+
+            Debug.Log("index" + i + " = " + curr.data);
+            curr = curr.prev;
 
         }
 

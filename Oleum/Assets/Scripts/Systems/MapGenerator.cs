@@ -40,25 +40,27 @@ public class MapGenerator : MonoBehaviour
     public void Start()
     { 
 
-        MyList<int> list = new MyList<int>(3);
-        list.InsertLast(0);
-        list.InsertLast(1);
-        list.InsertLast(2);
+        MyPriorityQueue<int> priorityQueue = new MyPriorityQueue<int>();
 
-        list.RemoveAt(2);
+        priorityQueue.Enqueue(5, 4);
+        //priorityQueue.Print();
+        priorityQueue.Enqueue(6, 3);
+        //priorityQueue.Print();
+        priorityQueue.Enqueue(7, 0);
+        //priorityQueue.Print();
+        priorityQueue.Enqueue(8, 2);
+        //priorityQueue.Print();
+        priorityQueue.Enqueue(9, 1);
+        priorityQueue.Print();
 
-        list.Print();
+        
+        MyPriorityQueue<int> priorityQueueCopy = new MyPriorityQueue<int>(priorityQueue);
 
-        list.Clear();
+        priorityQueueCopy.Print();
 
-        Debug.Log(list.size + " is the size");
+        //5, 6, 8, 9, 7
 
-        list.InsertLast(0);
-        list.InsertLast(1);
-        list.InsertLast(2);
-        list.InsertLast(3);
-
-        list.Print();
+        priorityQueue.Print();
 
     }
     public GameObject[] GetRoomType(int i)
