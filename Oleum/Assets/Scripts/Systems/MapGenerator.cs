@@ -40,27 +40,24 @@ public class MapGenerator : MonoBehaviour
     public void Start()
     { 
 
-        MyPriorityQueue<int> priorityQueue = new MyPriorityQueue<int>();
+        MyPriorityStack<int> stack = new MyPriorityStack<int>();
 
-        priorityQueue.Enqueue(5, 4);
-        //priorityQueue.Print();
-        priorityQueue.Enqueue(6, 3);
-        //priorityQueue.Print();
-        priorityQueue.Enqueue(7, 0);
-        //priorityQueue.Print();
-        priorityQueue.Enqueue(8, 2);
-        //priorityQueue.Print();
-        priorityQueue.Enqueue(9, 1);
-        priorityQueue.Print();
+        stack.Push(1, 0);
+        stack.Push(2, 1);
+        stack.Push(3, 0);
+        stack.Push(4, 0);
+        stack.Push(5, 1);
 
-        
-        MyPriorityQueue<int> priorityQueueCopy = new MyPriorityQueue<int>(priorityQueue);
+        //5, 2, 4, 3, 1
 
-        priorityQueueCopy.Print();
+        while(stack.size > 0)
+        {
 
-        //5, 6, 8, 9, 7
+            Debug.Log(stack.Pop());
 
-        priorityQueue.Print();
+        }
+
+        //stack.Print();
 
     }
     public GameObject[] GetRoomType(int i)

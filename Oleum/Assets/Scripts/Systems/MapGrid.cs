@@ -203,9 +203,59 @@ public static class MapGrid
         Dictionary<Vector2Int, Vector2Int> pred = new Dictionary<Vector2Int, Vector2Int>();
         Dictionary<Vector2Int, int> dist = new Dictionary<Vector2Int, int>();
 
+        int rightPri = 1;
+        int leftPri = 1;
+        int upPri = 1;
+        int downPri = 1;
+
+        int xPri = 2;
+        int yPri = 2;
+
+        int xDist = end.x - start.x;
+        int yDist = end.y - start.y;
+
+        if (xDist > yDist)
+        {
+
+            xPri = 3;
+
+        }
+        else
+        {
+
+            yPri = 3;
+
+        }
+        
+        if (start.x < end.x)
+        {
+
+            rightPri = xPri;
+
+        }
+        else
+        {
+
+            leftPri = xPri;
+
+        }
+
+        if (start.y < end.y)
+        {
+
+            upPri = yPri;
+
+        }
+        else
+        {
+
+            downPri = yPri;
+
+        }
+
         bool success = false;
-        MyPriorityQueue<Vector2Int> pointList = new MyPriorityQueue<Vector2Int>();
-        pointList.Enqueue(start, 0);
+        MyPriorityStack<Vector2Int> pointList = new MyPriorityStack<Vector2Int>();
+        pointList.Push(start, 0);
         int runs = 0;
         Dictionary<Vector2Int, bool> used = new Dictionary<Vector2Int, bool>();
 
@@ -214,7 +264,7 @@ public static class MapGrid
 
             //pointList.Print();
 
-            Vector2Int currPos = pointList.Dequeue();
+            Vector2Int currPos = pointList.Pop();
             runs += 1;
 
             //Debug.Log("some (" + currPos.x + ", " + currPos.y + ")");
@@ -237,14 +287,14 @@ public static class MapGrid
                 if ((currPos.y < end.y))
                 {
 
-                    priority = 1;
+                    priority = upPri;
 
                 }
 
                 Vector2Int up = new Vector2Int(currPos.x, currPos.y + 1);
 
                 nbrs[currPos].InsertLast(up);
-                pointList.Enqueue(up, priority);
+                pointList.Push(up, priority);
                 used[up] = true;
 
             }
@@ -257,14 +307,14 @@ public static class MapGrid
                 if ((currPos.y > end.y))
                 {
 
-                    priority = 1;
+                    priority = downPri;
 
                 }
 
                 Vector2Int down = new Vector2Int(currPos.x, currPos.y - 1);
 
                 nbrs[currPos].InsertLast(down);
-                pointList.Enqueue(down, priority);
+                pointList.Push(down, priority);
                 used[down] = true;
 
             }
@@ -277,14 +327,14 @@ public static class MapGrid
                 if ((currPos.x > end.x))
                 {
 
-                    priority = 1;
+                    priority = leftPri;
 
                 }
 
                 Vector2Int left = new Vector2Int(currPos.x - 1, currPos.y);
 
                 nbrs[currPos].InsertLast(left);
-                pointList.Enqueue(left, priority);
+                pointList.Push(left, priority);
                 used[left] = true;
 
             }
@@ -297,14 +347,14 @@ public static class MapGrid
                 if ((currPos.x < end.x))
                 {
 
-                    priority = 1;
+                    priority = rightPri;
 
                 }
 
                 Vector2Int right = new Vector2Int(currPos.x + 1, currPos.y);
 
                 nbrs[currPos].InsertLast(right);
-                pointList.Enqueue(right, priority);
+                pointList.Push(right, priority);
                 used[right] = true;
 
             }
@@ -354,8 +404,6 @@ public static class MapGrid
 
         if (pred.ContainsKey(end))
         {
-
-            Debug.Log("distance" + dist[end]);
 
             MyStack<Vector2Int> path = new MyStack<Vector2Int>();
             Vector2Int temp = end;

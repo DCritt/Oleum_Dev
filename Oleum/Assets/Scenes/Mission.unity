@@ -2027,7 +2027,7 @@ PrefabInstance:
       objectReference: {fileID: 1475574588}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: mapSize
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5118499040822072347, guid: 6279ecaaf5b7f8a4eb4045078558cd55, type: 3}
       propertyPath: minimap
